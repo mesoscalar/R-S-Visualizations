@@ -17,7 +17,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 | 3 | Hopf bundle | ✅ | ✅ 6/6 | ✅ | σ = −1 measured; see caveats |
 | 4 | Parallel transport | ✅ | ✅ 8/8 | ✅ | incl. full Gauss–Bonnet cross-check |
 | 5 | Degree / π₃(SU(2)) | ✅ | ✅ 5/5 | ✅ | QMC inverse-CDF bug found & fixed |
-| 6 | BPST instanton | — | — | — | |
+| 6 | BPST instanton | ✅ | ✅ 5/5 | ✅ | 4D scheme cross-check from measured convergence |
 | 7 | Möbius band | — | — | — | |
 
 ## Scaffold (committed first, per ground rules)
@@ -219,6 +219,28 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 - **Rendering caveats:** for n=1 the single curve may look unremarkable (correct);
   continuation at eps=0.4 occasionally takes visibly polygonal corners at 200
   samples; degree recompute is on slider release ('change'), not live drag.
+
+## Widget 6 — BPST instanton density
+
+- **Kernel** `src/math/instanton.ts`: density, radial reduction
+  $\int q\,d^4x = 2\pi^2\int_0^\infty q(r)r^3dr$ (shared `integrateR4Radial`),
+  independent full-4D tensor-GL cross-check with the rational tail map
+  $x = s/(1-s^2)$ per axis, slice sampling with exact-centre grids.
+- **Test results** (all green):
+  - Analytic check $\int d^4x\,(|x|^2+\rho^2)^{-4} = \pi^2/6\rho^4$ for
+    $\rho = \tfrac12, 1, 2$: error < 1e-10 (relative; roundoff-level).
+  - Total charge = 1: spec 1e-4, actual < 1e-10, for ρ ∈ {0.3, 0.5, 1, 1.7, 3}.
+  - 4D scheme cross-check (offset centre, no radial trick): measured geometric
+    convergence 7.2e-5 / 1.1e-6 / 9.6e-8 / 1.6e-8 at n = 16/24/32/40 per axis;
+    test runs n = 32 against 1e-6 (10× margin).
+  - ρ-squeeze: peak scales exactly ×16 when ρ halves; charge unchanged to 1e-10.
+  - Slice argmax = centre exactly; max value = analytic `slicePeak` to 1e-14.
+- **Renderer** `src/widgets/instanton.ts`: 31³ additive point cloud; colour
+  normalised against the *through-centre* peak for the current ρ (so moving the
+  x₄ slider genuinely dims the slice — not per-slice renormalised), γ = 0.45
+  for visibility; ρ and x₄ sliders; live charge readout via radial quadrature.
+- **Rendering caveats:** additive blending on a 31³ cloud may bloom on bright
+  screens; point size fixed (no perspective-density compensation).
 
 ## Tolerance rationale (scaffold)
 

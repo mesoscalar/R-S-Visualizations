@@ -61,6 +61,7 @@ export const WIDGETS: WidgetEntry[] = [
     title: 'BPST instanton density',
     subtitle:
       'The one-instanton charge density integrates to exactly 1 for every scale $\\rho$ — the noncompact moduli direction squeezes but cannot leak.',
+    load: () => import('./widgets/instanton'),
   },
   {
     id: 'mobius',
