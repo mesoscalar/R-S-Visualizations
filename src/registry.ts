@@ -53,6 +53,7 @@ export const WIDGETS: WidgetEntry[] = [
     title: 'Degree and $\\pi_3(SU(2)) \\cong \\mathbb{Z}$',
     subtitle:
       '$q \\mapsto q^n$ has degree $n$ as a map $S^3 \\to S^3$: the integral of $\\det Df$ over $S^3$ is locked to $2\\pi^2 n$ under perturbation.',
+    load: () => import('./widgets/degree'),
   },
   {
     id: 'instanton',

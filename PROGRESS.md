@@ -16,7 +16,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 | 2 | Chern–Weil monopole | ✅ | ✅ 6/6 | ✅ | quadrature exact-to-roundoff |
 | 3 | Hopf bundle | ✅ | ✅ 6/6 | ✅ | σ = −1 measured; see caveats |
 | 4 | Parallel transport | ✅ | ✅ 8/8 | ✅ | incl. full Gauss–Bonnet cross-check |
-| 5 | Degree / π₃(SU(2)) | — | — | — | |
+| 5 | Degree / π₃(SU(2)) | ✅ | ✅ 5/5 | ✅ | QMC inverse-CDF bug found & fixed |
 | 6 | BPST instanton | — | — | — | |
 | 7 | Möbius band | — | — | — | |
 
@@ -184,6 +184,41 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
   spray paths may exit the chart on non-periodic surfaces (clamping not
   enforced — paths simply extend; mathematically fine, visually may pierce);
   arrow scale fixed at 0.45 regardless of surface size.
+
+## Widget 5 — Degree and π₃(SU(2)) ≅ ℤ
+
+- **Kernel** `src/math/degree.ts`: degree integrand $\det Df$ by central finite
+  differences along geodesics in the left-translation frames $\{iq,jq,kq\}$
+  (consistent orientation source & target; h = 1e-5 balances $O(h^2)$ truncation
+  ≈ 1e-10 against rounding ≈ 1e-11). Estimators: product-GL quadrature on
+  hyperspherical coordinates, seeded plain MC with σ/√N error bars, deterministic
+  Halton QMC (inverse-CDF in χ). Newton preimage solver in tangent frames with
+  geodesic damping; closed-form preimage branches of circles under $q\mapsto q^n$
+  (via $\exp(u(\psi + 2\pi k)/n)$); Newton continuation tracer for perturbed maps.
+- **Debug log (the kind worth recording):** the first QMC implementation used
+  Newton for the χ inverse-CDF; $F'=\tfrac{2}{\pi}\sin^2\chi$ vanishes at the
+  endpoints, Newton silently diverged for small $u$, and the estimator carried a
+  systematic +0.55 bias at every N (degree 3.55 ≠ 3 — caught precisely because
+  the answer must be an integer). Replaced with 48-step bisection: errors fell to
+  3.4e-4 (N=50k), 4.0e-5 (N=200k), the expected (log N)³/N behaviour.
+- **Test results** (spec a–c, all green):
+  - (a) quadrature deg $f_n$, $n=1,2,3$: spec 1e-3, actual 5e-11…1.2e-9; QMC at
+    stated N = 200,000: error 4.0e-5 < 1e-3.
+  - (a′) plain MC (seed 99, N=1e5): 1.9969 ± 0.0063 — within 1σ of 2, error bar
+    asserted honest (1e-4 < σ < 0.05).
+  - (b) perturbed $f_2$ (eps = 0.15, 0.35): degree 2 to 1e-3 (actual 2.9e-8).
+  - (c) preimage counts 1/2/3 exactly (60 seeded Newton starts, dedup at 1e-4),
+    each root maps back to the target to 1e-9.
+  - Foliation: closed-form branches map back onto the circle to 1e-12;
+    continuation closes up on the perturbed map to 1e-6.
+- **Renderer** `src/widgets/degree.ts`: n preimage curves of a great circle
+  through the (fixed, regular) target as hue-coded tubes in stereographic ℝ³;
+  white dots = the n preimages of the target itself; homotopy slider re-traces
+  curves by Newton continuation; readouts: quadrature degree (6 decimals) plus an
+  independent MC estimate with error bar.
+- **Rendering caveats:** for n=1 the single curve may look unremarkable (correct);
+  continuation at eps=0.4 occasionally takes visibly polygonal corners at 200
+  samples; degree recompute is on slider release ('change'), not live drag.
 
 ## Tolerance rationale (scaffold)
 
