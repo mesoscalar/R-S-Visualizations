@@ -45,6 +45,7 @@ export const WIDGETS: WidgetEntry[] = [
     title: 'Parallel transport and holonomy on surfaces',
     subtitle:
       'Gauss–Bonnet: the holonomy angle equals $\\int K\\,dA$ — the cylinder bends but does not curve; Jacobi fields measure geodesic spreading.',
+    load: () => import('./widgets/transport'),
   },
   {
     id: 'degree',

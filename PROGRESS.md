@@ -15,7 +15,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 | 1 | Clutching laboratory | ✅ | ✅ 6/6 | ✅ | hue-vortex sphere; see caveats |
 | 2 | Chern–Weil monopole | ✅ | ✅ 6/6 | ✅ | quadrature exact-to-roundoff |
 | 3 | Hopf bundle | ✅ | ✅ 6/6 | ✅ | σ = −1 measured; see caveats |
-| 4 | Parallel transport | — | — | — | |
+| 4 | Parallel transport | ✅ | ✅ 8/8 | ✅ | incl. full Gauss–Bonnet cross-check |
 | 5 | Degree / π₃(SU(2)) | — | — | — | |
 | 6 | BPST instanton | — | — | — | |
 | 7 | Möbius band | — | — | — | |
@@ -151,6 +151,39 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 - **Rendering caveats:** trail-line rebuild per frame is O(idx) — acceptable at 2400
   samples; fiber family near-tangency for adjacent hues; whether the mismatch arc
   sweeps the visually "short" way around the fiber for |Δ| > π is untested.
+
+## Widget 4 — Parallel transport and holonomy on surfaces
+
+- **Kernel** `src/math/surfaces.ts`: five surfaces (sphere, cylinder, torus,
+  catenoid, plane) with analytic first/second derivatives; **generic** Gauss
+  curvature from fundamental forms (no hard-coded K in the math path); extrinsic
+  transport ODE $\dot X = -\langle X,\dot N\rangle N$ with $\dot N$ analytic via
+  the normalised-cross-product derivative; geodesic flow via the
+  first-fundamental-form 2×2 system; joint geodesic+Jacobi integration
+  ($J'' = -KJ$); $\int\!\!\int K\,dA$ over parameter ellipses (GL × trapezoid).
+- **Test results** (spec a–d plus extras, all green):
+  - Generic K vs analytic closed forms on all five surfaces: < 1e-12.
+  - (a) wiggly torus loop: |X| drift AND tangency drift < 1e-9 (actual ~1e-12;
+    no projection applied — conservation is measured, not enforced).
+  - (b) octant triangle holonomy = +π/2 = excess to 1e-6 (sign measured: CCW
+    traversal, outward normal ⇒ +∫K dA; actual error ~5e-15).
+  - (c) cylinder around-loop with axial wiggle: holonomy < 1e-9; plane: < 1e-12
+    (N constant ⇒ ODE trivially zero).
+  - (d) sphere Jacobi J = sin t to 1e-6 (actual 8e-15 at h ≈ 7e-4).
+  - **Gauss–Bonnet beyond triangles:** transport holonomy = ∫∫K dA (mod 2π) for
+    parameter ellipses on sphere/torus/catenoid to 1e-6 — the widget's live
+    "predicted vs measured" readout is itself under test.
+  - Geodesics: metric speed conserved (FD-limited check at 1e-4); equator great
+    circle stays planar to 1e-12.
+- **Renderer** `src/widgets/transport.ts`: K-heatmap surface (same diverging
+  palette as Widget 2), transported orthonormal frame (blue X, green N×X, grey
+  ghost of the start vector), loop-size slider, live holonomy vs ∫∫K dA readout,
+  "around the cylinder!" punchline button (predicted 0), geodesic spray mode
+  (14 unit-speed geodesics fanned in metric angle, animated front).
+- **Rendering caveats:** double-sided surface shading on the catenoid neck;
+  spray paths may exit the chart on non-periodic surfaces (clamping not
+  enforced — paths simply extend; mathematically fine, visually may pierce);
+  arrow scale fixed at 0.45 regardless of surface size.
 
 ## Tolerance rationale (scaffold)
 
