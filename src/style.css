@@ -1,0 +1,280 @@
+:root {
+  --bg: #0b0e14;
+  --bg-panel: #11151f;
+  --bg-card: #131826;
+  --border: #232a3b;
+  --text: #d7dce6;
+  --text-dim: #8a93a6;
+  --accent: #6ea8fe;
+  --accent2: #f0a35e;
+  --good: #69d58c;
+  --radius: 10px;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ---------- landing page ---------- */
+
+.landing {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.landing h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+}
+
+.landing .framing {
+  color: var(--text-dim);
+  max-width: 64ch;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  color: var(--text);
+  transition: border-color 0.15s, transform 0.15s;
+  min-height: 7.5rem;
+}
+
+.card:active,
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.card .num {
+  color: var(--accent2);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0.15rem 0 0.4rem;
+}
+
+.card .subtitle {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+}
+
+.card.pending {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ---------- widget page ---------- */
+
+.widget-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.widget-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.7rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-panel);
+  flex-wrap: wrap;
+}
+
+.widget-header .back {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.widget-header h1 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.widget-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading,
+.error-box {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-dim);
+}
+
+.error-box {
+  color: #e08080;
+}
+
+/* ---------- shared widget building blocks ---------- */
+
+.panes {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-wrap: wrap;
+}
+
+.pane {
+  flex: 1 1 340px;
+  min-height: 320px;
+  position: relative;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  touch-action: none;
+}
+
+.pane canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pane-label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.7rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hud {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.7rem;
+  text-align: right;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hud .big {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud .small {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.65rem 1.1rem;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.controls label {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.controls input[type='range'] {
+  accent-color: var(--accent);
+  width: 130px;
+  height: 28px;
+}
+
+button,
+.btn {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+  min-height: 40px;
+  min-width: 44px;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+select {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  min-height: 40px;
+}
+
+.caption {
+  padding: 0.9rem 1.2rem 1.4rem;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  max-width: 78ch;
+}
+
+.caption .katex {
+  color: var(--text);
+}
+
+.footnote {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  opacity: 0.8;
+}
