@@ -27,6 +27,11 @@ jobs:
       - run: npm test
       - run: npm run build
       - uses: actions/configure-pages@v5
+        with:
+          # attempt to enable Pages automatically; if the token lacks the
+          # permission this fails with the same error as before and the
+          # one-click manual step in PROGRESS.md still applies
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
