@@ -37,6 +37,7 @@ export const WIDGETS: WidgetEntry[] = [
     title: 'Hopf bundle: fibers, connection, holonomy',
     subtitle:
       'Holonomy of the standard connection on $S^3 \\to S^2$ around a loop enclosing solid angle $\\Omega$ is $e^{-i\\Omega/2}$; distinct fibers are linked circles.',
+    load: () => import('./widgets/hopf'),
   },
   {
     id: 'transport',

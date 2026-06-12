@@ -14,7 +14,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 | — | Scaffold (utils, gallery, CI) | ✅ | ✅ 24/24 | ✅ skeleton | |
 | 1 | Clutching laboratory | ✅ | ✅ 6/6 | ✅ | hue-vortex sphere; see caveats |
 | 2 | Chern–Weil monopole | ✅ | ✅ 6/6 | ✅ | quadrature exact-to-roundoff |
-| 3 | Hopf bundle | — | — | — | |
+| 3 | Hopf bundle | ✅ | ✅ 6/6 | ✅ | σ = −1 measured; see caveats |
 | 4 | Parallel transport | — | — | — | |
 | 5 | Degree / π₃(SU(2)) | — | — | — | |
 | 6 | BPST instanton | — | — | — | |
@@ -114,6 +114,43 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 - **Rendering caveats:** heatmap contrast at small |λ| (density nearly constant
   ⇒ nearly uniform orange — correct but undramatic until sliders move); the φ
   parametrisation seam should be invisible since density is smooth in φ.
+
+## Widget 3 — Hopf bundle: fibers, connection, holonomy
+
+- **Kernel** `src/math/hopf.ts`: Hopf map and its exact (quadratic) differential;
+  structural shortcut — with $q\in S^3$ a quaternion, left multiplication gives the
+  orthonormal tangent frame $\{iq, jq, kq\}$ in which $iq$ is vertical and
+  $\{jq,kq\}$ horizontal for $\omega = \mathrm{Im}\langle z, dz\rangle$, and $dh$
+  is **conformal with factor 2** on the horizontal space (asserted to 1e-12), so the
+  lift ODE needs no linear solve: $\dot z = \tfrac14 (dh(jq)\!\cdot\!\dot p)\,jq +
+  \tfrac14 (dh(kq)\!\cdot\!\dot p)\,kq$. Lift integration: shared RK4 +
+  renormalisation each step. Stereographic projection from pole $(0,0,0,1)$;
+  polygonal Gauss linking double sum.
+- **Holonomy sign:** determined numerically (lift around CCW latitude circles,
+  ratio phase/(Ω/2) = −1.000000000000 across θ₀ ∈ {0.2, 0.5, 1.0}), then
+  hard-coded `HOLONOMY_SIGN = -1` with comment, per spec.
+- **Test results** (spec items a–d, all green):
+  - (a) max over the whole path: $||z|-1| < 10^{-12}$ (renorm), base-tracking
+    error $< 10^{-9}$ — actual ≈ 1e-13 at h = 2π/4000 (RK4 global ~h⁴).
+  - (b) octant triangle: |phase − (−π/4)| < 1e-6 (actual ~1e-12).
+  - (c) phase/Ω = −1/2 to 1e-6 for θ₀ = 0.05, 0.1, 0.2 (exact theory: equality
+    for all circles; deviation is pure truncation).
+  - (d) Gauss linking of fiber pairs = 1 ± 1e-4 at M = 512 (measured O(M⁻²):
+    1.2e-4 at M = 256), rounds to exactly 1, three distinct base-point pairs.
+- **Renderer** `src/widgets/hopf.ts`: draggable base point (raycast onto sphere,
+  orbit controls suspended during drag), latitude-circle loop with radius slider
+  or octant-triangle preset, animated 7 s traversal with white lift trail in the
+  stereographic view, phase-coloured fiber tube (hue = fiber coordinate α),
+  live Δ readout vs. predicted σΩ/2, orange mismatch arc drawn along the fiber at
+  completion, 10-fiber linked-family toggle (canonical Hopf picture).
+- **Decision log:** the base point is clamped ≥ 0.25 rad from the south pole —
+  that fiber passes through the projection pole and its image is an unbounded
+  line; noted in the caption. The live Δ during traversal is measured against the
+  reference section over the *current* base point (gauge-dependent but
+  pedagogically the natural dial); the final readout is the genuine holonomy.
+- **Rendering caveats:** trail-line rebuild per frame is O(idx) — acceptable at 2400
+  samples; fiber family near-tangency for adjacent hues; whether the mismatch arc
+  sweeps the visually "short" way around the fiber for |Δ| > π is untested.
 
 ## Tolerance rationale (scaffold)
 
