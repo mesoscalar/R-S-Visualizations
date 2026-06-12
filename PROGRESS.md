@@ -13,7 +13,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 |---|--------|--------|-------|----------|-------|
 | — | Scaffold (utils, gallery, CI) | ✅ | ✅ 24/24 | ✅ skeleton | |
 | 1 | Clutching laboratory | ✅ | ✅ 6/6 | ✅ | hue-vortex sphere; see caveats |
-| 2 | Chern–Weil monopole | — | — | — | |
+| 2 | Chern–Weil monopole | ✅ | ✅ 6/6 | ✅ | quadrature exact-to-roundoff |
 | 3 | Hopf bundle | — | — | — | |
 | 4 | Parallel transport | — | — | — | |
 | 5 | Degree / π₃(SU(2)) | — | — | — | |
@@ -87,6 +87,33 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
   traversal direction; whether the hue seam sits at $\varphi = 0$ unobtrusively;
   z-fighting of the equator seam torus at radius 1.001 (should be fine);
   camera starts south-tilted ([0,-2.2,3.4]) so the vortex is visible on load.
+
+## Widget 2 — Chern–Weil on the monopole bundle
+
+- **Kernel** `src/math/monopole.ts`: $A_\pm = \frac{n}{2}(\pm 1-\cos\theta)d\phi$;
+  perturbations realised as global 1-forms $a = u\,dv$ with $u,v$ restrictions of
+  polynomials in $(x,y,z)$ — guaranteed smooth at the poles — giving
+  $(da)_{\theta\phi} = u_\theta v_\phi - u_\phi v_\theta$, all simplified by hand
+  (5-element basis: $z\,dx$, $x\,dy$, $xy\,dz$, $z^2dy$, $(x^2{-}y^2)dz$).
+- **Decision log:** the spec's example family `d(cos kθ cos mφ)` is exact
+  ($d\circ d = 0$), which would not slosh the density at all; the intent
+  ("density sloshes, integer pinned") requires non-closed global 1-forms, hence
+  the $u\,dv$ basis above. Stokes ($\int_{S^2} da = 0$) is asserted per basis
+  element to 1e-12.
+- **Test results** (all green):
+  - Scheme check $\int_{S^2}dA = 4\pi$: error < 1e-12 (spec asked first).
+  - $c_1 = n$, zero perturbation, $n=-2..3$: spec 1e-8, actual < 1e-12
+    (constant density — GL×trapezoid exact up to roundoff).
+  - 20 seeded random $\lambda \in [-2,2]^5$: spec 1e-6, actual < 1e-11
+    (densities are low-degree trig polynomials, the 64×128 rule is exact for them).
+  - $A_+ - A_- = n\,d\phi$ across the overlap (transition is pure gauge).
+- **Renderer** `src/widgets/chern-weil.ts`: vertex-coloured diverging heatmap
+  (orange = positive, blue = negative density, dark = 0, auto-normalised), five
+  λ-sliders with KaTeX labels, n selector, live c₁ readout to 8 decimals
+  recomputed by 48×96 quadrature on every slider input (~25k evals, instant).
+- **Rendering caveats:** heatmap contrast at small |λ| (density nearly constant
+  ⇒ nearly uniform orange — correct but undramatic until sliders move); the φ
+  parametrisation seam should be invisible since density is smooth in φ.
 
 ## Tolerance rationale (scaffold)
 

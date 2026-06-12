@@ -29,6 +29,7 @@ export const WIDGETS: WidgetEntry[] = [
     title: 'Chern–Weil on the monopole bundle',
     subtitle:
       'The first Chern number $\\tfrac{1}{2\\pi}\\int_{S^2} F = n$ is invariant under any global deformation $A \\mapsto A + a$ of the connection.',
+    load: () => import('./widgets/chern-weil'),
   },
   {
     id: 'hopf',
