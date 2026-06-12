@@ -21,6 +21,7 @@ export const WIDGETS: WidgetEntry[] = [
     title: 'Clutching laboratory',
     subtitle:
       'Principal $U(1)$-bundles over $S^2$ are classified by the winding number of the equatorial transition function: $[S^1, U(1)] \\cong \\mathbb{Z}$.',
+    load: () => import('./widgets/clutching'),
   },
   {
     id: 'chern-weil',

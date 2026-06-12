@@ -35,7 +35,8 @@ export function windingNumber(points: ReadonlyArray<readonly [number, number]>):
     total += Math.atan2(cross, dot);
   }
   const raw = total / (2 * Math.PI);
-  return { n: Math.round(raw), raw, minRadius };
+  const n = Math.round(raw) + 0; // +0 normalises IEEE negative zero to +0
+  return { n, raw, minRadius };
 }
 
 /** Sample a parametric loop c: [0, 2 pi) -> C at m uniform points. */

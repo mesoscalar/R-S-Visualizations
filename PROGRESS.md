@@ -12,7 +12,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 | # | Widget | Kernel | Tests | Renderer | Notes |
 |---|--------|--------|-------|----------|-------|
 | — | Scaffold (utils, gallery, CI) | ✅ | ✅ 24/24 | ✅ skeleton | |
-| 1 | Clutching laboratory | — | — | — | |
+| 1 | Clutching laboratory | ✅ | ✅ 6/6 | ✅ | hue-vortex sphere; see caveats |
 | 2 | Chern–Weil monopole | — | — | — | |
 | 3 | Hopf bundle | — | — | — | |
 | 4 | Parallel transport | — | — | — | |
@@ -54,6 +54,39 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 - **Deploy:** `.github/workflows/pages.yml` — `npm ci && npm test && npm run build`,
   publishes `dist/` via `actions/deploy-pages`. Vite `base` set to
   `/R-S-Visualizations/`.
+
+## Widget 1 — Clutching laboratory
+
+- **Kernel** `src/math/clutching.ts` (+ shared `winding.ts`): closed Catmull–Rom
+  spline through draggable control points; presets tracing $z^n$; deterministic
+  origin-crossing family (circle centred at $(2-2s,0)$, crossing at $s=1/2$);
+  perturbed circles $e^{int}(1+p(t))$ with $\sum|p| < 1$ for invariance tests.
+- **Test results** (spec items a–d, all green):
+  - (a) winding of $z^n$ at 400 samples = n **exactly** (integer), raw float drift
+    < 1e-12 (pure roundoff: polygon winding is an exact integer sum of atan2 terms),
+    all $|n| \le 5$.
+  - (b) 50 seeded random smooth perturbations with $|c| \ge 0.3$: winding unchanged
+    in every trial.
+  - (c) origin-crossing family: winding constant (0) on $s\in[0,0.45]$, constant (1)
+    on $s\in[0.55,1]$, jump exactly +1.
+  - (d) 13 Lipschitz curves: winding at 200 samples == winding at 2000 samples.
+  - Bonus: spline interpolates control points to 1e-12; preset polygons reproduce
+    nominal winding through the spline.
+- **Renderer** `src/widgets/clutching.ts`: 2D canvas loop editor (pointer events,
+  ~30 px hit targets, drag clamped to the visible plane) with live $n$ readout, raw
+  $\oint d\arg c/2\pi$ diagnostic, origin crosshair + faint $U(1)$ guide circle;
+  3D sphere with the **southern cap coloured by the transition phase** — the
+  clutching integer appears as an n-fold hue vortex at the south pole — plus an
+  equatorial dial animating the cap mismatch $g(\varphi)$, and the loop in the 2D
+  panel coloured by the same hue wheel.
+- **Decision log:** the spec's "phase texture on two caps" is realised as: northern
+  cap = flat reference colour (its own trivialisation's phase 0), southern cap hue =
+  $\arg c(\varphi)$ extended along meridians. This extension is exactly the
+  obstruction picture: it is continuous at the pole iff $n = 0$.
+- **Rendering caveats (unverified visually):** dial orientation sign vs. loop
+  traversal direction; whether the hue seam sits at $\varphi = 0$ unobtrusively;
+  z-fighting of the equator seam torus at radius 1.001 (should be fine);
+  camera starts south-tilted ([0,-2.2,3.4]) so the vortex is visible on load.
 
 ## Tolerance rationale (scaffold)
 
