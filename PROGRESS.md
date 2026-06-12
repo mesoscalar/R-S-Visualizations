@@ -4,8 +4,12 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 `https://<user>.github.io/R-S-Visualizations/`.
 
 > **⚠ One manual step for you:** enable GitHub Pages in repo **Settings → Pages →
-> Source: GitHub Actions**. The deploy workflow (`.github/workflows/pages.yml`) runs on
-> every push to the working branch and will publish automatically once that is set.
+> Source: GitHub Actions**, then re-run the "publish" job (or push anything).
+> Automatic enablement from CI was attempted (`configure-pages` with
+> `enablement: true`) and is impossible: the workflow token gets
+> *"Resource not accessible by integration"* — creating the Pages site needs
+> repo-admin rights. Until you click it, the **test** job is the CI signal that
+> matters (it is green); only the **publish** job fails.
 
 ## Status board
 
