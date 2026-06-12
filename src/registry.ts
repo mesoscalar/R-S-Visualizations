@@ -69,5 +69,6 @@ export const WIDGETS: WidgetEntry[] = [
     title: 'Möbius band as the nontrivial $\\mathbb{Z}/2$-bundle',
     subtitle:
       'Cylinder vs Möbius over $S^1$: a $\\pm 1$ transition function, and the forced zero of any continuous section of the Möbius band.',
+    load: () => import('./widgets/mobius'),
   },
 ];

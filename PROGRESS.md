@@ -18,7 +18,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 | 4 | Parallel transport | ✅ | ✅ 8/8 | ✅ | incl. full Gauss–Bonnet cross-check |
 | 5 | Degree / π₃(SU(2)) | ✅ | ✅ 5/5 | ✅ | QMC inverse-CDF bug found & fixed |
 | 6 | BPST instanton | ✅ | ✅ 5/5 | ✅ | 4D scheme cross-check from measured convergence |
-| 7 | Möbius band | — | — | — | |
+| 7 | Möbius band | ✅ | ✅ 4/4 | ✅ | mostly visual, per spec |
 
 ## Scaffold (committed first, per ground rules)
 
@@ -242,6 +242,26 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 - **Rendering caveats:** additive blending on a 31³ cloud may bloom on bright
   screens; point size fixed (no perspective-density compensation).
 
+## Widget 7 — Möbius band as the nontrivial ℤ/2-bundle
+
+- **Kernel** `src/math/mobius.ts`: cylinder & Möbius embeddings and fiber
+  directions; antiperiodic sections via half-integer harmonics (these are
+  *exactly* the continuous sections of the Möbius band); robust bisected zero
+  finding; Čech ℤ/2 class as the product of transition signs with the
+  coboundary action.
+- **Test results** (trivial by design, per spec): $m(u+2\pi, t) = m(u, -t)$ and
+  cylinder periodicity to 1e-12; 50 seeded random antiperiodic sections all have
+  an odd number ≥ 1 of zeros; the cylinder's nonvanishing section confirmed;
+  Čech class invariant under 40 random coboundaries, cylinder (+1) ≠ Möbius (−1).
+- **Renderer** `src/widgets/mobius.ts`: side-by-side bands, chart arcs in
+  blue/orange with seams coloured by transition sign (green +1, red −1 — the
+  Möbius band has one of each), comb slider moving a section: 48 fiber arrows
+  per band, the cylinder's never vanish, the Möbius band's forced zero tracked
+  live by bisection and marked with a red dot.
+- **Rendering caveats:** arrows at near-zero length are clamped to 0.02 for
+  visibility (the red dot, not arrow length, marks the true zero); seam colour
+  bands are painted by u-interval, so their widths are approximate.
+
 ## Tolerance rationale (scaffold)
 
 Stated next to each test in-code; summary: machine-precision claims (1e-12…1e-14)
@@ -249,11 +269,62 @@ are made only where the quadrature/algebra is exact-up-to-roundoff (GL on
 polynomials, constants on spheres, quaternion identities); truncation-limited
 claims follow from measured convergence order (RK4 order ≈ 4.0 measured).
 
-## Viewing guide (will be finalised at the end)
+## Viewing guide (final)
 
-Nothing visual to check yet beyond the landing page: dark gallery with 7 cards,
-KaTeX rendering in card subtitles, unbuilt cards greyed out.
+All seven widgets are built, tested and wired into the gallery. `npm test`:
+**64/64 green**; `npm run build`: green. Ordered by the task spec's priority —
+what to eyeball first on each:
 
-## Rendering caveats I cannot verify
+1. **Clutching laboratory** — drag a control point of the Hopf preset slowly
+   through the red origin cross: the readout should freeze everywhere else and
+   jump exactly ±1 at the crossing. Check the south-pole hue vortex matches n
+   (rotate the sphere south-up; camera starts tilted that way).
+2. **Chern–Weil monopole** — slam all five sliders around: the heatmap should
+   slosh dramatically while c₁ holds all 8 displayed decimals. Switch n and
+   confirm the readout follows the selector instantly.
+3. **Hopf bundle** — press ▶ on the default latitude loop: white trail should
+   spiral in the right pane and end visibly displaced along the fiber; the Δ
+   readout should match the predicted σΩ/2 line to ~6 decimals. Then toggle
+   "show fiber family" — the canonical linked-circles picture. Octant preset:
+   Δ = −0.785398.
+4. **Surface transport** — sphere: run transport, watch blue/green frame end
+   rotated against the grey ghost; readout vs ∫K dA line should agree.
+   Cylinder: press "around the cylinder!" — holonomy 0.000000 is the punchline.
+   Spray mode on the sphere: geodesics should refocus at the antipode.
+5. **Degree / π₃(SU(2))** — n = 3: three linked tubes, three white dots; drag
+   the homotopy slider: tubes deform, "deg" readout stays 3.000000.
+6. **BPST instanton** — pull ρ down to 0.25: the cloud collapses to a bright
+   point but ∫q stays 1.00000000. Slide x₄ away from 0: the whole slice dims
+   (deliberately not renormalised per slice).
+7. **Möbius band** — comb slider: red dot slides around the band but never
+   leaves; cylinder arrows never die. One green and one red seam on the Möbius
+   band, two green on the cylinder.
 
-(I cannot see the visuals; will be listed per widget as they are built.)
+**Honest notes on what is unpolished:**
+- All rendering-level caveats are listed per widget above; none affect the
+  verified math. The biggest visual risks: dial orientation in Widget 1,
+  mismatch-arc "long way round" in Widget 3 when |Δ| > π, and additive-blend
+  bloom in Widget 6.
+- Touch: pointer events + pinch (OrbitControls) are wired everywhere, hit
+  targets ≥ ~30 px, but none of it has been exercised on a real device.
+- No Berry-phase stretch widget (spec marked it "true stretch"); polish budget
+  went to test depth instead (e.g. the arbitrary-loop Gauss–Bonnet test and the
+  4D quadrature cross-check, both beyond the spec's minimums).
+- Widget 1's curve editor only drags existing control points (no point
+  insertion); the presets give 8–24 points, which is plenty to cross the origin.
+
+## Test summary
+
+64 tests, all green, < 5 s wall time. Worst measured numerical errors vs spec:
+
+| Claim | Spec tol | Measured |
+|---|---|---|
+| winding(zⁿ) = n, 400 pts | exact | exact (raw < 1e-12) |
+| c₁ = n, 20 perturbations | 1e-6 | < 1e-11 |
+| Hopf lift on S³ / over γ | 1e-9 | ~1e-15 / ~1e-13 |
+| octant holonomy = π/4 | 1e-6 | ~1e-12 |
+| fiber linking = 1 | (integer) | ±1e-4 at M=512 |
+| transport norm/tangency | 1e-9 | ~1e-12 |
+| sphere Jacobi = sin t | 1e-6 | 8e-15 |
+| deg fₙ = n | 1e-3 | 1.2e-9 (quad), 4e-5 (QMC N=2·10⁵) |
+| instanton charge = 1 | 1e-4 | < 1e-10 |
