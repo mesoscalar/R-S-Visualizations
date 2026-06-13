@@ -1,6 +1,7 @@
 # PROGRESS — R&S Vol. 2 visual companion
 
-Live site (Pages enabled): `https://mesoscalar.github.io/R-S-Visualizations/`.
+Live site (Pages enabled): `https://mesoscalar.github.io/R-S-Visualizations/gallery/`
+(the bare root serves a landing page linking the gallery and the `bundle` sibling).
 
 ## Monorepo migration (branch `claude/monorepo-restructure`)
 

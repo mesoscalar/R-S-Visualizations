@@ -2,10 +2,12 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Project-pages base path: the gallery sits at the site root,
-  // https://<user>.github.io/R-S-Visualizations/ . The sibling `bundle`
-  // project is published under /R-S-Visualizations/bundle/ (see its config).
-  base: '/R-S-Visualizations/',
+  // Project-pages base path. The two sibling projects are published at
+  // parallel paths under the repo's Pages root:
+  //   gallery → /R-S-Visualizations/gallery/
+  //   bundle  → /R-S-Visualizations/bundle/   (see bundle/vite.config.ts)
+  // A small static landing page at the bare root links to both.
+  base: '/R-S-Visualizations/gallery/',
   server: {
     // allow importing the sibling workspace package @rsvis/math from ../math
     fs: { allow: ['..'] },

@@ -68,7 +68,8 @@ what lives where, and cross-cutting decisions.
 ## Deployment
 
 One GitHub Actions workflow (`.github/workflows/pages.yml`) tests the whole
-monorepo and publishes a single GitHub Pages site: the gallery at the site root,
-`bundle` under `/bundle/`. Pages must be enabled once by a human in
+monorepo and publishes a single GitHub Pages site with the projects at parallel
+paths: a static landing page (`/landing/index.html`) at the root, the gallery
+under `/gallery/`, and `bundle` under `/bundle/`. Pages must be enabled once by a human in
 repo Settings → Pages → Source: GitHub Actions, and the `github-pages`
 environment only deploys from the default branch (`main`).

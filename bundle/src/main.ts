@@ -8,7 +8,8 @@
  *   import { windingNumber } from '@rsvis/math';
  *
  * For now this only renders a placeholder so the combined Pages build produces
- * a valid page at /R-S-Visualizations/bundle/.
+ * a valid page at /R-S-Visualizations/bundle/ (sibling to the gallery at
+ * /R-S-Visualizations/gallery/).
  */
 import './style.css';
 
@@ -18,6 +19,6 @@ app.innerHTML = `
     <h1>bundle</h1>
     <p>A forthcoming instrument for the R-S-Visualizations monorepo.</p>
     <p class="dim">Spec pending — nothing built here yet.</p>
-    <p class="dim"><a href="/R-S-Visualizations/">← back to the gallery</a></p>
+    <p class="dim"><a href="/R-S-Visualizations/gallery/">← to the gallery</a> · <a href="/R-S-Visualizations/">home</a></p>
   </main>
 `;
