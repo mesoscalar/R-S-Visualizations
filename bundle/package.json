@@ -1,0 +1,19 @@
+{
+  "name": "@rsvis/bundle",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Forthcoming instrument (spec pending). Empty scaffold — builds to a placeholder page.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@rsvis/math": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0"
+  }
+}

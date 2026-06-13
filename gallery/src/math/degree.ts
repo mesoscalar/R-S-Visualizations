@@ -15,9 +15,7 @@
  * Pure module: no DOM / WebGL imports.
  */
 
-import { qnormalize, qpowInt, type Quat } from './quaternion';
-import { integrateS3 } from './quadrature';
-import { randomUnitQuat, type Rng } from './rng';
+import { integrateS3, qnormalize, qpowInt, randomUnitQuat, type Quat, type Rng } from '@rsvis/math';
 
 export type MapS3 = (q: Quat) => Quat;
 

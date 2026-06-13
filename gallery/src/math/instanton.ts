@@ -10,7 +10,7 @@
  * Pure module: no DOM / WebGL imports.
  */
 
-import { gaussLegendre, integrateR4Radial } from './quadrature';
+import { gaussLegendre, integrateR4Radial } from '@rsvis/math';
 
 export type Vec4 = [number, number, number, number];
 

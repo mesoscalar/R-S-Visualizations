@@ -22,7 +22,7 @@ import {
   stereographic,
   type Vec3,
 } from '../math/hopf';
-import { qfromAxisAngle, qrotate, type Quat } from '../math/quaternion';
+import { qfromAxisAngle, qrotate, type Quat } from '@rsvis/math';
 import { captionBlock } from '../latex';
 import { createScenePane, el, phaseColor } from './three-helpers';
 

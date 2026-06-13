@@ -9,7 +9,7 @@
  * Pure module: geometry of loops only, no DOM / WebGL imports.
  */
 
-import { windingNumber, type WindingResult } from './winding';
+import { windingNumber, type WindingResult } from '@rsvis/math';
 
 export type Pt = [number, number];
 

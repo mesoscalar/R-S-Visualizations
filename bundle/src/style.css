@@ -1,0 +1,33 @@
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #0b0e14;
+  color: #d7dce6;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.placeholder {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.placeholder h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.placeholder .dim {
+  color: #8a93a6;
+}
+
+.placeholder a {
+  color: #6ea8fe;
+  text-decoration: none;
+}

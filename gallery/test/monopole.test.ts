@@ -6,8 +6,7 @@ import {
   curvatureAreaDensity,
   PERTURBATIONS,
 } from '../src/math/monopole';
-import { integrateS2 } from '../src/math/quadrature';
-import { mulberry32 } from '../src/math/rng';
+import { integrateS2, mulberry32 } from '@rsvis/math';
 
 describe('Widget 2 — Chern–Weil on the monopole bundle', () => {
   // Spec: verify the quadrature scheme on the area form first.

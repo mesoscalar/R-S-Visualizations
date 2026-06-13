@@ -6,7 +6,7 @@ import {
   integrateR4Radial,
   integrateS2,
   integrateS3,
-} from '../src/math/quadrature';
+} from '../src/quadrature';
 
 describe('Gauss–Legendre', () => {
   it('weights sum to 2 and rule is exact on degree 2n-1 polynomials', () => {

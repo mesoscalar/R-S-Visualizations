@@ -8,8 +8,8 @@ import {
   qpowInt,
   qrotate,
   type Quat,
-} from '../src/math/quaternion';
-import { mulberry32, randomUnitQuat } from '../src/math/rng';
+} from '../src/quaternion';
+import { mulberry32, randomUnitQuat } from '../src/rng';
 
 const rng = mulberry32(20260612);
 
