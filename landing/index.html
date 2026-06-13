@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0e14" />
+    <title>R&amp;S Visualizations</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      html,
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #0b0e14;
+        color: #d7dce6;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+        -webkit-tap-highlight-color: transparent;
+      }
+      main {
+        max-width: 48rem;
+        margin: 0 auto;
+        padding: 3.5rem 1.25rem 4rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+        font-weight: 600;
+        margin: 0 0 0.4rem;
+      }
+      .framing {
+        color: #8a93a6;
+        max-width: 60ch;
+        margin: 0 0 2.25rem;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+        gap: 1rem;
+      }
+      a.card {
+        display: block;
+        background: #131826;
+        border: 1px solid #232a3b;
+        border-radius: 10px;
+        padding: 1.2rem 1.3rem;
+        color: #d7dce6;
+        text-decoration: none;
+        transition:
+          border-color 0.15s,
+          transform 0.15s;
+      }
+      a.card:hover,
+      a.card:active {
+        border-color: #6ea8fe;
+        transform: translateY(-2px);
+      }
+      a.card h2 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 0.35rem;
+      }
+      a.card p {
+        margin: 0;
+        color: #8a93a6;
+        font-size: 0.9rem;
+      }
+      a.card.pending {
+        opacity: 0.6;
+      }
+      .tag {
+        color: #f0a35e;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      footer {
+        margin-top: 2.5rem;
+        color: #8a93a6;
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>R&amp;S Visualizations</h1>
+      <p class="framing">
+        A monorepo of interactive instruments for the geometry of Rudolph &amp; Schmidt,
+        <em>Differential Geometry and Mathematical Physics, Part II</em>. Two sibling projects share
+        one numerically verified math kernel.
+      </p>
+      <div class="cards">
+        <a class="card" href="./gallery/">
+          <div class="tag">Gallery</div>
+          <h2>Visual companion</h2>
+          <p>Seven interactive widgets — clutching, Chern–Weil, the Hopf bundle, parallel transport,
+            degree, the BPST instanton, and the Möbius band.</p>
+        </a>
+        <a class="card pending" href="./bundle/">
+          <div class="tag">Bundle</div>
+          <h2>Forthcoming instrument</h2>
+          <p>A placeholder for now — its spec has not arrived yet.</p>
+        </a>
+      </div>
+      <footer>Both projects build from one npm-workspaces repo; shared math lives in @rsvis/math.</footer>
+    </main>
+  </body>
+</html>

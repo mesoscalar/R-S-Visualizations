@@ -2,7 +2,7 @@ name: Test, build and deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, claude/monorepo-restructure]
+    branches: [main, claude/parallel-url-nesting]
   workflow_dispatch:
 
 permissions:
@@ -29,10 +29,11 @@ jobs:
       - run: npm test
       - run: npm run build:math
 
-  # Build both projects and publish ONE site: gallery at the root, bundle
-  # under /bundle/. Deploy only from main — the github-pages environment
-  # restricts deployments to the default branch, so this is skipped on PR
-  # branches (test above is the PR signal).
+  # Build both projects and publish ONE site at parallel paths: a static
+  # landing page at the root, gallery under /gallery/, bundle under /bundle/.
+  # Deploy only from main — the github-pages environment restricts deployments
+  # to the default branch, so this is skipped on PR branches (test is the PR
+  # signal).
   publish:
     needs: test
     if: github.ref == 'refs/heads/main'
@@ -49,11 +50,12 @@ jobs:
       - run: npm ci
       - run: npm run build:gallery
       - run: npm run build:bundle
-      - name: Assemble combined site (gallery at root, bundle under /bundle)
+      - name: Assemble combined site (landing at root, gallery and bundle as siblings)
         run: |
           rm -rf _site
-          mkdir -p _site/bundle
-          cp -r gallery/dist/. _site/
+          mkdir -p _site/gallery _site/bundle
+          cp landing/index.html _site/index.html
+          cp -r gallery/dist/. _site/gallery/
           cp -r bundle/dist/. _site/bundle/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

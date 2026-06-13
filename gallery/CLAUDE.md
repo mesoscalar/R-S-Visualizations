@@ -39,9 +39,10 @@ a cloud VM; the user reviews asynchronously via the PR, GitHub Pages, and
 
 ## Deployment specifics
 
-The gallery is served at the **site root**, `https://<user>.github.io/R-S-Visualizations/`,
-so its Vite `base` is `/R-S-Visualizations/`. The shared Pages workflow at the repo
-root builds and deploys it (along with `bundle` under `/bundle/`). The user must
+The gallery is served at **`https://<user>.github.io/R-S-Visualizations/gallery/`**,
+so its Vite `base` is `/R-S-Visualizations/gallery/`. It is a sibling of `bundle`
+(`/R-S-Visualizations/bundle/`); a static landing page at the bare root links to both.
+The shared Pages workflow at the repo root builds and deploys all three. The user must
 enable Pages once (Settings → Pages → Source: GitHub Actions); deployment runs only
 from `main`.
 

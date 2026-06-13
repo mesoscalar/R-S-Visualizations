@@ -16,7 +16,8 @@ instruction that its spec arrives separately.
 (`…/git/mesoscalar/R-S-Visualizations`). This is the value baked into the Vite
 `base` paths:
 
-- gallery → `/R-S-Visualizations/`
+- landing → `/R-S-Visualizations/` (static `landing/index.html`)
+- gallery → `/R-S-Visualizations/gallery/`
 - bundle  → `/R-S-Visualizations/bundle/`
 
 If the repo's Pages path differs, change `base` in `gallery/vite.config.ts` and
@@ -70,7 +71,11 @@ All gallery imports of the five primitives were rewritten to `@rsvis/math`.
   job on every branch (so PRs get a signal) and the `publish` job only on `main`
   (`if: github.ref == 'refs/heads/main'`), because the `github-pages` environment
   restricts deployments to the default branch. `publish` builds gallery + bundle,
-  assembles `_site/` (gallery at root, bundle under `_site/bundle/`), and deploys.
+  assembles `_site/` at parallel paths (landing `index.html` at root,
+  `_site/gallery/`, `_site/bundle/`), and deploys.
+- **Parallel URL nesting.** The two projects sit at sibling paths (`/gallery/`,
+  `/bundle/`) rather than the gallery occupying the root; a static landing page
+  (`landing/index.html`, no build step) at the bare root links to both.
 
 ### Nothing left to migrate
 
@@ -87,10 +92,10 @@ gallery-specific applications and intentionally stay in the gallery (recorded in
 | `@rsvis/math` tests | 24/24 green |
 | `@rsvis/math` typecheck (`tsc --noEmit`) | clean |
 | gallery tests (from `/gallery/`) | 43/43 green |
-| gallery build (`tsc && vite build`) | green; assets under `/R-S-Visualizations/` |
+| gallery build (`tsc && vite build`) | green; assets under `/R-S-Visualizations/gallery/` |
 | bundle build | green; assets under `/R-S-Visualizations/bundle/` |
 | root `npm test` (aggregates math + gallery) | 67/67 green |
-| combined-site assembly (dry run) | gallery `index.html` at root, bundle at `/bundle/` |
+| combined-site assembly (dry run) | landing at root, gallery at `/gallery/`, bundle at `/bundle/` |
 | `pages.yml` | valid YAML; paths verified |
 
 Total project tests: **67**, unchanged by the move (24 relocated to `@rsvis/math`,
