@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { integrateRK4, integrateRKF45 } from '../src/math/ode';
+import { integrateRK4, integrateRKF45 } from '../src/ode';
 
 describe('RK4 fixed-step', () => {
   it('solves dy/dt = y to 4th-order accuracy (e^1 with 1000 steps)', () => {

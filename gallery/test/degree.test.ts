@@ -10,8 +10,7 @@ import {
   powBranches,
   traceBranch,
 } from '../src/math/degree';
-import { qpowInt, type Quat } from '../src/math/quaternion';
-import { mulberry32 } from '../src/math/rng';
+import { mulberry32, qpowInt, type Quat } from '@rsvis/math';
 
 describe('Widget 5 — degree and pi_3(SU(2)) kernel', () => {
   // (a) Spec: numerical degree of f_n = n ± 1e-3 for n = 1, 2, 3, with a

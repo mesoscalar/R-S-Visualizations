@@ -8,7 +8,7 @@ import {
   mobiusPoint,
   zeroCrossings,
 } from '../src/math/mobius';
-import { mulberry32 } from '../src/math/rng';
+import { mulberry32 } from '@rsvis/math';
 
 describe('Widget 7 — Möbius band kernel (orientation bookkeeping)', () => {
   it('Möbius embedding flips the fiber after one loop: m(u+2π, t) = m(u, −t)', () => {

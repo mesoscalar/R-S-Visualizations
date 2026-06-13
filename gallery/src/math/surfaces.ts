@@ -15,8 +15,7 @@
  * Pure module: no DOM / WebGL imports.
  */
 
-import { integrateRK4Path } from './ode';
-import { gaussLegendre } from './quadrature';
+import { gaussLegendre, integrateRK4Path } from '@rsvis/math';
 
 export type Vec3 = [number, number, number];
 

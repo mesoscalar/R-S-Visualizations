@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { sampleLoop, windingNumber } from '../src/math/winding';
+import { sampleLoop, windingNumber } from '../src/winding';
 
 describe('winding number (shared utility smoke tests)', () => {
   it('unit circle winds once', () => {

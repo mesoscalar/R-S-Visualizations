@@ -18,7 +18,7 @@ import {
   transitionAngles,
   type Pt,
 } from '../math/clutching';
-import { windingNumber } from '../math/winding';
+import { windingNumber } from '@rsvis/math';
 import { captionBlock } from '../latex';
 import { createScenePane, el, phaseColor, phaseColorCss } from './three-helpers';
 

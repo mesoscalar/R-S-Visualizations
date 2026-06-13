@@ -22,8 +22,7 @@ import {
   type MapS3,
 } from '../math/degree';
 import { stereographic } from '../math/hopf';
-import { qpowInt, type Quat } from '../math/quaternion';
-import { mulberry32 } from '../math/rng';
+import { mulberry32, qpowInt, type Quat } from '@rsvis/math';
 import { captionBlock } from '../latex';
 import { createScenePane, el, phaseColor } from './three-helpers';
 

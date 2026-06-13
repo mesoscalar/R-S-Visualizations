@@ -2,7 +2,7 @@ name: Test, build and deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/charming-volta-8l8bit, main]
+    branches: [main, claude/monorepo-restructure]
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # The project oracle: must be green regardless of Pages enablement.
+  # Oracle for the whole monorepo: shared kernel + gallery tests, plus a
+  # typecheck of @rsvis/math. Runs on every branch so PRs get a signal.
   test:
     runs-on: ubuntu-latest
     steps:
@@ -26,14 +27,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: npm run build
+      - run: npm run build:math
 
-  # Publishing fails (only) while GitHub Pages is not yet enabled in
-  # Settings -> Pages -> Source: GitHub Actions. enablement: true cannot do it
-  # from CI: the workflow token gets "Resource not accessible by integration"
-  # (repo admin is required). Once enabled, re-run this workflow.
+  # Build both projects and publish ONE site: gallery at the root, bundle
+  # under /bundle/. Deploy only from main — the github-pages environment
+  # restricts deployments to the default branch, so this is skipped on PR
+  # branches (test above is the PR signal).
   publish:
     needs: test
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -45,10 +47,17 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run build:gallery
+      - run: npm run build:bundle
+      - name: Assemble combined site (gallery at root, bundle under /bundle)
+        run: |
+          rm -rf _site
+          mkdir -p _site/bundle
+          cp -r gallery/dist/. _site/
+          cp -r bundle/dist/. _site/bundle/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

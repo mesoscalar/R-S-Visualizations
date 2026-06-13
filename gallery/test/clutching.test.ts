@@ -10,8 +10,7 @@ import {
   windingOfControls,
   type Pt,
 } from '../src/math/clutching';
-import { mulberry32 } from '../src/math/rng';
-import { sampleLoop, windingNumber } from '../src/math/winding';
+import { mulberry32, sampleLoop, windingNumber } from '@rsvis/math';
 
 describe('Widget 1 — clutching laboratory kernel', () => {
   // (a) Spec: winding of z -> z^n at 400 sample points equals n exactly, |n| <= 5.

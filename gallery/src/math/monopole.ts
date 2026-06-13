@@ -87,7 +87,7 @@ export function curvatureAreaDensity(
   return rho;
 }
 
-import { integrateS2 } from './quadrature';
+import { integrateS2 } from '@rsvis/math';
 
 /** First Chern number c₁ = (1/2π) ∫_{S²} F of the perturbed connection. */
 export function chernNumber(

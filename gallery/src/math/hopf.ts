@@ -17,7 +17,7 @@
  * Pure module: no DOM / WebGL imports.
  */
 
-import { integrateRK4Path } from './ode';
+import { integrateRK4Path } from '@rsvis/math';
 
 export type Vec3 = [number, number, number];
 export type Vec4 = [number, number, number, number];

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { integrateR4Radial } from '../src/math/quadrature';
+import { integrateR4Radial } from '@rsvis/math';
 import {
   bpstRadial,
   sliceGrid,
