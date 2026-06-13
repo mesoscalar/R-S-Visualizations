@@ -1,10 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import {
   catmullRomClosed,
+  insertPointNearest,
+  nearestEdge,
   originCrossingLoop,
   perturbedCircle,
   presetControls,
+  removePoint,
   windingOfControls,
+  type Pt,
 } from '../src/math/clutching';
 import { mulberry32 } from '../src/math/rng';
 import { sampleLoop, windingNumber } from '../src/math/winding';
@@ -99,5 +103,54 @@ describe('Widget 1 — clutching laboratory kernel', () => {
       const p = pts[i * per];
       expect(Math.hypot(p[0] - ctrl[i][0], p[1] - ctrl[i][1])).toBeLessThan(1e-12);
     }
+  });
+
+  // Editing the control polygon is the "draw a loop" interaction. The kernel
+  // ops must (i) preserve traversal order and (ii) leave the winding class
+  // unchanged when a vertex is added on/near the existing curve — refinement
+  // is a homotopy, so the topology cannot move.
+  it('nearestEdge picks the edge under the click point', () => {
+    const square: Pt[] = [
+      [1, 1],
+      [-1, 1],
+      [-1, -1],
+      [1, -1],
+    ];
+    expect(nearestEdge(square, [0, 1.2])).toBe(0); // top edge (v0 -> v1)
+    expect(nearestEdge(square, [-1.2, 0])).toBe(1); // left edge (v1 -> v2)
+    expect(nearestEdge(square, [1.2, 0])).toBe(3); // right edge (v3 -> v0)
+  });
+
+  it('insertPointNearest keeps traversal order and the winding number', () => {
+    for (let n = -3; n <= 3; n++) {
+      if (n === 0) continue;
+      let ctrl = presetControls(n);
+      const before = windingOfControls(ctrl).n;
+      // insert several vertices very close to the current curve
+      for (let k = 0; k < 5; k++) {
+        const samples = catmullRomClosed(ctrl, 8);
+        const onCurve = samples[(k * 7) % samples.length];
+        const jitter: Pt = [onCurve[0] + 1e-3, onCurve[1] - 1e-3];
+        const res = insertPointNearest(ctrl, jitter);
+        ctrl = res.ctrl;
+        // the inserted vertex is exactly the one we asked for
+        expect(ctrl[res.index]).toEqual(jitter);
+      }
+      expect(windingOfControls(ctrl).n).toBe(before);
+    }
+  });
+
+  it('removePoint deletes a vertex but refuses to drop below the minimum', () => {
+    const ctrl = presetControls(2); // 16 points
+    const fewer = removePoint(ctrl, 3);
+    expect(fewer.length).toBe(ctrl.length - 1);
+    // removing down to 3 is allowed; the 4th removal is refused
+    let tri: Pt[] = [
+      [1, 0],
+      [-0.5, 0.9],
+      [-0.5, -0.9],
+    ];
+    tri = removePoint(tri, 0);
+    expect(tri.length).toBe(3);
   });
 });

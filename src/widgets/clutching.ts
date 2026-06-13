@@ -12,7 +12,9 @@
 import * as THREE from 'three';
 import {
   catmullRomClosed,
+  insertPointNearest,
   presetControls,
+  removePoint,
   transitionAngles,
   type Pt,
 } from '../math/clutching';
@@ -34,13 +36,22 @@ export function mount(container: HTMLElement): () => void {
     controlsBar.appendChild(b);
     presetButtons.push(b);
   }
+  const addBtn = el('button', '', '✚ add points');
+  let addMode = false;
+  addBtn.addEventListener('click', () => {
+    addMode = !addMode;
+    addBtn.classList.toggle('active', addMode);
+  });
+  controlsBar.appendChild(addBtn);
 
   const panes = el('div', 'panes');
   const paneL = el('div', 'pane');
   const paneR = el('div', 'pane');
   panes.append(paneL, paneR);
 
-  paneL.appendChild(el('div', 'pane-label', 'Transition loop c : S¹ → ℂ✕  (drag the points)'));
+  paneL.appendChild(
+    el('div', 'pane-label', 'Transition loop c : S¹ → ℂ✕  (drag points · ✚ to add · double-tap to remove)'),
+  );
   const hud = el('div', 'hud');
   const hudBig = el('div', 'big', 'n = 1');
   const hudSmall = el('div', 'small', '');
@@ -287,8 +298,13 @@ export function mount(container: HTMLElement): () => void {
     return [(e.clientX - rect.left) * dpr, (e.clientY - rect.top) * dpr];
   };
 
-  canvas.addEventListener('pointerdown', (e) => {
-    const [x, y] = eventXY(e);
+  // double-tap-to-remove bookkeeping: a second tap on the same control point
+  // within this window deletes it (works for mouse double-click and touch).
+  let lastTapTime = 0;
+  let lastTapIdx = -1;
+  const DOUBLE_TAP_MS = 350;
+
+  const nearestCtrl = (x: number, y: number): number => {
     let best = -1;
     let bestD = hitRadius();
     ctrl.forEach((p, i) => {
@@ -299,9 +315,47 @@ export function mount(container: HTMLElement): () => void {
         best = i;
       }
     });
-    if (best >= 0) {
-      dragIdx = best;
+    return best;
+  };
+
+  canvas.addEventListener('pointerdown', (e) => {
+    const [x, y] = eventXY(e);
+    const hit = nearestCtrl(x, y);
+
+    // double-tap on an existing point removes it (min 3 enforced by the kernel)
+    const now = performance.now();
+    if (hit >= 0 && hit === lastTapIdx && now - lastTapTime < DOUBLE_TAP_MS) {
+      const next = removePoint(ctrl, hit);
+      if (next.length !== ctrl.length) {
+        ctrl = next;
+        dragIdx = -1;
+        lastTapIdx = -1;
+        recompute();
+        e.preventDefault();
+        return;
+      }
+    }
+    lastTapTime = now;
+    lastTapIdx = hit;
+
+    if (hit >= 0) {
+      dragIdx = hit;
       canvas.setPointerCapture(e.pointerId);
+      e.preventDefault();
+      return;
+    }
+    // add-mode: clicking empty space inserts a vertex on the nearest edge and
+    // immediately begins dragging it, so the user draws by placing points
+    if (addMode) {
+      const w = toWorld(x, y);
+      w[0] = Math.max(-WORLD, Math.min(WORLD, w[0]));
+      w[1] = Math.max(-WORLD, Math.min(WORLD, w[1]));
+      const res = insertPointNearest(ctrl, w);
+      ctrl = res.ctrl;
+      dragIdx = res.index;
+      lastTapIdx = res.index;
+      canvas.setPointerCapture(e.pointerId);
+      recompute();
       e.preventDefault();
     }
   });

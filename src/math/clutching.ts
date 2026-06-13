@@ -122,3 +122,60 @@ export function transitionAngles(samples: ReadonlyArray<Pt>): Float64Array {
   for (let i = 0; i < samples.length; i++) out[i] = Math.atan2(samples[i][1], samples[i][0]);
   return out;
 }
+
+// ---------- control-polygon editing (lets the user actually draw a loop) ----------
+
+/** Squared distance from point p to the segment [a, b]. */
+function distSqToSegment(p: Pt, a: Pt, b: Pt): number {
+  const vx = b[0] - a[0];
+  const vy = b[1] - a[1];
+  const wx = p[0] - a[0];
+  const wy = p[1] - a[1];
+  const len2 = vx * vx + vy * vy;
+  const t = len2 > 0 ? Math.max(0, Math.min(1, (wx * vx + wy * vy) / len2)) : 0;
+  const dx = a[0] + t * vx - p[0];
+  const dy = a[1] + t * vy - p[1];
+  return dx * dx + dy * dy;
+}
+
+/**
+ * Index i of the closed control polygon's edge (from vertex i to vertex
+ * (i+1) mod m) nearest to p. A new vertex inserted "between i and i+1" lands
+ * on the curve where the user clicked, preserving traversal order.
+ */
+export function nearestEdge(ctrl: ReadonlyArray<Pt>, p: Pt): number {
+  const m = ctrl.length;
+  let best = 0;
+  let bestD = Infinity;
+  for (let i = 0; i < m; i++) {
+    const d = distSqToSegment(p, ctrl[i], ctrl[(i + 1) % m]);
+    if (d < bestD) {
+      bestD = d;
+      best = i;
+    }
+  }
+  return best;
+}
+
+/**
+ * Insert vertex p into the control polygon on the edge nearest p, returning a
+ * new array. The winding number of the resampled spline is unchanged when p is
+ * placed near the existing curve (homotopy: a small refinement of the polygon).
+ */
+export function insertPointNearest(ctrl: ReadonlyArray<Pt>, p: Pt): { ctrl: Pt[]; index: number } {
+  const edge = nearestEdge(ctrl, p);
+  const out = ctrl.slice() as Pt[];
+  out.splice(edge + 1, 0, p);
+  return { ctrl: out, index: edge + 1 };
+}
+
+/**
+ * Remove vertex `index`, refusing to drop below `min` vertices (the closed
+ * Catmull-Rom spline needs at least 3 to define a loop).
+ */
+export function removePoint(ctrl: ReadonlyArray<Pt>, index: number, min = 3): Pt[] {
+  if (ctrl.length <= min) return ctrl.slice() as Pt[];
+  const out = ctrl.slice() as Pt[];
+  out.splice(index, 1);
+  return out;
+}

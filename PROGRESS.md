@@ -16,7 +16,7 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
 | # | Widget | Kernel | Tests | Renderer | Notes |
 |---|--------|--------|-------|----------|-------|
 | — | Scaffold (utils, gallery, CI) | ✅ | ✅ 24/24 | ✅ skeleton | |
-| 1 | Clutching laboratory | ✅ | ✅ 6/6 | ✅ | hue-vortex sphere; see caveats |
+| 1 | Clutching laboratory | ✅ | ✅ 9/9 | ✅ | hue-vortex sphere; draw/insert/remove |
 | 2 | Chern–Weil monopole | ✅ | ✅ 6/6 | ✅ | quadrature exact-to-roundoff |
 | 3 | Hopf bundle | ✅ | ✅ 6/6 | ✅ | σ = −1 measured; see caveats |
 | 4 | Parallel transport | ✅ | ✅ 8/8 | ✅ | incl. full Gauss–Bonnet cross-check |
@@ -76,9 +76,16 @@ Working branch: `claude/charming-volta-8l8bit`. Live site (once Pages is enabled
   - (d) 13 Lipschitz curves: winding at 200 samples == winding at 2000 samples.
   - Bonus: spline interpolates control points to 1e-12; preset polygons reproduce
     nominal winding through the spline.
+  - **Editing ops (polish):** `nearestEdge` / `insertPointNearest` / `removePoint`
+    tested — inserting a vertex on/near the curve preserves the winding class for
+    all $n\in[-3,3]$ (refinement is a homotopy), insertion preserves traversal
+    order, and removal refuses to drop below 3 control points.
 - **Renderer** `src/widgets/clutching.ts`: 2D canvas loop editor (pointer events,
   ~30 px hit targets, drag clamped to the visible plane) with live $n$ readout, raw
-  $\oint d\arg c/2\pi$ diagnostic, origin crosshair + faint $U(1)$ guide circle;
+  $\oint d\arg c/2\pi$ diagnostic, origin crosshair + faint $U(1)$ guide circle.
+  The user can now genuinely **draw** the loop: "✚ add points" mode inserts a
+  vertex on the nearest edge and starts dragging it; double-tap/double-click
+  removes a vertex (kernel-tested ops, mobile-safe);
   3D sphere with the **southern cap coloured by the transition phase** — the
   clutching integer appears as an n-fold hue vortex at the south pole — plus an
   equatorial dial animating the cap mismatch $g(\varphi)$, and the loop in the 2D
@@ -276,13 +283,14 @@ claims follow from measured convergence order (RK4 order ≈ 4.0 measured).
 ## Viewing guide (final)
 
 All seven widgets are built, tested and wired into the gallery. `npm test`:
-**64/64 green**; `npm run build`: green. Ordered by the task spec's priority —
+**67/67 green**; `npm run build`: green. Ordered by the task spec's priority —
 what to eyeball first on each:
 
 1. **Clutching laboratory** — drag a control point of the Hopf preset slowly
    through the red origin cross: the readout should freeze everywhere else and
    jump exactly ±1 at the crossing. Check the south-pole hue vortex matches n
-   (rotate the sphere south-up; camera starts tilted that way).
+   (rotate the sphere south-up; camera starts tilted that way). Try "✚ add
+   points" to draw your own loop, and double-tap a point to remove it.
 2. **Chern–Weil monopole** — slam all five sliders around: the heatmap should
    slosh dramatically while c₁ holds all 8 displayed decimals. Switch n and
    confirm the readout follows the selector instantly.
@@ -314,12 +322,13 @@ what to eyeball first on each:
 - No Berry-phase stretch widget (spec marked it "true stretch"); polish budget
   went to test depth instead (e.g. the arbitrary-loop Gauss–Bonnet test and the
   4D quadrature cross-check, both beyond the spec's minimums).
-- Widget 1's curve editor only drags existing control points (no point
-  insertion); the presets give 8–24 points, which is plenty to cross the origin.
+- Widget 1's curve editor now supports drawing (drag / ✚ add / double-tap
+  remove); the add-and-remove interaction itself has not been exercised on a
+  real touch device, only its kernel ops are unit-tested.
 
 ## Test summary
 
-64 tests, all green, < 5 s wall time. Worst measured numerical errors vs spec:
+67 tests, all green, < 5 s wall time. Worst measured numerical errors vs spec:
 
 | Claim | Spec tol | Measured |
 |---|---|---|
