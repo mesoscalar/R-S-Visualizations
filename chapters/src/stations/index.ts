@@ -7,4 +7,5 @@ import type { StationModule } from '../book/ch1';
 
 export const LOADERS: Record<string, () => Promise<StationModule>> = {
   A: () => import('./a-hopf'),
+  B: () => import('./b-cech'),
 };
