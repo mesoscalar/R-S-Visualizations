@@ -228,3 +228,33 @@ export function onTap(
     if (hits.length) onPick(hits[0].point.clone());
   });
 }
+
+/** Roughly uniform points on S² (Fibonacci lattice). */
+export function fibonacciSphere(n: number): Array<[number, number, number]> {
+  const pts: Array<[number, number, number]> = [];
+  const ga = Math.PI * (3 - Math.sqrt(5));
+  for (let k = 0; k < n; k++) {
+    const z = 1 - (2 * (k + 0.5)) / n;
+    const r = Math.sqrt(1 - z * z);
+    pts.push([r * Math.cos(ga * k), r * Math.sin(ga * k), z]);
+  }
+  return pts;
+}
+
+/** An arrow helper with a mutable target, sized for unit-sphere scenes. */
+export function makeArrow(color: number): THREE.ArrowHelper {
+  return new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 1, color, 0.1, 0.06);
+}
+
+export function setArrow(
+  a: THREE.ArrowHelper,
+  from: ArrayLike<number>,
+  vec: ArrayLike<number>,
+): void {
+  const len = Math.hypot(vec[0], vec[1], vec[2]);
+  a.visible = len > 1e-6;
+  if (!a.visible) return;
+  a.position.set(from[0], from[1], from[2]);
+  a.setDirection(new THREE.Vector3(vec[0], vec[1], vec[2]).normalize());
+  a.setLength(len, Math.min(0.1, 0.4 * len), Math.min(0.06, 0.25 * len));
+}

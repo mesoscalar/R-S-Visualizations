@@ -174,6 +174,13 @@ export const STATIONS: Station[] = [
     summary: 'The two section curves over the equator cross once: the degree of $\\rho_{12}$, untouched by any re-trivialization (1.1.7).',
   },
   {
+    id: '1.1c',
+    section: '1.1',
+    title: 'Frame bundles',
+    items: ['1.1.4', '1.1.6', '1.1.14', '1.1.18', '1.1.19'],
+    summary: '$O^+(S^2)\\cong SO(3)$: frames as rotations, $SO(2)$ spinning them, two frame fields that each break at a pole, and a transition map of degree 2.',
+  },
+  {
     id: '1.2a',
     section: '1.2',
     title: 'Sections are equivariant functions',
