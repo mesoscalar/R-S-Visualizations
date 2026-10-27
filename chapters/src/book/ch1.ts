@@ -212,6 +212,14 @@ export const STATIONS: Station[] = [
     equations: ['(1.3.11)', '(1.3.14)', '(1.3.15)'],
     summary: 'The potentials $\\mathcal A_i = s_i^*\\omega_c$ on $S^2$, each singular at its missing pole, and the law $\\mathcal A_2 = \\mathcal A_1 + \\rho_{12}^*\\theta$.',
   },
+  {
+    id: '1.3d',
+    section: '1.3',
+    title: 'The canonical connection of the Stiefel bundle',
+    items: ['1.3.19', '1.3.20', '1.3.21'],
+    equations: ['(1.3.17)', '(1.3.18)', '(1.3.19)'],
+    summary: '$\\omega_c = u^\\dagger du = \\mathrm{pr}_{\\mathfrak h}\\circ\\theta$ on $SO(3)\\to S^2$: horizontal means the frame does not spin, and a loop leaves it turned by the enclosed area.',
+  },
 ];
 
 export function findItem(num: string): BookItem | undefined {

@@ -414,3 +414,50 @@ select {
 .readout {
   font-variant-numeric: tabular-nums;
 }
+
+.matbox {
+  position: absolute;
+  inset: 3rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+table.mat {
+  border-collapse: separate;
+  border-spacing: 4px;
+  font-size: 1.15rem;
+}
+
+table.mat td {
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  text-align: right;
+  min-width: 5.2rem;
+}
+
+td.hblk,
+span.hblk {
+  background: rgba(240, 163, 94, 0.18);
+  color: var(--accent2);
+}
+
+td.mblk,
+span.mblk {
+  background: rgba(110, 168, 254, 0.12);
+  color: var(--accent);
+}
+
+span.hblk,
+span.mblk {
+  background: none;
+}
+
+.matlegend {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
