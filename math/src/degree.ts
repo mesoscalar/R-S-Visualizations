@@ -1,5 +1,5 @@
 /**
- * Widget 5 kernel — degree of maps S^3 -> S^3 ≅ SU(2) and pi_3(SU(2)) ≅ Z.
+ * Degree kernel (shared; originally gallery Widget 5) — degree of maps S^3 -> S^3 ≅ SU(2) and pi_3(SU(2)) ≅ Z.
  *
  * f_n(q) = q^n on unit quaternions has degree n. Numerically:
  *   deg f = (1/2 pi^2) ∫_{S^3} det(Df |_{o.n. frames}) dV,   Vol(S^3) = 2 pi^2,
@@ -15,7 +15,9 @@
  * Pure module: no DOM / WebGL imports.
  */
 
-import { integrateS3, qnormalize, qpowInt, randomUnitQuat, type Quat, type Rng } from '@rsvis/math';
+import { integrateS3 } from './quadrature';
+import { qnormalize, qpowInt, type Quat } from './quaternion';
+import { randomUnitQuat, type Rng } from './rng';
 
 export type MapS3 = (q: Quat) => Quat;
 
