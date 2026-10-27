@@ -9,4 +9,5 @@ export const LOADERS: Record<string, () => Promise<StationModule>> = {
   A: () => import('./a-hopf'),
   B: () => import('./b-cech'),
   F: () => import('./f-sections'),
+  G: () => import('./g-horizontal'),
 };
