@@ -12,3 +12,5 @@ export * from './winding';
 export * from './rng';
 export * from './hopf';
 export * from './hopf-book';
+export * from './degree';
+export * from './frames';

@@ -27,8 +27,14 @@ stations. Cross-cutting decisions:
   rendering code cannot live in the DOM-free `@rsvis/math`, and a shared UI
   package is not worth it for two consumers yet.
 
-Test totals on this branch: math 41, gallery 37, chapters 26 — **104**, all
-green; `npm run build` green for gallery, chapters and bundle.
+Test totals after PR #4: math 41, gallery 37, chapters 26 — 104.
+
+**Follow-up (five more stations, 1.1c/1.1d/1.2b/1.3c/1.3d).** Two more
+promotions into `@rsvis/math`: the S³→S³ **degree** kernel (from the gallery,
+with its 5 tests; needed for the quaternionic Hopf transition) and a new
+**frames** kernel (O⁺(S²) ≅ SO(3), Stiefel ω_c = uᵀdu, Levi-Civita frame
+transport; 9 tests) shared by three stations. Totals: math 55, gallery 32,
+chapters 41 — **128**, all green; `npm run build` green.
 
 ## What this branch did (`claude/monorepo-restructure`)
 

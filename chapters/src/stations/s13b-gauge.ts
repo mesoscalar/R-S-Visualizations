@@ -18,7 +18,7 @@ import {
   type LocalSection,
 } from '../math/gauge';
 import { captionBlock } from '../latex';
-import { clearGroup, createScenePane, el } from './three-helpers';
+import { clearGroup, createScenePane, el, fibonacciSphere } from './three-helpers';
 
 const TAU = 2 * Math.PI;
 
@@ -32,18 +32,6 @@ function slider(label: string, min: number, max: number, value: number, step = 0
   s.value = String(value);
   l.appendChild(s);
   return [l, s];
-}
-
-/** Roughly uniform points on S² (Fibonacci lattice). */
-function fibonacciSphere(n: number): Vec3[] {
-  const pts: Vec3[] = [];
-  const ga = Math.PI * (3 - Math.sqrt(5));
-  for (let k = 0; k < n; k++) {
-    const z = 1 - (2 * (k + 0.5)) / n;
-    const r = Math.sqrt(1 - z * z);
-    pts.push([r * Math.cos(ga * k), r * Math.sin(ga * k), z]);
-  }
-  return pts;
 }
 
 export function mount(container: HTMLElement): () => void {
