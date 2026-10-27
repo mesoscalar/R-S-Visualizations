@@ -10,4 +10,5 @@ export const LOADERS: Record<string, () => Promise<StationModule>> = {
   B: () => import('./b-cech'),
   F: () => import('./f-sections'),
   G: () => import('./g-horizontal'),
+  H: () => import('./h-gauge'),
 };
