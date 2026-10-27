@@ -7,7 +7,7 @@
  * optional family of linked fibers (the canonical Hopf picture), and the
  * animated horizontal lift of the loop with its holonomy phase mismatch.
  *
- * All mathematics from src/math/hopf.ts (tested kernel).
+ * All mathematics from @rsvis/math hopf (tested kernel).
  */
 import * as THREE from 'three';
 import {
@@ -21,7 +21,7 @@ import {
   sectionOver,
   stereographic,
   type Vec3,
-} from '../math/hopf';
+} from '@rsvis/math';
 import { qfromAxisAngle, qrotate, type Quat } from '@rsvis/math';
 import { captionBlock } from '../latex';
 import { createScenePane, el, phaseColor } from './three-helpers';

@@ -10,3 +10,4 @@ export * from './quaternion';
 export * from './quadrature';
 export * from './winding';
 export * from './rng';
+export * from './hopf';

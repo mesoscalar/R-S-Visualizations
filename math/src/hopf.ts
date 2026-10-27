@@ -1,9 +1,9 @@
 /**
- * Widget 3 kernel — Hopf bundle S^3 -> S^2: fibers, connection, holonomy.
+ * Hopf bundle kernel (shared; originally gallery Widget 3) — Hopf bundle S^3 -> S^2: fibers, connection, holonomy.
  *
  * Conventions. S^3 = {(z1, z2) in C^2 : |z1|^2 + |z2|^2 = 1}; the state vector
  * is [a, b, c, d] = [Re z1, Im z1, Re z2, Im z2], which equals the quaternion
- * q = a + bi + cj + dk of src/math/quaternion.ts. Hopf map
+ * q = a + bi + cj + dk of quaternion.ts. Hopf map
  *   h(z1, z2) = (2 Re(conj(z1) z2), 2 Im(conj(z1) z2), |z1|^2 - |z2|^2).
  * Standard connection omega = Im(conj(z1) dz1 + conj(z2) dz2); a curve is
  * horizontal iff zdot is R^4-orthogonal to both q and iq (complex-scalar i).
@@ -17,7 +17,7 @@
  * Pure module: no DOM / WebGL imports.
  */
 
-import { integrateRK4Path } from '@rsvis/math';
+import { integrateRK4Path } from './ode';
 
 export type Vec3 = [number, number, number];
 export type Vec4 = [number, number, number, number];

@@ -14,9 +14,9 @@ import {
   latitudeCircle,
   sectionOver,
   type Vec3,
-} from '../src/math/hopf';
+} from '../src/hopf';
 
-describe('Widget 3 — Hopf bundle kernel', () => {
+describe('Hopf bundle kernel (promoted from gallery Widget 3)', () => {
   it('structure: section lies over its base point; frame is horizontal-conformal', () => {
     const p: Vec3 = [0.48, -0.6, Math.sqrt(1 - 0.48 ** 2 - 0.36)];
     const z = sectionOver(p);

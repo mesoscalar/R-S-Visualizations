@@ -21,8 +21,7 @@ import {
   traceBranch,
   type MapS3,
 } from '../math/degree';
-import { stereographic } from '../math/hopf';
-import { mulberry32, qpowInt, type Quat } from '@rsvis/math';
+import { mulberry32, qpowInt, stereographic, type Quat } from '@rsvis/math';
 import { captionBlock } from '../latex';
 import { createScenePane, el, phaseColor } from './three-helpers';
 
