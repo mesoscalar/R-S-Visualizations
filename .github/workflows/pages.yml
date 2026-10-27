@@ -2,7 +2,8 @@ name: Test, build and deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, claude/parallel-url-nesting]
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -10,8 +11,9 @@ permissions:
   pages: write
   id-token: write
 
+# Per-ref group: a PR run must never cancel an in-flight deploy from main.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
