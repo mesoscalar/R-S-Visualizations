@@ -181,6 +181,13 @@ export const STATIONS: Station[] = [
     summary: '$O^+(S^2)\\cong SO(3)$: frames as rotations, $SO(2)$ spinning them, two frame fields that each break at a pole, and a transition map of degree 2.',
   },
   {
+    id: '1.1d',
+    section: '1.1',
+    title: 'The Hopf family over R, C, H',
+    items: ['1.1.22', '1.1.23', '1.1.24', '1.1.25', '1.1.26'],
+    summary: 'One recipe, three bundles: the real double cover, the complex Hopf bundle, and $S^7\\to S^4$ whose transition map has degree 1 — plus the universal cover.',
+  },
+  {
     id: '1.2a',
     section: '1.2',
     title: 'Sections are equivariant functions',
