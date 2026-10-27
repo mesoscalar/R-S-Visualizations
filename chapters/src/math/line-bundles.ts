@@ -1,5 +1,5 @@
 /**
- * Station F kernel — sections of the line bundles L_n = S³ ×_{U(1)} C
+ * Station 1.2a kernel — sections of the line bundles L_n = S³ ×_{U(1)} C
  * associated with the Hopf bundle via σ_n(e^{iα}) = e^{inα}
  * (§1.2: Prop. 1.2.5, 1.2.6, 1.2.8, (1.2.5), (1.2.8), (1.2.9), Ex. 1.2.4/3, Rem. 1.2.15).
  *

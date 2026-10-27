@@ -24,7 +24,7 @@ const cdist = (a: Cx, b: Cx) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 // identities below hold to roundoff ~1e-15·|Φ̃|; 1e-12 is a safe absolute bound.
 const RT = 1e-12;
 
-describe('Station F — sections of L_n are equivariant maps (§1.2)', () => {
+describe('Station 1.2a — sections of L_n are equivariant maps (§1.2)', () => {
   it('(1.2.9): Φ̃(z e^{iα}) = e^{−inα} Φ̃(z) for every n and perturbation', () => {
     for (const n of [-3, -2, -1, 0, 1, 2, 3]) {
       for (let k = 0; k < 40; k++) {

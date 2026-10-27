@@ -1,5 +1,5 @@
 /**
- * Station G kernel — vertical and horizontal subspaces of the Hopf bundle
+ * Station 1.3a kernel — vertical and horizontal subspaces of the Hopf bundle
  * for the canonical connection ω_c (Lemma 1.3.1, Def. 1.3.2, Rem. 1.3.3,
  * Def. 1.3.4, Prop. 1.3.5; (1.3.1), (1.3.2), (1.3.6), (1.3.7); Ex. 1.3.22/1.3.23).
  *

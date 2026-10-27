@@ -1,5 +1,5 @@
 /**
- * Station A — the complex Hopf bundle and its trivializations
+ * Station 1.1a — the complex Hopf bundle and its trivializations
  * (Def. 1.1.1, 1.1.5, Prop. 1.1.6, Ex. 1.1.20, Rem. 1.1.21/1).
  *
  * Left: the base S² ≅ CP¹ with a tap-to-place point m; the two excluded
@@ -79,7 +79,7 @@ export function mount(container: HTMLElement): () => void {
       '$\\kappa_1$ dies on the fibre over the south pole $\\pi(0,1)$ — the vertical red line through the projection ' +
       'point — and $\\kappa_2$ on the unit circle over $\\pi(1,0)$: no single chart covers $S^3$. ' +
       'Switching charts recolours the fibre by the constant phase $\\rho_{12}(m) = \\kappa_1\\kappa_2^{-1}$ (1.1.5); ' +
-      'walk $m$ around the equator and watch it turn once (Rem. 1.1.21/2, Station B). The base is identified with ' +
+      'walk $m$ around the equator and watch it turn once (Rem. 1.1.21/2, Station 1.1b). The base is identified with ' +
       '$S^2$ through $f(z) = (2\\bar z_1 z_2,\\ |z_1|^2-|z_2|^2)$ and $s_2$ is the book\'s $g_+$ (Rem. 1.1.21/1).',
   );
   container.append(controls, panes, caption);

@@ -1,5 +1,5 @@
 /**
- * Station G — horizontal and vertical
+ * Station 1.3a — horizontal and vertical
  * (Lemma 1.3.1, Def. 1.3.2, Rem. 1.3.3, Def. 1.3.4, Prop. 1.3.5, Ex. 1.3.22, Ex. 1.3.23).
  *
  * Left: at a point p ∈ S³ (stereographic), the vertical line V_p (tangent to
@@ -107,7 +107,7 @@ export function mount(container: HTMLElement): () => void {
       'the 2-plane orthogonal to the fibre in $\\mathbb R^4$, so it is drawn round (stereographic projection is conformal). ' +
       'Any $X$ splits as $X = \\mathrm{hor}\\,X + \\mathrm{ver}\\,X$ with $\\mathrm{ver}\\,X = \\Psi\'_p(\\omega(X))$ (1.3.2), (1.3.7). ' +
       'On the right, the horizontal distribution restricted to the torus over a latitude: in chart 1, ' +
-      '$\\omega_c = i(d\\alpha + \\tfrac12(1-\\cos\\theta)\\,d\\varphi)$ (Prop. 1.3.11, Station H), so horizontal curves climb with slope ' +
+      '$\\omega_c = i(d\\alpha + \\tfrac12(1-\\cos\\theta)\\,d\\varphi)$ (Prop. 1.3.11, Station 1.3b), so horizontal curves climb with slope ' +
       '$-\\tfrac12(1-\\cos\\theta)$ and fail to close after one turn — the first glimpse of holonomy (§1.7). ' +
       'Switch to the flat connection $\\kappa_1^*\\theta = i\\,d\\alpha$: its horizontal curves are closed, exactly the picture of ' +
       '$\\omega = d\\alpha$ on the product bundle $S^2\\times U(1)$ (Ex. 1.3.23). On the Hopf bundle that form lives only on ' +

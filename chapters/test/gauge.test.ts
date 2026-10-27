@@ -47,7 +47,7 @@ const dLambda = (lam: (m: Vec3) => number, m: Vec3, v: Vec3) =>
     lam([m[0] - FD_H * v[0], m[1] - FD_H * v[1], m[2] - FD_H * v[2]])) /
   (2 * FD_H);
 
-describe('Station H — local representatives and gauge transformations (§1.3)', () => {
+describe('Station 1.3b — local representatives and gauge transformations (§1.3)', () => {
   it('(1.3.11) with the book sections: 𝒜_1 = (i/2)(1−cosθ)dφ, 𝒜_2 = −(i/2)(1+cosθ)dφ', () => {
     for (let k = 0; k < 100; k++) {
       const m = randMid();

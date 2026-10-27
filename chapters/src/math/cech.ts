@@ -1,5 +1,5 @@
 /**
- * Station B kernel — transition maps, 0-cochains and Čech classes
+ * Station 1.1b kernel — transition maps, 0-cochains and Čech classes
  * (§1.1: (1.1.5)–(1.1.7), Prop. 1.1.10, Thm. 1.1.11, Cor. 1.1.13, Rem. 1.1.21/2).
  *
  * Everything lives over the equator E ⊂ U1 ∩ U2 of the Hopf base, where the

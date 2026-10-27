@@ -1,5 +1,5 @@
 /**
- * Station B — transition maps and Čech classes
+ * Station 1.1b — transition maps and Čech classes
  * ((1.1.5)–(1.1.7), Prop. 1.1.10, Thm. 1.1.11, Rem. 1.1.12, Cor. 1.1.13, Rem. 1.1.21/2).
  *
  * Left (2D): the torus over the equator in chart-1 coordinates (φ, α), with
@@ -159,7 +159,7 @@ export function mount(container: HTMLElement): () => void {
     const X = (phi: number) => x0 + (phi / TAU) * side;
     const Y = (alpha: number) => y0 + side - (mod(alpha) / TAU) * side;
 
-    // background: hue = arg κ1 = α, as in Station A
+    // background: hue = arg κ1 = α, as in Station 1.1a
     for (let j = 0; j < 64; j++) {
       ctx.fillStyle = phaseColorCss((TAU * (j + 0.5)) / 64, 18);
       ctx.fillRect(x0, y0 + side - ((j + 1) / 64) * side, side, side / 64 + 0.5);

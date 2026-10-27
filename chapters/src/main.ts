@@ -122,7 +122,7 @@ async function renderStation(id: string): Promise<void> {
   const header = el('div', 'widget-header');
   const back = el('a', 'back', '← Chapter 1');
   back.href = '#/';
-  header.append(back, el('span', 'secnum', `§${st.section} · Station ${st.id}`), mathEl('h1', '', st.title));
+  header.append(back, el('span', 'secnum', `Station ${st.id}`), mathEl('h1', '', st.title));
   page.appendChild(header);
 
   const trail = el('div', 'trail');

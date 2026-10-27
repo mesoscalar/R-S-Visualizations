@@ -30,7 +30,7 @@ const dot4 = (a: ArrayLike<number>, b: ArrayLike<number>) => a[0] * b[0] + a[1] 
 const sub4 = (a: ArrayLike<number>, b: ArrayLike<number>): Vec4 => [a[0] - b[0], a[1] - b[1], a[2] - b[2], a[3] - b[3]];
 const randTangent = (z: Vec4): Vec4 => tangentFromAngles(z, Math.PI * (rng() - 0.5), 2 * Math.PI * rng());
 
-describe('Station G — horizontal and vertical (§1.3)', () => {
+describe('Station 1.3a — horizontal and vertical (§1.3)', () => {
   it('Lemma 1.3.1: V_z = R·iz is tangent to the fibre (ker dπ) and nonzero', () => {
     for (let k = 0; k < 200; k++) {
       const z = randomUnitQuat(rng);

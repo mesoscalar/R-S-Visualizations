@@ -1,5 +1,5 @@
 /**
- * Station F — sections of associated line bundles are equivariant functions
+ * Station 1.2a — sections of associated line bundles are equivariant functions
  * (Prop. 1.2.5, 1.2.6, 1.2.8, Ex. 1.2.4/3, Rem. 1.2.15; (1.2.5), (1.2.8), (1.2.9)).
  *
  * Left: the base S², coloured by the local representative φ_i = Φ̃∘s_i
@@ -59,7 +59,7 @@ export function mount(container: HTMLElement): () => void {
       'where $s_1$ breaks; showing $\\varphi_2$, at the north pole. The sections here are products of linear forms vanishing over chosen points ' +
       '(for $n<0$; conjugated for $n>0$), plus $\\varepsilon$ times a perturbation of the same charge. Push $\\varepsilon$: zeros wander, ' +
       'and pairs of opposite index are born and annihilate, but the signed count stays $-n$, the degree of $\\rho_{12}^{\\,n}$ ' +
-      '(Station B) — for $n \\neq 0$ every section must vanish somewhere. $L_n$ is also associated with the principal ' +
+      '(Station 1.1b) — for $n \\neq 0$ every section must vanish somewhere. $L_n$ is also associated with the principal ' +
       'bundle $P[\\lambda_n]$, $\\lambda_n(a) = a^n$ (1.2.8, Prop. 1.2.5), whose cocycle is $\\rho_{12}^{\\,n}$; and ' +
       'products of sections of $L_m$, $L_n$ are sections of $L_{m+n} = L_m\\otimes L_n$ (Ex. 1.2.4/3, tested). ' +
       'Indices are taken w.r.t. the outward orientation of $S^2$.',

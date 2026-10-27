@@ -1,5 +1,5 @@
 /**
- * Station H kernel — local representatives 𝒜 = s^*ω_c and gauge
+ * Station 1.3b kernel — local representatives 𝒜 = s^*ω_c and gauge
  * transformations ((1.3.11), Rem. 1.3.10, Prop. 1.3.11, Cor. 1.3.12).
  *
  * u(1)-valued 1-forms are handled through their real coefficient: 𝒜(v) = i·a.

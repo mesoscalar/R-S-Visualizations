@@ -36,7 +36,7 @@ const dist4 = (a: ArrayLike<number>, b: ArrayLike<number>) =>
 const cdist = (a: [number, number], b: [number, number]) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 const eq = (phi: number) => fromPolar(Math.PI / 2, phi);
 
-describe('Station B — transition maps and Čech classes (§1.1)', () => {
+describe('Station 1.1b — transition maps and Čech classes (§1.1)', () => {
   it('Hopf (n = 1) with trivial cochains: arg ρ12 = −φ, as computed from κ1κ2⁻¹ on S³', () => {
     for (let k = 0; k < 100; k++) {
       const phi = 2 * Math.PI * rng();

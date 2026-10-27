@@ -158,7 +158,7 @@ export const SECTIONS: BookSection[] = [
 
 export const STATIONS: Station[] = [
   {
-    id: 'A',
+    id: '1.1a',
     section: '1.1',
     title: 'The Hopf bundle and its trivializations',
     items: ['1.1.1', '1.1.5', '1.1.6', '1.1.20', '1.1.21'],
@@ -166,7 +166,7 @@ export const STATIONS: Station[] = [
     summary: 'Fibres over $S^2$ as linked circles in $S^3$; the trivializations $\\chi_i$, their phases $\\kappa_i$ and the sections $s_i$.',
   },
   {
-    id: 'B',
+    id: '1.1b',
     section: '1.1',
     title: 'Transition maps and Čech classes',
     items: ['1.1.10', '1.1.11', '1.1.12', '1.1.13', '1.1.21'],
@@ -174,7 +174,7 @@ export const STATIONS: Station[] = [
     summary: 'The two section curves over the equator cross once: the degree of $\\rho_{12}$, untouched by any re-trivialization (1.1.7).',
   },
   {
-    id: 'F',
+    id: '1.2a',
     section: '1.2',
     title: 'Sections are equivariant functions',
     items: ['1.2.4', '1.2.5', '1.2.6', '1.2.8', '1.2.15'],
@@ -182,7 +182,7 @@ export const STATIONS: Station[] = [
     summary: 'Sections of $L_n = S^3 \\times_{U(1)} \\mathbb C$ as functions on $S^3$ that twist $n$ times along every fibre — and the zeros they cannot avoid.',
   },
   {
-    id: 'G',
+    id: '1.3a',
     section: '1.3',
     title: 'Horizontal and vertical',
     items: ['1.3.1', '1.3.2', '1.3.3', '1.3.4', '1.3.5', '1.3.22', '1.3.23'],
@@ -190,7 +190,7 @@ export const STATIONS: Station[] = [
     summary: 'The splitting $T_pP = \\Gamma_p \\oplus V_p$ for $\\omega_c$ on $S^3$, and the horizontal foliation of a torus of fibres versus the flat product bundle.',
   },
   {
-    id: 'H',
+    id: '1.3b',
     section: '1.3',
     title: 'Local representatives and gauge transformations',
     items: ['1.3.10', '1.3.11', '1.3.12'],

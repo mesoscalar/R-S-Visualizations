@@ -1,5 +1,5 @@
 /**
- * Station H — local representatives and gauge transformations
+ * Station 1.3b — local representatives and gauge transformations
  * ((1.3.11), Rem. 1.3.10, Prop. 1.3.11, Cor. 1.3.12; (1.3.14), (1.3.15)).
  *
  * Left: the potential 𝒜_i = s_i^*ω_c on S² as its dual vector field, for a
@@ -82,7 +82,7 @@ export function mount(container: HTMLElement): () => void {
       'reshape the field drastically — and two charts always differ by $\\mathcal A_2 = \\mathcal A_1 + \\rho_{12}^*\\theta$ (Cor. 1.3.12, (1.3.15)), ' +
       'here $\\rho_{12}^*\\theta = -i\\,d\\varphi$ before gauging. On the right, the loop integrals are recomputed from the ' +
       'gauged sections at every slider move and do not budge ($d\\lambda$ is exact); the two curves stay exactly $1$ apart, ' +
-      'because $\\oint\\rho_{12}^*\\theta = 2\\pi i\\,\\deg\\rho_{12} = -2\\pi i$ along increasing $\\varphi$ — the integer of Station B, ' +
+      'because $\\oint\\rho_{12}^*\\theta = 2\\pi i\\,\\deg\\rho_{12} = -2\\pi i$ along increasing $\\varphi$ — the integer of Station 1.1b, ' +
       'now read off from the connection. (Curvature and the first Chern number come in §1.4 and Ch. 4.)',
   );
   container.append(controls, panes, caption);

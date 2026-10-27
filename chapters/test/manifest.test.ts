@@ -27,6 +27,7 @@ describe('Chapter 1 manifest tracks the book', () => {
       expect(ids.has(st.id)).toBe(false);
       ids.add(st.id);
       expect(SECTIONS.some((s) => s.num === st.section)).toBe(true);
+      expect(st.id).toMatch(new RegExp(`^${st.section.replace('.', '\\.')}[a-z]$`));
       st.items.forEach((num, k) => {
         expect(findItem(num)).toBeDefined();
         expect(num.startsWith(`${st.section}.`)).toBe(true);

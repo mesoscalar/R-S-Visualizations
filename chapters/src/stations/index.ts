@@ -6,9 +6,9 @@
 import type { StationModule } from '../book/ch1';
 
 export const LOADERS: Record<string, () => Promise<StationModule>> = {
-  A: () => import('./a-hopf'),
-  B: () => import('./b-cech'),
-  F: () => import('./f-sections'),
-  G: () => import('./g-horizontal'),
-  H: () => import('./h-gauge'),
+  '1.1a': () => import('./s11a-hopf'),
+  '1.1b': () => import('./s11b-cech'),
+  '1.2a': () => import('./s12a-sections'),
+  '1.3a': () => import('./s13a-horizontal'),
+  '1.3b': () => import('./s13b-gauge'),
 };
