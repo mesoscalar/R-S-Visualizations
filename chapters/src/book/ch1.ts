@@ -213,6 +213,14 @@ export const STATIONS: Station[] = [
     summary: 'The potentials $\\mathcal A_i = s_i^*\\omega_c$ on $S^2$, each singular at its missing pole, and the law $\\mathcal A_2 = \\mathcal A_1 + \\rho_{12}^*\\theta$.',
   },
   {
+    id: '1.3c',
+    section: '1.3',
+    title: 'The affine space of connections',
+    items: ['1.3.5', '1.3.7', '1.3.8'],
+    equations: ['(1.3.8)'],
+    summary: 'Glue flat chart connections with a partition of unity, slide toward $\\omega_c$: the horizontal curves change, the total twist from pole to pole does not.',
+  },
+  {
     id: '1.3d',
     section: '1.3',
     title: 'The canonical connection of the Stiefel bundle',

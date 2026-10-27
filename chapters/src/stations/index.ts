@@ -13,5 +13,6 @@ export const LOADERS: Record<string, () => Promise<StationModule>> = {
   '1.2b': () => import('./s12b-tangent'),
   '1.3a': () => import('./s13a-horizontal'),
   '1.3b': () => import('./s13b-gauge'),
+  '1.3c': () => import('./s13c-affine'),
   '1.3d': () => import('./s13d-stiefel'),
 };
