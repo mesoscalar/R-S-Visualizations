@@ -11,6 +11,8 @@ export interface PaneOptions {
   cameraPos?: [number, number, number];
   cameraTarget?: [number, number, number];
   fov?: number;
+  /** Camera up vector; [0, 0, 1] lets scenes use the book's z-up coordinates directly. */
+  up?: [number, number, number];
   background?: number;
   enablePan?: boolean;
   minDistance?: number;
@@ -43,6 +45,7 @@ export function createScenePane(container: HTMLElement, opts: PaneOptions = {}):
     100,
   );
   camera.position.set(...(opts.cameraPos ?? [0, 1.6, 4.2]));
+  if (opts.up) camera.up.set(...opts.up);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
@@ -124,4 +127,104 @@ export function el<K extends keyof HTMLElementTagNameMap>(
   if (className) e.className = className;
   if (text) e.textContent = text;
   return e;
+}
+
+/**
+ * Tube along a polyline with per-vertex colours (THREE.TubeGeometry resamples
+ * by arclength, which would decouple colours from the curve parameter).
+ * Normals are propagated by projection (rotation-minimising), so the round
+ * tube shows no twist artefacts.
+ */
+export function coloredTube(
+  pts: ReadonlyArray<readonly [number, number, number]>,
+  colors: ReadonlyArray<THREE.Color>,
+  radius: number,
+  closed: boolean,
+  radial = 8,
+): THREE.Mesh {
+  const n = pts.length;
+  const V = (i: number) => new THREE.Vector3(pts[i][0], pts[i][1], pts[i][2]);
+  const tangents: THREE.Vector3[] = [];
+  for (let i = 0; i < n; i++) {
+    const a = closed ? V((i - 1 + n) % n) : V(Math.max(0, i - 1));
+    const b = closed ? V((i + 1) % n) : V(Math.min(n - 1, i + 1));
+    tangents.push(b.sub(a).normalize());
+  }
+  let normal = new THREE.Vector3(0, 0, 1);
+  if (Math.abs(normal.dot(tangents[0])) > 0.9) normal.set(1, 0, 0);
+  const rings = closed ? n + 1 : n;
+  const pos = new Float32Array(rings * (radial + 1) * 3);
+  const col = new Float32Array(rings * (radial + 1) * 3);
+  const nrm = new Float32Array(rings * (radial + 1) * 3);
+  for (let r = 0; r < rings; r++) {
+    const i = r % n;
+    const t = tangents[i];
+    normal.sub(t.clone().multiplyScalar(normal.dot(t))).normalize();
+    const binormal = new THREE.Vector3().crossVectors(t, normal);
+    const c = V(i);
+    for (let j = 0; j <= radial; j++) {
+      const ang = (2 * Math.PI * j) / radial;
+      const d = normal.clone().multiplyScalar(Math.cos(ang)).add(binormal.clone().multiplyScalar(Math.sin(ang)));
+      const k = (r * (radial + 1) + j) * 3;
+      pos.set([c.x + radius * d.x, c.y + radius * d.y, c.z + radius * d.z], k);
+      nrm.set([d.x, d.y, d.z], k);
+      col.set([colors[i].r, colors[i].g, colors[i].b], k);
+    }
+  }
+  const idx: number[] = [];
+  for (let r = 0; r < rings - 1; r++) {
+    for (let j = 0; j < radial; j++) {
+      const a = r * (radial + 1) + j;
+      const b = (r + 1) * (radial + 1) + j;
+      idx.push(a, b, a + 1, b, b + 1, a + 1);
+    }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('normal', new THREE.BufferAttribute(nrm, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  geo.setIndex(idx);
+  return new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true }));
+}
+
+/** Remove and dispose every child of a group. */
+export function clearGroup(g: THREE.Group): void {
+  for (const child of [...g.children]) {
+    g.remove(child);
+    child.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      mesh.geometry?.dispose();
+      const mat = mesh.material as THREE.Material | THREE.Material[] | undefined;
+      if (Array.isArray(mat)) mat.forEach((m) => m.dispose());
+      else mat?.dispose();
+    });
+  }
+}
+
+/**
+ * Tap-to-pick on a mesh: fires `onPick` with the hit point when a pointer goes
+ * down and up within a few pixels (so orbit drags are not mistaken for taps).
+ */
+export function onTap(
+  pane: ScenePane,
+  target: THREE.Object3D,
+  onPick: (p: THREE.Vector3) => void,
+): void {
+  const ray = new THREE.Raycaster();
+  let down: { x: number; y: number } | null = null;
+  const canvas = pane.renderer.domElement;
+  canvas.addEventListener('pointerdown', (e) => {
+    down = { x: e.clientX, y: e.clientY };
+  });
+  canvas.addEventListener('pointerup', (e) => {
+    if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) return;
+    down = null;
+    const rect = canvas.getBoundingClientRect();
+    ray.setFromCamera(
+      new THREE.Vector2(((e.clientX - rect.left) / rect.width) * 2 - 1, -(((e.clientY - rect.top) / rect.height) * 2 - 1)),
+      pane.camera,
+    );
+    const hits = ray.intersectObject(target, false);
+    if (hits.length) onPick(hits[0].point.clone());
+  });
 }
