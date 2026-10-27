@@ -189,6 +189,14 @@ export const STATIONS: Station[] = [
     summary: 'Sections of $L_n = S^3 \\times_{U(1)} \\mathbb C$ as functions on $S^3$ that twist $n$ times along every fibre — and the zeros they cannot avoid.',
   },
   {
+    id: '1.2b',
+    section: '1.2',
+    title: 'A vector is a class [(frame, components)]',
+    items: ['1.2.1', '1.2.3', '1.2.6', '1.2.9'],
+    equations: ['(1.2.2)', '(1.2.3)', '(1.2.5)'],
+    summary: '$TS^2 \\cong O^+(S^2)\\times_{SO(2)}\\mathbb R^2$: turn the frame, counter-turn the components, and the vector stays put.',
+  },
+  {
     id: '1.3a',
     section: '1.3',
     title: 'Horizontal and vertical',
