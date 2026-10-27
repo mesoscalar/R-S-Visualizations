@@ -5,3 +5,5 @@ dist/
 _site/
 *.log
 .DS_Store
+# never commit the book itself (copyrighted); it is read from a local upload only
+*.pdf

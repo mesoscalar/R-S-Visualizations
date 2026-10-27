@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Oracle for the whole monorepo: shared kernel + gallery tests, plus a
+  # Oracle for the whole monorepo: shared kernel + gallery + chapters tests, plus a
   # typecheck of @rsvis/math. Runs on every branch so PRs get a signal.
   test:
     runs-on: ubuntu-latest
@@ -28,9 +28,11 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build:math
+      - run: npm run build:chapters
 
   # Build both projects and publish ONE site at parallel paths: a static
-  # landing page at the root, gallery under /gallery/, bundle under /bundle/.
+  # landing page at the root, gallery under /gallery/, chapters under
+  # /chapters/, bundle under /bundle/.
   # Deploy only from main — the github-pages environment restricts deployments
   # to the default branch, so this is skipped on PR branches (test is the PR
   # signal).
@@ -49,13 +51,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:gallery
+      - run: npm run build:chapters
       - run: npm run build:bundle
-      - name: Assemble combined site (landing at root, gallery and bundle as siblings)
+      - name: Assemble combined site (landing at root, gallery, chapters and bundle as siblings)
         run: |
           rm -rf _site
-          mkdir -p _site/gallery _site/bundle
+          mkdir -p _site/gallery _site/chapters _site/bundle
           cp landing/index.html _site/index.html
           cp -r gallery/dist/. _site/gallery/
+          cp -r chapters/dist/. _site/chapters/
           cp -r bundle/dist/. _site/bundle/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
