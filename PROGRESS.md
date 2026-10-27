@@ -1,7 +1,34 @@
 # PROGRESS — R-S-Visualizations monorepo
 
 This file tracks **monorepo-level** state. Each subproject keeps its own journal
-(`gallery/PROGRESS.md`; `bundle/` once its spec arrives).
+(`gallery/PROGRESS.md`, `chapters/PROGRESS.md`; `bundle/` once its spec arrives).
+
+## `chapters/` added (branch `claude/sweet-dirac-m0vidv`)
+
+A third sibling project: a companion organised by the *book* (R&S Part II,
+chapter → section → numbered item) rather than by idea. Served at
+`/R-S-Visualizations/chapters/`; first content is Ch. 1 §§1.1–1.3 with five
+stations. Cross-cutting decisions:
+
+- **Hopf kernel promoted.** `gallery/src/math/hopf.ts` (+ its 6 tests) moved to
+  `@rsvis/math`, because the book's Hopf map is the gallery's exactly and the
+  chapters stations build on it. A new shared module `math/src/hopf-book.ts`
+  (+11 tests) adds the book's trivializations, sections, transition map and
+  canonical connection. Gallery imports rewritten; gallery tests 43 → 37.
+- **The book is never committed.** `*.pdf` is gitignored repo-wide; the
+  manifest (`chapters/src/book/ch1.ts`) carries numbers, titles, pages and
+  paraphrased gists only.
+- **CI.** The workflow now also runs on `pull_request` (it previously ran only
+  on pushes to `main` and a stale branch, so PRs had no checks), the test job
+  type-checks/builds `chapters`, the concurrency group is per-ref, and the
+  publish job assembles `_site/chapters/`. Landing page gained a card.
+- **Three.js helpers are copied, not shared** (`chapters/src/stations/three-helpers.ts`
+  extends the gallery's with a coloured tube, tap-picking and a z-up camera):
+  rendering code cannot live in the DOM-free `@rsvis/math`, and a shared UI
+  package is not worth it for two consumers yet.
+
+Test totals on this branch: math 41, gallery 37, chapters 26 — **104**, all
+green; `npm run build` green for gallery, chapters and bundle.
 
 ## What this branch did (`claude/monorepo-restructure`)
 

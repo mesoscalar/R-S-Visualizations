@@ -2,17 +2,19 @@
   "name": "r-s-visualizations",
   "private": true,
   "version": "0.1.0",
-  "description": "Monorepo: shared math kernel (@rsvis/math) + gallery (R&S Vol. 2 visual companion) + bundle (forthcoming instrument).",
+  "description": "Monorepo: shared math kernel (@rsvis/math) + gallery (R&S Vol. 2 visual companion) + chapters (book-ordered companion) + bundle (forthcoming instrument).",
   "workspaces": [
     "math",
     "gallery",
+    "chapters",
     "bundle"
   ],
   "scripts": {
     "test": "npm run test --workspaces --if-present",
     "build:math": "npm run build --workspace=@rsvis/math",
     "build:gallery": "npm run build --workspace=@rsvis/gallery",
+    "build:chapters": "npm run build --workspace=@rsvis/chapters",
     "build:bundle": "npm run build --workspace=@rsvis/bundle",
-    "build": "npm run build:gallery && npm run build:bundle"
+    "build": "npm run build:gallery && npm run build:chapters && npm run build:bundle"
   }
 }

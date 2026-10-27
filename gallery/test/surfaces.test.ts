@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { geodesicArc } from '../src/math/hopf';
+import { geodesicArc } from '@rsvis/math';
 import {
   CATENOID,
   CYLINDER,

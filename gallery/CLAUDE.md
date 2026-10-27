@@ -26,8 +26,9 @@ a cloud VM; the user reviews asynchronously via the PR, GitHub Pages, and
 - **Shared math comes from `@rsvis/math`.** Integrators, quadrature, quaternion
   algebra, winding number, seeded RNG are imported from the workspace package —
   do not re-copy them into `gallery/src/math/`. Widget-specific kernels (clutching,
-  monopole, hopf, surfaces, degree, instanton, mobius) live locally under
-  `gallery/src/math/`.
+  monopole, surfaces, degree, instanton, mobius) live locally under
+  `gallery/src/math/`; the Hopf kernel was promoted to `@rsvis/math` because
+  `chapters/` builds on it.
 - **Captions in the UI:** LaTeX via KaTeX (cheap, static). Each widget panel has a
   short caption — the definition visualized, the theorem demonstrated, and a
   pointer to the R&S section as a `§TODO` placeholder for the user to fill in (do

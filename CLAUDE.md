@@ -7,6 +7,7 @@ framework-agnostic math kernel:
 /CLAUDE.md          ← this file: conventions shared by ALL subprojects
 /math/              ← @rsvis/math: pure TS math kernel + its own vitest suite
 /gallery/           ← R&S Vol. 2 visual companion (Vite + TS + Three.js)
+/chapters/          ← book-ordered companion: stations keyed to numbered items
 /bundle/            ← forthcoming instrument (scaffold only; spec pending)
 ```
 
@@ -16,7 +17,7 @@ root with `npm ci` (or `npm install`).
 
 > **Read order — non-negotiable.** Before working in any subproject, read **this
 > root `CLAUDE.md`** AND that subproject's own `CLAUDE.md` (e.g.
-> `/gallery/CLAUDE.md`, `/bundle/CLAUDE.md`). The root holds the shared rules;
+> `/gallery/CLAUDE.md`, `/chapters/CLAUDE.md`, `/bundle/CLAUDE.md`). The root holds the shared rules;
 > each subproject's file holds its specifics and may sharpen — but not relax —
 > what is here.
 
@@ -70,6 +71,7 @@ what lives where, and cross-cutting decisions.
 One GitHub Actions workflow (`.github/workflows/pages.yml`) tests the whole
 monorepo and publishes a single GitHub Pages site with the projects at parallel
 paths: a static landing page (`/landing/index.html`) at the root, the gallery
-under `/gallery/`, and `bundle` under `/bundle/`. Pages must be enabled once by a human in
+under `/gallery/`, the chapter companion under `/chapters/`, and `bundle` under
+`/bundle/`. Pages must be enabled once by a human in
 repo Settings → Pages → Source: GitHub Actions, and the `github-pages`
 environment only deploys from the default branch (`main`).
