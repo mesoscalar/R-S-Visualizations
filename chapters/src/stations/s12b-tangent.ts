@@ -10,7 +10,8 @@
 import * as THREE from 'three';
 import { actSO2, fromPolar, sectionN, sectionS, transitionNS, type Vec3 } from '@rsvis/math';
 import { components, gradientField, iota, type Vec2 } from '../math/associated-tangent';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, setPos } from './hopf-draw';
 import { clearGroup, createScenePane, el, fibonacciSphere, makeArrow, onTap, setArrow } from './three-helpers';
 
@@ -58,17 +59,7 @@ export function mount(container: HTMLElement): () => void {
   const canvas = document.createElement('canvas');
   paneR.appendChild(canvas);
 
-  const caption = captionBlock(
-    'The associated bundle $P\\times_G F$ is built from pairs $(p,f)$ modulo $(p\\cdot a, a^{-1}f)\\sim(p,f)$ (Def. 1.2.1). ' +
-      'For the frame bundle and the standard representation of $SO(2)$ on $\\mathbb R^2$ the class $[(f,\\xi)]$ is just the ' +
-      'vector $\\iota_f(\\xi) = \\xi^1u_1 + \\xi^2u_2$ (1.2.2): every vector bundle is associated with its frame bundle ' +
-      '(Rem. 1.2.9/2), here $TS^2 \\cong O^+(S^2)\\times_{SO(2)}\\mathbb R^2$. Turn the frame by $b(\\beta)$: the components of the ' +
-      'same white vector turn by $-\\beta$ in the right panel — that is (1.2.3), $\\iota_{f\\cdot b} = \\iota_f\\circ b$. A vector ' +
-      'field is therefore an equivariant map $\\tilde\\Phi(f) = (v\\cdot u_1, v\\cdot u_2)$ with $\\tilde\\Phi(f\\cdot b) = b^{-1}\\tilde\\Phi(f)$ ' +
-      '(Prop. 1.2.6), and its components in the two charts satisfy $\\xi_N = b(\\rho_{NS})\\,\\xi_S$, the transition law (1.2.5) — ' +
-      'drawn as the two dots and the arc between them. Since $\\rho_{NS}$ has degree 2 (Station 1.1c), the winding numbers of $\\xi_N$ and $\\xi_S$ ' +
-      'around the equator always differ by 2: every vector field on $S^2$ has total index 2 (tested on 40 random gradient fields).',
-  );
+  const caption = explainer(EXPLAINERS['1.2b']);
   container.append(controls, panes, caption);
 
   const scene = createScenePane(paneL, { cameraPos: [2.4, -2.4, 1.4], up: [0, 0, 1] });

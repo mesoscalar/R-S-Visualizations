@@ -35,6 +35,15 @@ forms of type σ (Def. 1.2.10–Rem. 1.2.15 beyond the k = 0 case),
 connections under morphisms (Prop. 1.3.13–Rem. 1.3.17). They appear in the
 contents spine with their gists.
 
+## Explainers
+
+The text under each station was rewritten for teaching (what you are looking
+at / try this / what is going on / where this leads) and moved to
+`src/book/explainers.ts`; the contents-page card summaries were rewritten in
+plain language. `test/explainers.test.ts` (3 tests) compiles every TeX fragment
+with KaTeX (explainers, summaries and all 64 item gists) and checks every
+item citation against the manifest.
+
 ## Conventions (the book's, implemented verbatim)
 
 - Hopf map f(z) = (2z̄₁z₂, |z₁|² − |z₂|²) (Rem. 1.1.21/1) — identical to the

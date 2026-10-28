@@ -17,7 +17,8 @@ import {
   potentialVector,
   type LocalSection,
 } from '../math/gauge';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { clearGroup, createScenePane, el, fibonacciSphere } from './three-helpers';
 
 const TAU = 2 * Math.PI;
@@ -60,19 +61,7 @@ export function mount(container: HTMLElement): () => void {
   const canvas = document.createElement('canvas');
   paneR.appendChild(canvas);
 
-  const caption = captionBlock(
-    'A local section $s$ pulls the connection form down to the base: $\\mathcal A = s^*\\omega$ (1.3.11), a ' +
-      '$\\mathfrak u(1) = i\\mathbb R$-valued 1-form — the gauge potential. For the book\'s sections, ' +
-      '$\\mathcal A_1 = \\tfrac i2(1-\\cos\\theta)\\,d\\varphi$ on $U_1$ and $\\mathcal A_2 = -\\tfrac i2(1+\\cos\\theta)\\,d\\varphi$ on $U_2$: ' +
-      'each is smooth on its chart and blows up at the pole the chart omits. Nothing is lost: by Prop. 1.3.11, ' +
-      '$\\omega = \\mathrm{Ad}_{\\kappa^{-1}}\\pi^*\\mathcal A + \\kappa^*\\theta$ (1.3.14) rebuilds $\\omega$ from $\\mathcal A$ (tested at random points). ' +
-      'Changing the section by a gauge function, $s\\mapsto s\\,e^{i\\lambda}$, changes $\\mathcal A \\mapsto \\mathcal A + i\\,d\\lambda$ — the sliders ' +
-      'reshape the field drastically — and two charts always differ by $\\mathcal A_2 = \\mathcal A_1 + \\rho_{12}^*\\theta$ (Cor. 1.3.12, (1.3.15)), ' +
-      'here $\\rho_{12}^*\\theta = -i\\,d\\varphi$ before gauging. On the right, the loop integrals are recomputed from the ' +
-      'gauged sections at every slider move and do not budge ($d\\lambda$ is exact); the two curves stay exactly $1$ apart, ' +
-      'because $\\oint\\rho_{12}^*\\theta = 2\\pi i\\,\\deg\\rho_{12} = -2\\pi i$ along increasing $\\varphi$ — the integer of Station 1.1b, ' +
-      'now read off from the connection. (Curvature and the first Chern number come in §1.4 and Ch. 4.)',
-  );
+  const caption = explainer(EXPLAINERS['1.3b']);
   container.append(controls, panes, caption);
 
   const scene = createScenePane(paneL, { cameraPos: [2.6, -2.6, 1.6], up: [0, 0, 1] });

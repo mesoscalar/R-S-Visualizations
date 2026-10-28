@@ -9,7 +9,8 @@
  */
 import * as THREE from 'three';
 import { actSO2, dot3, frameAngle, sectionN, transportFrame, type Frame, type Vec3 } from '@rsvis/math';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, setPos } from './hopf-draw';
 import { createScenePane, el, makeArrow, setArrow } from './three-helpers';
 
@@ -50,18 +51,7 @@ export function mount(container: HTMLElement): () => void {
   const matBox = el('div', 'matbox');
   paneR.appendChild(matBox);
 
-  const caption = captionBlock(
-    'For a reductive homogeneous space $G\\to G/H$, $\\mathfrak g = \\mathfrak h\\oplus\\mathfrak m$ with $\\mathrm{Ad}(H)\\mathfrak m\\subset\\mathfrak m$, the ' +
-      'left-invariant distribution $L_a(\\mathfrak m)$ is a connection with form $\\omega_0 = \\mathrm{pr}_{\\mathfrak h}\\circ\\theta$, ' +
-      '$\\theta = a^{-1}da$ (Ex. 1.3.19). For the Stiefel bundle this is the canonical connection $\\omega_c = \\mathrm{pr}_{\\mathfrak u(k)}\\circ\\theta$, ' +
-      'which in matrix terms is $\\omega_c = u^\\dagger du$ (Ex. 1.3.20, (1.3.19)). Here $k = 2$, $n = 3$, oriented: $a = [u_1\\,|\\,u_2\\,|\\,x]\\in SO(3)$ and ' +
-      'the base is the sphere of unit normals — the frame bundle of Station 1.1c again. The right panel shows $\\theta(\\dot a) = a^{\\mathsf T}\\dot a$: ' +
-      'its upper-left $2\\times 2$ block is $\\omega_c(\\dot a)$, the rest is the $\\mathfrak m$-part $\\left[\\begin{smallmatrix}0&-T^{\\mathsf T}\\\\T&0\\end{smallmatrix}\\right]$. ' +
-      'Horizontal motion (spin 0) has $\\omega_c = 0$ and only $T\\neq0$, as Rem. 1.3.21 says at $p_0$ — the book prints $T$ as ' +
-      '"$((n-k)\\times n)$", but the block shape forces $(n-k)\\times k$. Horizontal for $\\omega_c$ means "the frame does not spin about the normal": ' +
-      'this is Levi-Civita transport on $S^2$ (Ch. 2), and after one turn the frame comes back rotated by $2\\pi(1-\\cos\\theta_0)$, the enclosed ' +
-      'area — holonomy, previewing §1.7. The connection is invariant under left translations of $SO(3)$ (tested).',
-  );
+  const caption = explainer(EXPLAINERS['1.3d']);
   container.append(controls, panes, caption);
 
   const scene = createScenePane(paneL, { cameraPos: [2.4, -2.6, 1.8], up: [0, 0, 1] });

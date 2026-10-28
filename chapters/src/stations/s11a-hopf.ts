@@ -25,7 +25,8 @@ import {
   type Vec3,
   type Vec4,
 } from '@rsvis/math';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, fibreMesh, setPos } from './hopf-draw';
 import { clearGroup, createScenePane, el, onTap, phaseColor } from './three-helpers';
 
@@ -70,18 +71,7 @@ export function mount(container: HTMLElement): () => void {
   hudR.append(hudRBig, hudRSmall);
   paneR.appendChild(hudR);
 
-  const caption = captionBlock(
-    'A principal bundle is locally a product (Def. 1.1.1): over $U_1 = S^2\\setminus\\{\\pi(0,1)\\}$ the map ' +
-      '$\\chi_1(z) = (\\pi(z), \\kappa_1(z))$, $\\kappa_1 = z_1/|z_1|$, identifies each fibre with $U(1)$ (Ex. 1.1.20). ' +
-      'The fibre on the right is coloured by $\\arg\\kappa_i$: the hue wheel runs once around it, and moving $p$ by ' +
-      '$e^{i\\alpha}$ advances the hue by $\\alpha$ — that is (1.1.2), $\\kappa_i(p\\cdot a) = \\kappa_i(p)a$. ' +
-      'The marked points are the sections $s_i(m) = \\chi_i^{-1}(m,1)$ of Prop. 1.1.6 (white: $s_1$, orange: $s_2$). ' +
-      '$\\kappa_1$ dies on the fibre over the south pole $\\pi(0,1)$ — the vertical red line through the projection ' +
-      'point — and $\\kappa_2$ on the unit circle over $\\pi(1,0)$: no single chart covers $S^3$. ' +
-      'Switching charts recolours the fibre by the constant phase $\\rho_{12}(m) = \\kappa_1\\kappa_2^{-1}$ (1.1.5); ' +
-      'walk $m$ around the equator and watch it turn once (Rem. 1.1.21/2, Station 1.1b). The base is identified with ' +
-      '$S^2$ through $f(z) = (2\\bar z_1 z_2,\\ |z_1|^2-|z_2|^2)$ and $s_2$ is the book\'s $g_+$ (Rem. 1.1.21/1).',
-  );
+  const caption = explainer(EXPLAINERS['1.1a']);
   container.append(controls, panes, caption);
 
   // ---------- scenes ----------

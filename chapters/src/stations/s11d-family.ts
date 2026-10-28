@@ -16,7 +16,8 @@ import {
   realKappa,
   realTransition,
 } from '../math/hopf-family';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, setPos } from './hopf-draw';
 import { clearGroup, coloredTube, createScenePane, el } from './three-helpers';
 
@@ -68,20 +69,7 @@ export function mount(container: HTMLElement): () => void {
   hudR.append(hudRBig, hudRSmall);
   paneR.appendChild(hudR);
 
-  const caption = captionBlock(
-    'The Hopf bundles are the Stiefel bundles $S_{\\mathbb K}(1,2)\\to\\mathbb KP^1$ (Rem. 1.1.25): unit vectors of $\\mathbb K^2$ modulo the unit ' +
-      'sphere of $\\mathbb K$ acting on the right, $S^1\\to\\mathbb RP^1$ with $O(1)$, $S^3\\to\\mathbb CP^1$ with $U(1)$ (Stations 1.1a/b), ' +
-      '$S^7\\to\\mathbb HP^1\\cong S^4$ with $Sp(1)\\cong SU(2)$ (Ex. 1.1.22, 1.1.24). The recipe never changes: $\\kappa_i = q_i/|q_i|$, ' +
-      '$\\rho_{12} = \\kappa_1\\kappa_2^{-1}$. For $\\mathbb K = \\mathbb R$ the base circle is $\\mathbb RP^1$, the total space covers it twice ' +
-      '(drawn as the boundary of a Möbius band over its core), and $\\rho_{12} = \\mathrm{sign}(x_1x_2)$ is $+1$ on one arc of $U_1\\cap U_2$ (green) and ' +
-      '$-1$ on the other (red) — no choice of constant signs on $U_1$, $U_2$ fixes both, so the double cover is nontrivial. For $\\mathbb K = \\mathbb H$, ' +
-      'over the equator $|q_1| = |q_2|$ of $\\mathbb HP^1$ the points $(w,1)/\\sqrt2$, $w\\in S^3$, meet every fibre once and there $\\rho_{12} = w$: the ' +
-      'transition map is the identity of $S^3$, degree 1, so by the criterion of Rem. 1.1.21/2 the quaternionic Hopf bundle is nontrivial ' +
-      '(Rem. 1.1.23/1). The sliders apply 0-cochains $\\rho_i = \\exp\\lambda_i$, $\\lambda_i$ valued in $\\mathfrak{sp}(1) = \\mathrm{Im}\\,\\mathbb H$, giving ' +
-      '$\\rho_1\\rho_{12}\\rho_2^{-1}$ (1.1.7): the great circles bend, the degree (Gauss–Legendre quadrature of $\\det D\\rho$ over $S^3$, recomputed on release) stays 1 — ' +
-      'this integer is the instanton number of Ch. 6. Finally the universal covering $\\tilde M\\to M$ is a principal $\\pi_1(M)$-bundle (Ex. 1.1.26): ' +
-      'lifting a loop of winding $n$ in $S^1$ to the helix ends $n$ sheets up, at the deck transformation $t\\mapsto t+2\\pi n$.',
-  );
+  const caption = explainer(EXPLAINERS['1.1d']);
   container.append(controls, panes, caption);
 
   const sceneL = createScenePane(paneL, { cameraPos: [2.2, -3.2, 2.4], up: [0, 0, 1] });

@@ -9,7 +9,8 @@
 import * as THREE from 'three';
 import { actU1, fromPolar, section1, stereographic, type Vec3 } from '@rsvis/math';
 import { partition, torusSlope } from '../math/affine-connections';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, fibreMesh, setPos } from './hopf-draw';
 import { clearGroup, coloredTube, createScenePane, el } from './three-helpers';
 
@@ -49,18 +50,7 @@ export function mount(container: HTMLElement): () => void {
   const canvas = document.createElement('canvas');
   paneR.appendChild(canvas);
 
-  const caption = captionBlock(
-    'Prop. 1.3.7 builds a connection on any principal bundle by gluing: each trivialization $\\chi_i$ gives the flat connection whose ' +
-      'horizontal spaces are tangent to $\\chi_i^{-1}(U_i\\times\\{1\\})$ and its translates (1.3.8) — here $\\tilde\\omega_i = \\kappa_i^*\\theta$ — ' +
-      'and a partition of unity $f_1 + f_2 = 1$, $\\mathrm{supp}\\,f_i\\subset U_i$, glues them to $\\omega_{PU} = f_1\\tilde\\omega_1 + f_2\\tilde\\omega_2$. ' +
-      'The proof only needs conditions 2 and 3 of Prop. 1.3.5, which survive convex combinations; so does the whole segment ' +
-      '$\\omega_t = (1-t)\\,\\omega_c + t\\,\\omega_{PU}$, and $\\omega_{PU}-\\omega_c = \\pi^*\\beta$ is horizontal and invariant — connections form an ' +
-      'affine space over $\\Omega^1_{\\mathrm{Ad},\\mathrm{hor}}(P,\\mathfrak g)$ (Rem. 1.3.8), which for $U(1)$ is $\\Omega^1(S^2, i\\mathbb R)$. ' +
-      'On the torus over a latitude the horizontal curves of $\\omega_{PU}$ are flat ($\\alpha$ = const) where $f_1 = 1$, twist by a full turn where $f_2 = 1$, ' +
-      'and interpolate in between; move the cutoffs to see the twist concentrate. The right panel shows why something is conserved: ' +
-      'every curve $a_t(\\theta)$ runs from 0 at the north pole to 1 at the south pole, whatever $t$ and the cutoffs. That fixed total twist is the ' +
-      'degree of $\\rho_{12}$ (Station 1.1b) — curvature (§1.4) and the Chern number (Ch. 4) will say it as $\\frac{i}{2\\pi}\\int F = \\pm1$.',
-  );
+  const caption = explainer(EXPLAINERS['1.3c']);
   container.append(controls, panes, caption);
 
   const scene = createScenePane(paneL, { cameraPos: [3.6, -4.0, 3.0], up: [0, 0, 1], maxDistance: 40 });
