@@ -163,7 +163,7 @@ export const STATIONS: Station[] = [
     title: 'The Hopf bundle and its trivializations',
     items: ['1.1.1', '1.1.5', '1.1.6', '1.1.20', '1.1.21'],
     equations: ['(1.1.1)', '(1.1.2)'],
-    summary: 'Fibres over $S^2$ as linked circles in $S^3$; the trivializations $\\chi_i$, their phases $\\kappa_i$ and the sections $s_i$.',
+    summary: 'Why $S^3$ is a bundle of circles over $S^2$, and what a local trivialization and a local section actually do.',
   },
   {
     id: '1.1b',
@@ -171,21 +171,21 @@ export const STATIONS: Station[] = [
     title: 'Transition maps and Čech classes',
     items: ['1.1.10', '1.1.11', '1.1.12', '1.1.13', '1.1.21'],
     equations: ['(1.1.5)', '(1.1.6)', '(1.1.7)'],
-    summary: 'The two section curves over the equator cross once: the degree of $\\rho_{12}$, untouched by any re-trivialization (1.1.7).',
+    summary: 'How the transition maps between charts encode the bundle, and why one integer survives every change of trivialization.',
   },
   {
     id: '1.1c',
     section: '1.1',
     title: 'Frame bundles',
     items: ['1.1.4', '1.1.6', '1.1.14', '1.1.18', '1.1.19'],
-    summary: '$O^+(S^2)\\cong SO(3)$: frames as rotations, $SO(2)$ spinning them, two frame fields that each break at a pole, and a transition map of degree 2.',
+    summary: 'Frames on $S^2$ form the group $SO(3)$; no frame field covers the whole sphere, and the two chart fields differ by a twist of degree 2.',
   },
   {
     id: '1.1d',
     section: '1.1',
     title: 'The Hopf family over R, C, H',
     items: ['1.1.22', '1.1.23', '1.1.24', '1.1.25', '1.1.26'],
-    summary: 'One recipe, three bundles: the real double cover, the complex Hopf bundle, and $S^7\\to S^4$ whose transition map has degree 1 — plus the universal cover.',
+    summary: 'One construction over $\\mathbb R$, $\\mathbb C$, $\\mathbb H$ gives a double cover, the Hopf bundle and $S^7\\to S^4$; plus the universal cover as a principal bundle.',
   },
   {
     id: '1.2a',
@@ -193,7 +193,7 @@ export const STATIONS: Station[] = [
     title: 'Sections are equivariant functions',
     items: ['1.2.4', '1.2.5', '1.2.6', '1.2.8', '1.2.15'],
     equations: ['(1.2.5)', '(1.2.8)', '(1.2.9)'],
-    summary: 'Sections of $L_n = S^3 \\times_{U(1)} \\mathbb C$ as functions on $S^3$ that twist $n$ times along every fibre — and the zeros they cannot avoid.',
+    summary: 'A section of an associated line bundle is a function on $S^3$ that twists along the fibres, and the twist forces it to vanish somewhere.',
   },
   {
     id: '1.2b',
@@ -201,7 +201,7 @@ export const STATIONS: Station[] = [
     title: 'A vector is a class [(frame, components)]',
     items: ['1.2.1', '1.2.3', '1.2.6', '1.2.9'],
     equations: ['(1.2.2)', '(1.2.3)', '(1.2.5)'],
-    summary: '$TS^2 \\cong O^+(S^2)\\times_{SO(2)}\\mathbb R^2$: turn the frame, counter-turn the components, and the vector stays put.',
+    summary: 'A tangent vector is a frame together with components, up to turning one against the other: $TS^2$ as an associated bundle.',
   },
   {
     id: '1.3a',
@@ -209,7 +209,7 @@ export const STATIONS: Station[] = [
     title: 'Horizontal and vertical',
     items: ['1.3.1', '1.3.2', '1.3.3', '1.3.4', '1.3.5', '1.3.22', '1.3.23'],
     equations: ['(1.3.1)', '(1.3.2)', '(1.3.6)', '(1.3.7)', '(1.3.20)'],
-    summary: 'The splitting $T_pP = \\Gamma_p \\oplus V_p$ for $\\omega_c$ on $S^3$, and the horizontal foliation of a torus of fibres versus the flat product bundle.',
+    summary: 'A connection is a choice of horizontal directions: see the split $T_pP = \\Gamma_p\\oplus V_p$ and the horizontal curves it produces.',
   },
   {
     id: '1.3b',
@@ -217,7 +217,7 @@ export const STATIONS: Station[] = [
     title: 'Local representatives and gauge transformations',
     items: ['1.3.10', '1.3.11', '1.3.12'],
     equations: ['(1.3.11)', '(1.3.14)', '(1.3.15)'],
-    summary: 'The potentials $\\mathcal A_i = s_i^*\\omega_c$ on $S^2$, each singular at its missing pole, and the law $\\mathcal A_2 = \\mathcal A_1 + \\rho_{12}^*\\theta$.',
+    summary: 'The gauge potential is the connection pulled down by a local section; gauge changes reshape it, but its loop integrals stay put.',
   },
   {
     id: '1.3c',
@@ -225,7 +225,7 @@ export const STATIONS: Station[] = [
     title: 'The affine space of connections',
     items: ['1.3.5', '1.3.7', '1.3.8'],
     equations: ['(1.3.8)'],
-    summary: 'Glue flat chart connections with a partition of unity, slide toward $\\omega_c$: the horizontal curves change, the total twist from pole to pole does not.',
+    summary: 'Gluing flat local connections gives a global one; connections form an affine space, yet a topological total stays fixed.',
   },
   {
     id: '1.3d',
@@ -233,7 +233,7 @@ export const STATIONS: Station[] = [
     title: 'The canonical connection of the Stiefel bundle',
     items: ['1.3.19', '1.3.20', '1.3.21'],
     equations: ['(1.3.17)', '(1.3.18)', '(1.3.19)'],
-    summary: '$\\omega_c = u^\\dagger du = \\mathrm{pr}_{\\mathfrak h}\\circ\\theta$ on $SO(3)\\to S^2$: horizontal means the frame does not spin, and a loop leaves it turned by the enclosed area.',
+    summary: 'The Stiefel bundle\'s canonical connection $u^\\dagger du$: horizontal means "don\'t spin", and a loop turns the frame by the enclosed area.',
   },
 ];
 

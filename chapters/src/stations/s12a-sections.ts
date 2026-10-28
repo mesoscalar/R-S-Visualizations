@@ -10,7 +10,8 @@
 import * as THREE from 'three';
 import { carg, fromPolar, polarAngles, section1, section2, type Vec3 } from '@rsvis/math';
 import { localRep, sectionLn, zeroCells, type Equivariant } from '../math/line-bundles';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, fibreMesh, setPos } from './hopf-draw';
 import { clearGroup, createScenePane, el, onTap } from './three-helpers';
 
@@ -48,22 +49,7 @@ export function mount(container: HTMLElement): () => void {
   hud.append(hudBig, hudSmall);
   paneL.appendChild(hud);
 
-  const caption = captionBlock(
-    'A section of $L_n = S^3\\times_{U(1)}\\mathbb C$, $\\sigma_n(e^{i\\alpha}) = e^{in\\alpha}$, is the same thing as a ' +
-      'function $\\tilde\\Phi: S^3\\to\\mathbb C$ with $\\tilde\\Phi(p\\cdot a) = \\sigma_n(a)^{-1}\\tilde\\Phi(p)$ ' +
-      '(Prop. 1.2.6, (1.2.9)); for a representation the correspondence is linear (Prop. 1.2.8). On the right the hue ' +
-      'of $\\tilde\\Phi$ turns $-n$ times around every fibre — equivariance made visible — except on fibres where ' +
-      '$\\tilde\\Phi \\equiv 0$. On the left is its local representative $\\varphi_i = \\tilde\\Phi\\circ s_i$ ' +
-      '(Rem. 1.2.15/3); the two are related by $\\varphi_1 = \\rho_{12}^{\\,n}\\varphi_2$, the transition map ' +
-      '$\\sigma_n\\circ\\rho_{12}$ of (1.2.5). Showing $\\varphi_1$, the hue piles up $n$ extra turns at the south pole ' +
-      'where $s_1$ breaks; showing $\\varphi_2$, at the north pole. The sections here are products of linear forms vanishing over chosen points ' +
-      '(for $n<0$; conjugated for $n>0$), plus $\\varepsilon$ times a perturbation of the same charge. Push $\\varepsilon$: zeros wander, ' +
-      'and pairs of opposite index are born and annihilate, but the signed count stays $-n$, the degree of $\\rho_{12}^{\\,n}$ ' +
-      '(Station 1.1b) — for $n \\neq 0$ every section must vanish somewhere. $L_n$ is also associated with the principal ' +
-      'bundle $P[\\lambda_n]$, $\\lambda_n(a) = a^n$ (1.2.8, Prop. 1.2.5), whose cocycle is $\\rho_{12}^{\\,n}$; and ' +
-      'products of sections of $L_m$, $L_n$ are sections of $L_{m+n} = L_m\\otimes L_n$ (Ex. 1.2.4/3, tested). ' +
-      'Indices are taken w.r.t. the outward orientation of $S^2$.',
-  );
+  const caption = explainer(EXPLAINERS['1.2a']);
   container.append(controls, panes, caption);
 
   // ---------- scenes ----------

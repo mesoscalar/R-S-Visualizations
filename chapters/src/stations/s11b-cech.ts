@@ -21,7 +21,8 @@ import {
   transitionPhase,
   type Phase,
 } from '../math/cech';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, setPos } from './hopf-draw';
 import { clearGroup, coloredTube, createScenePane, el, phaseColorCss } from './three-helpers';
 
@@ -74,19 +75,7 @@ export function mount(container: HTMLElement): () => void {
   const canvas = document.createElement('canvas');
   paneL.appendChild(canvas);
 
-  const caption = captionBlock(
-    'Over the equator $E \\subset U_1 \\cap U_2$ the fibres form a torus; draw it in chart 1, so the height is ' +
-      '$\\alpha = \\arg\\kappa_1$. The section $s_1$ is the line $\\alpha = 0$ (white), and $s_2 = s_1\\rho_{12}$ ' +
-      '(orange) has height $\\arg\\rho_{12}$ — so the two curves meet exactly where $\\rho_{12} = 1$. ' +
-      'A 0-cochain $\\rho_i = e^{i\\lambda_i}$ on $U_i$ re-trivializes chart $i$ ($\\kappa_i\\mapsto\\rho_i\\kappa_i$, ' +
-      '$s_i\\mapsto s_i\\rho_i^{-1}$) and changes the transition map by (1.1.7), $\\rho_{12}\\mapsto\\rho_1\\rho_{12}\\rho_2^{-1}$. ' +
-      'The sliders bend both curves and make crossings appear and annihilate in pairs, but the signed count — the ' +
-      'degree of $\\rho_{12}$ — cannot change: that is Thm. 1.1.11 for $S^2$, and the integer labels the class in ' +
-      '$\\check H^1(S^2, U(1))$ (Cor. 1.1.13). The dropdown picks other cocycles $\\rho_{12} = e^{-in\\varphi}$; ' +
-      'Prop. 1.1.10 glues a bundle from each, but only $n = 1$ has total space $S^3$, so the 3D view shows only the Hopf case. ' +
-      'Signs are counted along the book\'s loop $\\gamma$ of Rem. 1.1.21/2, which runs the equator with $\\varphi = -t$, ' +
-      'so the Hopf bundle reads $+1$ (green crossings $+$, red $-$).',
-  );
+  const caption = explainer(EXPLAINERS['1.1b']);
   container.append(controls, panes, caption);
 
   // ---------- 3D ----------

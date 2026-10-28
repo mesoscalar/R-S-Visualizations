@@ -37,7 +37,15 @@ interactive pictures attached to specific items.
   manifest's internal consistency (numbering, pages, station citations).
 - **Renderers** (`src/stations/*.ts`) export
   `mount(container: HTMLElement): () => void` and are registered in
-  `src/stations/index.ts`. Captions are KaTeX and cite items by number.
+  `src/stations/index.ts`.
+- **Explainers** (the text under each station) live in
+  `src/book/explainers.ts`, not in the renderers, with four parts: *what you
+  are looking at*, *try this* (concrete experiments and what to notice), *what
+  is going on* (the idea in short steps, citing items by number), *where this
+  leads*. Write for a reader seeing the idea for the first time: intuition
+  before formalism, one claim per sentence. `test/explainers.test.ts` checks
+  that every station has one, that all `$…$` TeX compiles in KaTeX, and that
+  every cited item exists with the cited kind.
 
 ## Deployment
 

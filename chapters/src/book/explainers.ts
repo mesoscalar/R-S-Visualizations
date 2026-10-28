@@ -1,0 +1,175 @@
+/**
+ * Station explainers: the text under each picture, kept apart from the
+ * rendering code so it can be edited as prose. Each has four parts —
+ * what is on screen, things to try, the idea (built up in steps, citing the
+ * book), and where it leads. Math is inline TeX between $…$ (KaTeX);
+ * String.raw keeps backslashes literal (never write "$" directly before "{").
+ */
+
+export interface Explainer {
+  /** What is on screen, panel by panel. */
+  see: string;
+  /** Concrete experiments, each with what to notice. */
+  tryIt: string[];
+  /** The mathematics, a few short paragraphs, citing items by number. */
+  idea: string[];
+  /** Where this leads (later stations, sections, chapters). */
+  ahead?: string;
+}
+
+const r = String.raw;
+
+export const EXPLAINERS: Record<string, Explainer> = {
+  '1.1a': {
+    see: r`Left: the base $S^2 \cong \mathbb CP^1$ with a white point $m$. Right: the total space $S^3$, squeezed into ordinary space by stereographic projection. The thick coloured circle is the fibre $\pi^{-1}(m)$; the thin grey circles are the fibres over the rest of $m$'s latitude. The red vertical line and the blue unit circle are the fibres over the two poles.`,
+    tryIt: [
+      r`Tap the sphere to move $m$. Every point of $S^2$ has a whole circle above it, and different circles never meet: $S^3$ is a disjoint union of circles, one for each point of $S^2$.`,
+      r`Drag $\alpha$. The green point $p = \chi_i^{-1}(m, e^{i\alpha})$ slides around the fibre and its colour changes in step. The colour is the group coordinate $\kappa_i(p) \in U(1)$ that the chart assigns to $p$.`,
+      r`Switch charts. The same circle is recoloured by a constant turn of the colour wheel: a different choice of where "$1 \in U(1)$" sits on the fibre.`,
+      r`Choose chart $\chi_2$ and press "$m \to \pi(1,0)$". The readout says $p \notin \pi^{-1}(U_2)$: chart 2 cannot see the fibre over the north pole.`,
+    ],
+    idea: [
+      r`A principal bundle is a space with a free group action that looks, locally, like a product $U \times G$ (Def. 1.1.1). "Locally" is the whole point. For the Hopf bundle the identification $\chi_i(p) = (\pi(p), \kappa_i(p))$ with $\kappa_i = z_i/|z_i|$ only works over $U_i$, where $z_i \neq 0$ (Ex. 1.1.20). The rule $\kappa_i(p\cdot a) = \kappa_i(p)\,a$ (1.1.2) says that moving along the fibre by $a$ changes the chart's group coordinate by exactly $a$.`,
+      r`A trivialization and a section are the same data (Prop. 1.1.6). The section is $s_i(m) = \chi_i^{-1}(m, 1)$, the point of each fibre where $\kappa_i = 1$ (white for $s_1$, orange for $s_2$). Conversely, $\kappa_i(p)$ is "how far $p$ is from $s_i(\pi(p))$" along its fibre. A trivialization over all of $S^2$ would be a section over all of $S^2$; the Hopf bundle has none.`,
+      r`The base $\mathbb CP^1$ is identified with $S^2$ by $f(z) = (2\bar z_1 z_2,\ |z_1|^2 - |z_2|^2)$ (Rem. 1.1.21/1). The book inverts this map with $g_+$, which is exactly our section $s_2$.`,
+    ],
+    ahead: r`Two charts colour the same fibre differently. Comparing the colourings gives the transition map $\rho_{12} = \kappa_1\kappa_2^{-1}$, the subject of Station 1.1b.`,
+  },
+
+  '1.1b': {
+    see: r`Over the equator of $S^2$ the fibres sweep out a torus. Left: that torus cut open into a square. The horizontal coordinate is $\varphi$, the position on the equator; the vertical one is $\alpha = \arg\kappa_1$, the position on the fibre as measured by chart 1. Right: the same torus inside $S^3$ (Hopf case only). White curve: the section $s_1$; orange: $s_2$.`,
+    tryIt: [
+      r`With the cochains at zero, the white curve is the flat line $\alpha = 0$ (that is what $\kappa_1(s_1) = 1$ means). The orange curve, whose height is $\arg\rho_{12}$, climbs once around. They cross exactly once.`,
+      r`Press "random cochains" a few times. Both curves wiggle and crossings appear and disappear, always in pairs of opposite sign. The degree readout never changes.`,
+      r`Pick $\rho_{12} = e^{-in\varphi}$ in the menu: the orange curve now winds $n$ times, and $|n|$ crossings survive every deformation.`,
+    ],
+    idea: [
+      r`Once local trivializations are chosen, what remains is how they disagree. The transition map $\rho_{12}(m) = \kappa_1(p)\kappa_2(p)^{-1}$ compares the two charts' group coordinates of the same point. It does not depend on which $p$ over $m$ you use (1.1.5). Here the two section curves meet exactly where $\rho_{12} = 1$.`,
+      r`Trivializations are not unique. Re-choosing chart $i$ by a function $\rho_i : U_i \to U(1)$ (a 0-cochain) moves $s_i$ to $s_i\rho_i^{-1}$ and replaces $\rho_{12}$ by $\rho_1\rho_{12}\rho_2^{-1}$ (1.1.7). Thm. 1.1.11 says this is the only freedom: two bundles are isomorphic exactly when their transition maps differ this way. So, up to isomorphism, a bundle is nothing but its transition map modulo cochains, a class in Čech cohomology $\check H^1(S^2, U(1))$ (Rem. 1.1.12, Cor. 1.1.13).`,
+      r`What survives the cochains? Each $U_i$ is a disc, so $\rho_i$ restricted to the equator is a contractible loop and cannot change the winding number of $\rho_{12}$. That winding number is the signed crossing count you see. Conversely, any cocycle builds some bundle (Prop. 1.1.10), so every integer occurs.`,
+      r`Signs: the book's loop $\gamma$ (Rem. 1.1.21/2) runs the equator with $\varphi = -t$. Counted along $\gamma$, the Hopf bundle has degree $+1$, as the book states.`,
+    ],
+    ahead: r`Only $n = \pm1$ has total space $S^3$, so the 3D view shows just the Hopf case. The same integers come back as forced zeros of sections in Station 1.2a.`,
+  },
+
+  '1.1c': {
+    see: r`Left: $S^2$ covered by a field of orthonormal frames (orange $u_1$, cyan $u_2$), with one frame highlighted at the point $x$ you tap. Right: the total space, all oriented orthonormal frames of $S^2$. It is the rotation group $SO(3)$, drawn as a ball of radius $\pi$: a point of the ball is a rotation axis scaled by the rotation angle, and opposite points on the boundary are the same rotation. The white curve is the fibre over $x$, all the frames at $x$.`,
+    tryIt: [
+      r`Drag $\beta$. The frame at $x$ turns within its tangent plane (the right action of $SO(2)$), and the green dot runs along the white fibre in $SO(3)$.`,
+      r`With $s_N$, look near the south pole (with $s_S$, near the north pole). The frame field spins wildly; it is singular there.`,
+      r`Tap around: the readout $\rho_{NS}$ is the angle between the two frame fields at $x$.`,
+    ],
+    idea: [
+      r`A frame at $x$ is an ordered basis of $T_xS^2$ (Ex. 1.1.14). Keeping only oriented orthonormal ones gives a principal $SO(2)$-bundle $O^+(S^2)$ (Ex. 1.1.18, Def. 1.1.19). A frame $(u_1, u_2)$ at $x$ completes $x$ to an orthonormal basis of $\mathbb R^3$, so the matrix $[x\,|\,u_1\,|\,u_2]$ identifies $O^+(S^2)$ with $SO(3)$. Turning the frame becomes right multiplication by $\mathrm{diag}(1, b)$ (Ex. 1.1.18). This is also the homogeneous bundle $SO(3) \to SO(3)/SO(2) = S^2$ of Ex. 1.1.4/4.`,
+      r`Each frame field is a local section, and by Prop. 1.1.6 a global one would trivialize the bundle. None exists: a frame field with no singular point would comb the hairy ball. The obstruction shows up in the transition map, $\rho_{NS} = \pi + 2\varphi$ along the equator, which has degree 2.`,
+    ],
+    ahead: r`Compare the Hopf bundle's degree 1 (Station 1.1b). The 2 is the Euler number of $S^2$, and $SO(3) \cong S^3/\{\pm1\}$. Station 1.2b builds the tangent bundle from this frame bundle, and Station 1.3d puts a connection on it.`,
+  },
+
+  '1.1d': {
+    see: r`Left, first mode: the real member of the family, a circle covering a circle twice, drawn as the edge of a Möbius band running around its core. Left, second mode: the universal cover $\mathbb R \to S^1$ as a helix. Right: the quaternionic member, shown through its transition map $\rho_{12}: S^3 \to Sp(1) \cong S^3$ and what it does to a few great circles.`,
+    tryIt: [
+      r`Real mode: drag $s$. The two white points $\pm x$ make up one fibre. The base circle is coloured by $\rho_{12}$: green ($+1$) on one arc of $U_1\cap U_2$, red ($-1$) on the other.`,
+      r`Universal-cover mode: set the winding $n$. The lift of the loop climbs $n$ turns of the helix.`,
+      r`Quaternionic panel: move the cochain sliders. The great circles bend; when you release a slider the degree is recomputed, and it stays 1.`,
+    ],
+    idea: [
+      r`One recipe gives all the Hopf bundles. Take unit vectors $(q_1, q_2) \in \mathbb K^2$, let the unit sphere of $\mathbb K$ act on the right, and set $\kappa_i = q_i/|q_i|$, $\rho_{12} = \kappa_1\kappa_2^{-1}$, exactly as in Ex. 1.1.20. These are the Stiefel bundles $S_{\mathbb K}(1,2) \to \mathbb KP^1$ (Ex. 1.1.24, Rem. 1.1.25): $S^1 \to \mathbb RP^1$ with $O(1) = \{\pm1\}$, $S^3 \to S^2$ with $U(1)$, and $S^7 \to S^4$ with $Sp(1) \cong SU(2)$ (Ex. 1.1.22).`,
+      r`$\mathbb K = \mathbb R$: the overlap $U_1 \cap U_2$ has two pieces, with $\rho_{12} = +1$ on one and $-1$ on the other. Re-choosing charts can only flip the sign on all of $U_1$ or all of $U_2$, which changes both arcs alike, so the mismatch can't be removed. The double cover is connected, hence nontrivial.`,
+      r`$\mathbb K = \mathbb H$: over the "equator" $|q_1| = |q_2|$, the points $(w, 1)/\sqrt2$ meet each fibre exactly once, and there $\rho_{12} = w$. So the transition map is the identity $S^3 \to S^3$, of degree 1, and by the criterion of Rem. 1.1.21/2 the bundle is nontrivial (Rem. 1.1.23/1). Cochains (1.1.7) deform the map but cannot change its degree.`,
+      r`The universal cover is a principal bundle too, with the discrete group $\pi_1(M)$ as structure group (Ex. 1.1.26). Lifting a loop of winding $n$ to the helix ends $n$ turns higher: the group element acts by the deck shift $t \mapsto t + 2\pi n$.`,
+    ],
+    ahead: r`The degree of the quaternionic transition map returns in Ch. 6 as the instanton number.`,
+  },
+
+  '1.2a': {
+    see: r`Left: the base $S^2$ coloured by a section of the line bundle $L_n$. Hue is phase and brightness is size (dark means near zero); green and red dots mark zeros of index $+1$ and $-1$. Right: fibres in $S^3$ coloured by the phase of the same section, seen as a function $\tilde\Phi$ on $S^3$. White circles are fibres where it vanishes.`,
+    tryIt: [
+      r`Follow any coloured fibre on the right: the hue turns $-n$ times around it. That built-in twist is what makes $\tilde\Phi$ a section rather than an arbitrary function.`,
+      r`Tap the sphere to move a zero. Then raise $\varepsilon$: zeros wander, and pairs of opposite index are created or annihilated, but $\Sigma\,\mathrm{ind}$ stays $-n$.`,
+      r`Set $n = 0$ and push $\varepsilon$ past 2. A $+$ and a $-$ zero appear and can disappear again: on a trivial bundle nothing forces zeros.`,
+      r`Switch between $\varphi_1$ and $\varphi_2$: the extra $n$ turns of hue jump from the south pole to the north pole.`,
+    ],
+    idea: [
+      r`From the Hopf bundle and the representation $\sigma_n(e^{i\alpha}) = e^{in\alpha}$ of $U(1)$ on $\mathbb C$ we build the associated line bundle $L_n = S^3\times_{U(1)}\mathbb C$. Prop. 1.2.6 makes its sections concrete: they are functions $\tilde\Phi: S^3 \to \mathbb C$ with $\tilde\Phi(p\cdot a) = \sigma_n(a)^{-1}\tilde\Phi(p)$ (1.2.9), so the values along each fibre are fixed up to a prescribed twist. For a representation the correspondence is linear (Prop. 1.2.8).`,
+      r`Composing with a local section gives an ordinary function $\varphi_i = \tilde\Phi \circ s_i$ on $U_i$ (Rem. 1.2.15/3). On the overlap, $\varphi_1 = \rho_{12}^{\,n}\varphi_2$: the transition map of $L_n$ is $\sigma_n\circ\rho_{12}$ (1.2.5). Around the equator $\rho_{12}^{\,n}$ winds $-n$ times, so the windings of $\varphi_1$ and $\varphi_2$ there differ by $-n$, and by the argument principle the zeros of every section have total index $-n$. For $n \neq 0$, every section vanishes somewhere.`,
+      r`The examples are built from linear forms. $\ell_r(z) = u_2 z_1 - u_1 z_2$ vanishes exactly on the fibre over $r$ and has $n = -1$. Products of $|n|$ of them (conjugated when $n > 0$) are sections of $L_n$ vanishing over chosen points, and $\varepsilon$ adds a perturbation with the same twist. A product of sections of $L_m$ and $L_n$ is a section of $L_{m+n} = L_m\otimes L_n$ (Ex. 1.2.4/3).`,
+    ],
+    ahead: r`$L_n$ is also associated with the principal bundle $P[\lambda_n]$, $\lambda_n(a) = a^n$ ((1.2.8), Prop. 1.2.5), whose cocycle is $\rho_{12}^{\,n}$: the integer of Station 1.1b. Indices are counted with the outward orientation of $S^2$.`,
+  },
+
+  '1.2b': {
+    see: r`Left: a vector field $v$ on $S^2$ (grey) and, at the point $x$ you tap, a frame $f$ (orange $u_1$, cyan $u_2$) and the vector $v(x)$ (white). Right: the coordinate plane $\mathbb R^2$ of that frame. The white arrow is $\xi$, the components of $v(x)$ in $f$. The green and pink dots are its components in the two chart frames $s_N$ and $s_S$.`,
+    tryIt: [
+      r`Drag $\beta$ to rotate the frame. On the left only the frame moves; on the right the components rotate the opposite way. Same vector, new coordinates.`,
+      r`Tap different points. The dashed arc from $\xi_S$ to $\xi_N$ is the transition rotation $\rho_{NS}(x)$.`,
+      r`Try all three fields: each vanishes somewhere ($\nabla z$ at both poles).`,
+    ],
+    idea: [
+      r`Def. 1.2.1 builds a bundle with fibre $F$ from a principal bundle $P$: take pairs $(p, f)$ and identify $(p\cdot a,\ a^{-1}f) \sim (p, f)$. With $P$ the frame bundle and $F = \mathbb R^2$ rotated by $SO(2)$, the class of (frame, components) is the tangent vector $\iota_f(\xi) = \xi^1u_1 + \xi^2u_2$ (1.2.2). The identification is exactly the slider experiment: $\iota_{f\cdot b}(b^{-1}\xi) = \iota_f(\xi)$ (1.2.3). Hence $TS^2 \cong O^+(S^2)\times_{SO(2)}\mathbb R^2$; in general, every vector bundle is associated with its frame bundle (Rem. 1.2.9/2).`,
+      r`A vector field becomes a function on the frame bundle, $\tilde\Phi(f) = (v\cdot u_1,\ v\cdot u_2)$, with $\tilde\Phi(f\cdot b) = b^{-1}\tilde\Phi(f)$ (Prop. 1.2.6). Local sections turn it into chart components $\xi_N$ and $\xi_S$, related by the rotation $\rho_{NS}$ (1.2.5).`,
+      r`$\rho_{NS}$ has degree 2 (Station 1.1c), so the windings of the components around the equator always differ by 2. Every vector field on $S^2$ therefore has total index 2: the Poincaré–Hopf theorem, read off a transition map.`,
+    ],
+    ahead: r`It is the same mechanism as Station 1.2a, with the frame bundle's degree 2 in place of Hopf's degree 1.`,
+  },
+
+  '1.3a': {
+    see: r`Left: a point $p$ of $S^3$ (stereographic) on its grey fibre. The pink line is the vertical direction $V_p$, along the fibre. The green disc is the horizontal plane $\Gamma_p$ chosen by the connection $\omega_c$. The white arrow $X$ is split into its horizontal part (green, in the disc) and its vertical part (pink, along the fibre). Right: the fibres over $p$'s latitude form a torus; the green curves on it are horizontal.`,
+    tryIt: [
+      r`Tilt and turn $X$. The two parts always land in the disc and on the line, and $\omega_c(\mathrm{hor}\,X)$ reads 0 to machine precision.`,
+      r`Drag "p along fibre". The disc travels with $p$: the group action carries the connection along.`,
+      r`Right panel: follow the orange curve once around. It doesn't close; it comes back shifted along the fibre by $-\pi(1-\cos\theta)$. Switch to the flat connection and the curves close.`,
+    ],
+    idea: [
+      r`Every principal bundle has a canonical vertical direction at each point: the tangent to the fibre, spanned by the Killing fields $A^*_p = \tfrac{d}{dt}\,p\cdot\exp(tA)$ (Lemma 1.3.1). For $U(1)$ it is $ip$. There is no canonical horizontal direction. A connection is exactly a choice of complement $\Gamma_p$, made compatibly with the group: $\Gamma_{p\cdot a} = \Psi_a'\Gamma_p$ (Def. 1.3.2).`,
+      r`The choice is recorded by a $\mathfrak g$-valued 1-form that measures the vertical part, $\omega_p(X) = (\Psi'_p)^{-1}(\mathrm{ver}\,X)$ (Def. 1.3.4). So $\ker\omega = \Gamma$ and $\omega(A^*) = A$ (Prop. 1.3.5), and every vector splits as $X = \mathrm{hor}\,X + \mathrm{ver}\,X$ with $\mathrm{ver}\,X = \Psi'_p(\omega(X))$ ((1.3.2), (1.3.7)). On the Hopf bundle, $\omega_c = \bar z_1dz_1 + \bar z_2dz_2$ (Ex. 1.3.22) makes $\Gamma_p$ the orthogonal complement of the fibre in $\mathbb R^4$. Stereographic projection preserves angles, so the disc is drawn round.`,
+      r`On the torus, in chart 1, $\omega_c = i(d\alpha + \tfrac12(1-\cos\theta)\,d\varphi)$ (Station 1.3b), so horizontal curves climb with slope $-\tfrac12(1-\cos\theta)$. The flat form $\kappa_1^*\theta = i\,d\alpha$ has horizontal curves $\alpha = $ const, exactly the picture of $\omega = d\alpha$ on the product bundle $S^2\times U(1)$ (Ex. 1.3.23). On the Hopf bundle that form exists only over $U_1$: it is a chart's flat connection, not a global one.`,
+    ],
+    ahead: r`Horizontal curves that fail to close are holonomy (§1.7). That no flat connection exists on all of $S^3$ is curvature (§1.4).`,
+  },
+
+  '1.3b': {
+    see: r`Left: the gauge potential $\mathcal A = s^*\omega_c$, a 1-form on $S^2$, drawn as its dual vector field (length and colour grow with $|\mathcal A|$). Right: for each latitude $\theta$, the loop integral $\frac{1}{2\pi i}\oint\mathcal A$ around it. The dots are computed numerically from the current sections; the dashed curves are the exact formulas.`,
+    tryIt: [
+      r`Compare $\mathcal A_1$ and $\mathcal A_2$: each is tame on its own chart and blows up at the pole that chart leaves out.`,
+      r`Move the gauge sliders. The arrows rearrange completely; the dots on the right don't move.`,
+      r`Pick "$\mathcal A_2 - \mathcal A_1$": the difference is a pure-gauge field circling the axis, and the gap between the two loop integrals stays exactly $-1\cdot 2\pi i$.`,
+    ],
+    idea: [
+      r`The connection lives on the total space, but physics is done on the base. A local section $s$ pulls $\omega$ down to $\mathcal A = s^*\omega$ (1.3.11), a Lie-algebra-valued 1-form on $U$: the gauge potential. For the book's sections, $\mathcal A_1 = \tfrac i2(1-\cos\theta)\,d\varphi$ on $U_1$ and $\mathcal A_2 = -\tfrac i2(1+\cos\theta)\,d\varphi$ on $U_2$.`,
+      r`Passing to $\mathcal A$ loses nothing: Prop. 1.3.11 rebuilds $\omega = \mathrm{Ad}_{\kappa^{-1}}\pi^*\mathcal A + \kappa^*\theta$ (1.3.14). The price is that $\mathcal A$ depends on $s$. Changing the section by $s\mapsto s\,e^{i\lambda}$ changes $\mathcal A\mapsto\mathcal A + i\,d\lambda$, and the two charts' potentials are related by the gauge transformation law $\mathcal A_2 = \mathcal A_1 + \rho_{12}^*\theta$ (Cor. 1.3.12, (1.3.15)). Before any gauge change, $\rho_{12}^*\theta = -i\,d\varphi$.`,
+      r`Gauge-invariant quantities survive. $d\lambda$ is exact, so loop integrals don't change. The two charts' integrals differ by $\oint\rho_{12}^*\theta = 2\pi i\,\deg\rho_{12} = -2\pi i$ (taking $\varphi$ increasing): the integer of Station 1.1b, now read off the connection.`,
+    ],
+    ahead: r`Differentiating $\mathcal A$ gives the curvature (§1.4); integrating that over $S^2$ gives the first Chern number (Ch. 4).`,
+  },
+
+  '1.3c': {
+    see: r`Left: the torus of fibres over a latitude $\theta_0$ and the horizontal curves of the connection $\omega_t$. The orange curve is one of them (○ where it starts, ● where it is after one turn). Right: the slope $a_t(\theta)$ of these curves at every latitude, for several values of $t$ (grey) and the current $t$ (green); dashed pink is the cutoff function $f_2$.`,
+    tryIt: [
+      r`$t = 0$ is the canonical $\omega_c$ and $t = 1$ is the glued connection $\omega_{PU}$. Slide between them and watch the curves change.`,
+      r`Move the cutoffs lo and hi. For $\omega_{PU}$ the twist concentrates in the band where $f_2$ rises from 0 to 1.`,
+      r`Watch the ends of the green curve on the right: 0 at the north pole and 1 at the south pole, for every $t$ and every cutoff.`,
+    ],
+    idea: [
+      r`Why does every principal bundle have a connection (Prop. 1.3.7)? Locally it is easy. A trivialization $\chi_i$ gives a flat connection whose horizontal spaces are tangent to the slices $\chi_i^{-1}(U_i\times\{a\})$ (1.3.8); here its form is $\kappa_i^*\theta$. Glue these with a partition of unity $f_1 + f_2 = 1$, $\mathrm{supp}\,f_i\subset U_i$, to get $\omega_{PU} = f_1\,\kappa_1^*\theta + f_2\,\kappa_2^*\theta$.`,
+      r`It works because the two defining properties, $\omega(A^*) = A$ and equivariance (Prop. 1.3.5/2–3), survive combinations whose weights sum to 1. The same argument makes $\omega_t = (1-t)\,\omega_c + t\,\omega_{PU}$ a connection for every $t$. The difference of two connections, $\omega_{PU} - \omega_c = \pi^*\beta$, is horizontal and equivariant, so connections form an affine space modelled on $\Omega^1_{\mathrm{Ad},\mathrm{hor}}(P,\mathfrak g)$ (Rem. 1.3.8). For $U(1)$ that is just the 1-forms on $S^2$.`,
+      r`On the torus over $\theta$, in chart 1, $\omega_t(\partial_\varphi) = a_t(\theta)$, and horizontal curves have slope $-a_t$. However the connection is chosen, $a_t(0) = 0$ and $a_t(\pi) = 1$: the total twist from pole to pole is fixed.`,
+    ],
+    ahead: r`That fixed total is the degree of $\rho_{12}$ (Station 1.1b). In §1.4 and Ch. 4 it becomes the integral of the curvature, the Chern number.`,
+  },
+
+  '1.3d': {
+    see: r`Left: a frame (orange $u_1$, cyan $u_2$) carried around a circle of latitude; the faint arrows are where it started. Right: the matrix $a^{\mathsf T}\dot a \in \mathfrak{so}(3)$ for the moving frame $a = [u_1\,|\,u_2\,|\,x]$. The orange $2\times2$ block is the connection $\omega_c$; the blue entries form the remaining part $T$.`,
+    tryIt: [
+      r`Press "go around" with spin 0. The orange block stays exactly 0, so the frame moves without spinning, yet it comes back rotated (see the readout).`,
+      r`Add spin. Now the orange block is nonzero: that is the vertical part, which $\omega_c$ measures.`,
+      r`Change the latitude. The rotation on return equals the enclosed area, $2\pi(1-\cos\theta_0)$.`,
+    ],
+    idea: [
+      r`A homogeneous space $G\to G/H$ is reductive if $\mathfrak g = \mathfrak h\oplus\mathfrak m$ with $\mathrm{Ad}(H)\,\mathfrak m\subset\mathfrak m$. It then carries a natural connection: declare the $\mathfrak m$-directions horizontal. Its form is $\omega_0 = \mathrm{pr}_{\mathfrak h}\circ\theta$, the $\mathfrak h$-part of the Maurer–Cartan form $\theta = a^{-1}da$ (Ex. 1.3.19).`,
+      r`The Stiefel bundle of $k$-frames in $\mathbb K^n$ is of this kind. Its canonical connection $\omega_c = \mathrm{pr}_{\mathfrak u(k)}\circ\theta$ is, in matrix form, simply $\omega_c = u^\dagger du$ (Ex. 1.3.20, (1.3.19)). Here $k = 2$ and $n = 3$, real and oriented: $a = [u_1\,|\,u_2\,|\,x]\in SO(3)$, and the base is the sphere of unit normals $x$, so this is again the frame bundle of Station 1.1c. The matrix on the right is $\theta(\dot a)$: its upper $2\times2$ block is $\omega_c(\dot a)$, and the rest is the $\mathfrak m$-part $\left[\begin{smallmatrix}0&-T^{\mathsf T}\\T&0\end{smallmatrix}\right]$ of Rem. 1.3.21.`,
+      r`Horizontal ($\omega_c = 0$) means $u_2\cdot\dot u_1 = 0$: the frame does not rotate about the normal. That is Levi-Civita parallel transport on $S^2$ (Ch. 2), and around a closed loop it leaves the frame rotated by the enclosed area.`,
+    ],
+    ahead: r`That rotation is holonomy (§1.7). A note on the book: Rem. 1.3.21 prints $T$ as "$((n-k)\times n)$", but the block shape forces $(n-k)\times k$.`,
+  },
+};

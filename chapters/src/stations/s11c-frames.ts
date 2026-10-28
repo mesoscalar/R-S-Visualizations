@@ -19,7 +19,8 @@ import {
   type Frame,
   type Vec3,
 } from '@rsvis/math';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, setPos } from './hopf-draw';
 import { clearGroup, createScenePane, el, fibonacciSphere, makeArrow, onTap, setArrow } from './three-helpers';
 
@@ -71,18 +72,7 @@ export function mount(container: HTMLElement): () => void {
   hudL.append(hudLBig, hudLSmall);
   paneL.appendChild(hudL);
 
-  const caption = captionBlock(
-    'A point of the frame bundle over $x$ is an ordered basis of $T_xS^2$ (Ex. 1.1.14); taking orthonormal, ' +
-      'oriented frames gives $O^+(S^2)$ (Ex. 1.1.18, Def. 1.1.19), with $SO(2)$ acting on the right by rotating the frame ' +
-      '(the slider). A frame $(u_1,u_2)$ at $x$ completes $x$ to an orthonormal basis, so $f\\mapsto[x\\,|\\,u_1\\,|\\,u_2]$ ' +
-      'identifies $O^+(S^2)$ with $SO(3)$, the right action becoming right multiplication by $\\mathrm{diag}(1,b)$ ' +
-      '(Ex. 1.1.18) — the same bundle as $SO(3)\\to SO(3)/SO(2)$ of Ex. 1.1.4/4. On the right $SO(3)$ is the ball of radius $\\pi$ ' +
-      '(rotation axis × angle, antipodes on the boundary glued), and each fibre is a closed curve in it. The two frame fields are ' +
-      'the normalised coordinate frames of the two stereographic charts; each spins twice around the pole it omits. ' +
-      'No frame field covers all of $S^2$ — by Prop. 1.1.6 that is the nontriviality of $O^+(S^2)$ (the hairy ball theorem in bundle language) — and the ' +
-      'transition map $\\rho_{NS} = \\pi + 2\\varphi$ on the equator has degree 2, twice the Hopf bundle\'s ' +
-      '(Station 1.1b). That 2 is the Euler number of $S^2$, and $SO(3) \\cong S^3/\\{\\pm1\\}$ is the Hopf total space divided by $\\pm1$.',
-  );
+  const caption = explainer(EXPLAINERS['1.1c']);
   container.append(controls, panes, caption);
 
   const sceneL = createScenePane(paneL, { cameraPos: [2.4, -2.4, 1.4], up: [0, 0, 1] });

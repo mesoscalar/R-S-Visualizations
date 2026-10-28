@@ -29,7 +29,8 @@ import {
   tangentFromAngles,
   verticalPart,
 } from '../math/connection-split';
-import { captionBlock } from '../latex';
+import { EXPLAINERS } from '../book/explainers';
+import { explainer } from '../latex';
 import { ball, fibreMesh, setPos } from './hopf-draw';
 import { clearGroup, coloredTube, createScenePane, el } from './three-helpers';
 
@@ -99,20 +100,7 @@ export function mount(container: HTMLElement): () => void {
   hudR.append(hudRBig, hudRSmall);
   paneR.appendChild(hudR);
 
-  const caption = captionBlock(
-    'The vertical subspace $V_p$ is spanned by the Killing field $A^*_p = \\tfrac{d}{dt}\\,p\\,e^{tA}$, here ' +
-      '$i^*_p = ip$, and is exactly $\\ker\\pi\'_p$ (Lemma 1.3.1). A connection is a choice of complement $\\Gamma_p$ ' +
-      'that is carried along by the group action (Def. 1.3.2): drag $p$ along its fibre and the disc rides with it. For ' +
-      '$\\omega_c = \\bar z_1dz_1 + \\bar z_2dz_2$ (Ex. 1.3.22) the disc is $\\ker\\omega_c$ (Prop. 1.3.5/1) — ' +
-      'the 2-plane orthogonal to the fibre in $\\mathbb R^4$, so it is drawn round (stereographic projection is conformal). ' +
-      'Any $X$ splits as $X = \\mathrm{hor}\\,X + \\mathrm{ver}\\,X$ with $\\mathrm{ver}\\,X = \\Psi\'_p(\\omega(X))$ (1.3.2), (1.3.7). ' +
-      'On the right, the horizontal distribution restricted to the torus over a latitude: in chart 1, ' +
-      '$\\omega_c = i(d\\alpha + \\tfrac12(1-\\cos\\theta)\\,d\\varphi)$ (Prop. 1.3.11, Station 1.3b), so horizontal curves climb with slope ' +
-      '$-\\tfrac12(1-\\cos\\theta)$ and fail to close after one turn — the first glimpse of holonomy (§1.7). ' +
-      'Switch to the flat connection $\\kappa_1^*\\theta = i\\,d\\alpha$: its horizontal curves are closed, exactly the picture of ' +
-      '$\\omega = d\\alpha$ on the product bundle $S^2\\times U(1)$ (Ex. 1.3.23). On the Hopf bundle that form lives only on ' +
-      '$\\pi^{-1}(U_1)$ — it is the local piece of (1.3.8) — and no flat connection exists on all of $S^3$ (curvature, §1.4).',
-  );
+  const caption = explainer(EXPLAINERS['1.3a']);
   container.append(controls, panes, caption);
 
   const sceneL = createScenePane(paneL, { cameraPos: [3.2, -3.0, 2.2], up: [0, 0, 1], maxDistance: 40 });

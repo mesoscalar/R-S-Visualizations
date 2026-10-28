@@ -32,10 +32,39 @@ function tryRender(tex: string, el: HTMLElement, displayMode: boolean): void {
   }
 }
 
-/** Convenience: a styled caption block with rendered math. */
-export function captionBlock(text: string): HTMLElement {
-  const div = document.createElement('div');
-  div.className = 'caption';
-  renderMath(div, text);
-  return div;
+/** A station's explainer: what is on screen, things to try, the idea, where it leads. */
+export function explainer(e: {
+  see: string;
+  tryIt: string[];
+  idea: string[];
+  ahead?: string;
+}): HTMLElement {
+  const wrap = document.createElement('div');
+  wrap.className = 'caption explainer';
+  const section = (title: string, cls: string): HTMLElement => {
+    const sec = document.createElement('section');
+    sec.className = cls;
+    const h = document.createElement('h3');
+    h.textContent = title;
+    sec.appendChild(h);
+    wrap.appendChild(sec);
+    return sec;
+  };
+  const para = (parent: HTMLElement, text: string): void => {
+    const p = document.createElement('p');
+    renderMath(p, text);
+    parent.appendChild(p);
+  };
+  para(section('What you are looking at', 'ex-see'), e.see);
+  const tryList = document.createElement('ol');
+  for (const t of e.tryIt) {
+    const li = document.createElement('li');
+    renderMath(li, t);
+    tryList.appendChild(li);
+  }
+  section('Try this', 'ex-try').appendChild(tryList);
+  const idea = section('What is going on', 'ex-idea');
+  for (const t of e.idea) para(idea, t);
+  if (e.ahead) para(section('Where this leads', 'ex-ahead'), e.ahead);
+  return wrap;
 }
