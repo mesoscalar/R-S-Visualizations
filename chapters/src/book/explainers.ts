@@ -348,4 +348,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`On a Kähler manifold, the Chern connection of the holomorphic tangent bundle is the Levi-Civita connection (Ex. 2.6.11). Theorem 2.6.12 runs the logic backwards: a Hermitean connection with curvature of type $(1,1)$ defines a holomorphic structure.`,
   },
+  '2.8a': {
+    see: r`Two pictures of why dimension four is special. Left: the unit sphere $S^3\subset\mathbb R^4 = \mathbb H$, stereographically projected. The coloured curves are orbits of a one-parameter group of rotations $\exp(t(a\,L_i + b\,R_i))$. Here $L_i$ is left multiplication by the quaternion $i$, a self-dual element of $\mathfrak{so}(4)\cong\Lambda^2$, and $R_i$ is right multiplication, an anti-self-dual one. Right: the curvature of a model 4-manifold, written as a symmetric $6\times6$ matrix on 2-forms in the basis $\varphi^a_\pm$ of Rem. 2.8.1, with its blocks $A$, $B$, $C$ outlined.`,
+    tryIt: [
+      r`Choose "$\Lambda^2_+$ only". Every orbit is a great circle, and any two of them link once: this is the Hopf fibration of Chapter 1. Switch to "$\Lambda^2_-$ only" for the other Hopf fibration, which twists the opposite way.`,
+      r`Choose "equal parts". Now one plane rotates and its orthogonal plane stays fixed, the familiar rotation of $\mathbb R^4$ in a single plane. Every simple rotation is half self-dual and half anti-self-dual. At "speeds 3 : 2" the orbits on the middle torus become trefoil knots.`,
+      r`On the right, choose $S^4$. The matrix is $-1$ on the diagonal: $W = 0$ and $B = 0$. For $\mathbb CP^2$, $C$ is a multiple of the identity, $W_- = 0$, and the readout says self-dual. Reverse the orientation and $A$ and $C$ trade places.`,
+      r`$S^2\times H^2$ has scalar curvature 0, so $\operatorname{tr}A = \operatorname{tr}C = 0$. But it is not Einstein, and the off-diagonal block $B$ lights up. Try a random tensor: $\operatorname{tr}A = \operatorname{tr}C = -\mathrm{Sc}/4$ always holds.`,
+    ],
+    idea: [
+      r`In four dimensions the Hodge star maps 2-forms to 2-forms with $\star\star = 1$. So $\Lambda^2 = \Lambda^2_+\oplus\Lambda^2_-$ splits into self-dual and anti-self-dual parts (2.8.8). Since $\Lambda^2\cong\mathfrak{so}(4)$, this is the Lie algebra splitting $\mathfrak{so}(4) = \mathfrak{so}(3)\oplus\mathfrak{so}(3)$. It comes from the double cover $Sp(1)\times Sp(1)\to SO(4)$, $x\mapsto pxq^{-1}$: left multiplications span one factor, right multiplications the other. With $x = x_1 + x_2i + x_3j + x_4k$, left multiplication by $i$ is exactly the book's complex structure $J$, which is self-dual.`,
+      r`Unit self-dual forms are the orthogonal complex structures of $\mathbb R^4$ inducing its orientation: a whole 2-sphere of them. A 2-form is anti-self-dual exactly when it is of type $(1,1)$ for all of them at once (Cor. 2.8.3).`,
+      r`The Riemann curvature, read as a symmetric endomorphism of $\Lambda^2$, splits into blocks $\begin{pmatrix}A & B\\ B^{\mathsf T} & C\end{pmatrix}$ (2.8.22) with $\operatorname{tr}A = \operatorname{tr}C = -\tfrac14\mathrm{Sc}$ (Lemma 2.8.5). The Singer–Thorpe decomposition (Thm. 2.8.7) reads $R = -\tfrac{\mathrm{Sc}}{12}\mathbb 1 + \begin{pmatrix}0 & B\\ B^{\mathsf T} & 0\end{pmatrix} + W_+\oplus W_-$. Here $B$ is the traceless Ricci tensor, so $B = 0$ means Einstein, and $W_\pm$ are the two halves of the Weyl tensor.`,
+      r`A manifold is self-dual if $W_- = 0$ and anti-self-dual if $W_+ = 0$ (Def. 2.8.9). The round $S^4$ is both. $\mathbb CP^2$ with its complex orientation is self-dual, and reversing the orientation makes it anti-self-dual (Ex. 2.8.10). $S^2\times S^2$ is Einstein but neither.`,
+    ],
+    ahead: r`Self-duality returns with Yang–Mills instantons, connections whose curvature is (anti-)self-dual; the curvature of the quaternionic Hopf bundle in Station 1.4b is one. Their moduli spaces, and what they say about smooth 4-manifolds, are the subject of Chapter 6.`,
+  },
 };

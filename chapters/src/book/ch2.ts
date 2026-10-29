@@ -179,4 +179,12 @@ export const STATIONS: Station[] = [
     equations: ['(2.6.6)', '(2.6.7)'],
     summary: 'Over $\\mathbb CP^1$, the holomorphic frame $(1, z)$ and the metric $1 + |z|^2$ force $\\mathcal A = \\partial\\log(1+|z|^2)$: the Hopf connection of Chapter 1 in a holomorphic gauge.',
   },
+  {
+    id: '2.8a',
+    section: '2.8',
+    title: 'Self-duality in four dimensions',
+    items: ['2.8.1', '2.8.3', '2.8.5', '2.8.7', '2.8.9', '2.8.10'],
+    equations: ['(2.8.8)', '(2.8.22)', '(2.8.25)'],
+    summary: '$\\mathfrak{so}(4) = \\Lambda^2_+\\oplus\\Lambda^2_-$ as left and right quaternion multiplication, and the Singer–Thorpe blocks of $S^4$, $S^2\\times S^2$ and $\\mathbb CP^2$.',
+  },
 ];
