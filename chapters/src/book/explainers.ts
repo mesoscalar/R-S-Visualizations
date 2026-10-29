@@ -172,4 +172,18 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`That rotation is holonomy (§1.7). A note on the book: Rem. 1.3.21 prints $T$ as "$((n-k)\times n)$", but the block shape forces $(n-k)\times k$.`,
   },
+  '1.4a': {
+    see: r`Left: $S^2$ coloured by the curvature density of the chosen connection (brighter = more curvature), with a green coordinate rectangle. Right: in $S^3$, the grey curve is $s_1\circ\gamma$, an arbitrary lift of the rectangle, and the green curve is its horizontal lift. The white ○ and orange ● mark where the horizontal lift starts and ends; both lie on the same grey fibre.`,
+    tryIt: [
+      r`With $\omega_c$, change the size and position of the rectangle. The ratio gap/area reads $-0.5$ every time: the round Hopf connection has the same curvature everywhere.`,
+      r`Switch to $\omega_{PU}$ (the glued connection of Station 1.3c). Now the ratio depends on where the rectangle sits: near the poles it is 0, and in the band where the partition of unity switches over it is large.`,
+      r`Switch to the flat connection $\kappa_1^*\theta$. The gap is exactly 0: horizontal lifts of closed loops close up.`,
+    ],
+    idea: [
+      r`Curvature is the derivative of the connection form, tested only on horizontal vectors: $\Omega = D_\omega\omega$, where $D_\omega\alpha = d\alpha(\mathrm{hor}\,\cdot, \dots, \mathrm{hor}\,\cdot)$ (Def. 1.4.1, 1.4.6). Its meaning is in Rem. 1.4.7. For horizontal vector fields $X, Y$, the bracket $[X,Y]$ has vertical part $-\Psi'(\Omega(X,Y))$ (1.4.5): move horizontally along $X$, then $Y$, then back along both, and you return displaced along the fibre by about $\Omega(X,Y)$ times the area. By the Frobenius theorem, horizontal surfaces exist (the distribution is integrable) exactly when $\Omega = 0$; such connections are called flat.`,
+      r`The structure equation (Prop. 1.4.9) reads $d\omega = -\tfrac12[\omega,\omega] + \Omega$. For the abelian group $U(1)$ the bracket vanishes, so $\Omega = d\omega$. Locally $\mathcal F = s^*\Omega = d\mathcal A + \tfrac12[\mathcal A,\mathcal A] = d\mathcal A$ ((1.4.16)–(1.4.17)). For $\omega_c$, $\mathcal A_1 = \tfrac i2(1-\cos\theta)\,d\varphi$ gives $\mathcal F = \tfrac i2\sin\theta\,d\theta\wedge d\varphi$, which is $\tfrac i2$ times the area form (the complex half of Exercise 1.4.2). Both charts give the same $\mathcal F$, because $\mathcal F_j = \mathrm{Ad}_{\rho_{ij}^{-1}}\mathcal F_i$ (1.4.19) and $\mathrm{Ad}$ is trivial for $U(1)$.`,
+      r`By Stokes, the gap after going once around the rectangle is $-\oint\mathcal A = -\iint\mathcal F$. That is the readout, and the tests check it to $10^{-8}$ for all three connections. Different connections spread the curvature differently over $S^2$, but its total is always $\int_{S^2}\mathcal F = 2\pi i$.`,
+    ],
+    ahead: r`The gap is the holonomy of a small loop, the subject of §1.7 (Station 1.7a). Station 1.4b computes a non-abelian curvature, where the bracket term is no longer zero, and in Ch. 4 the total $\tfrac{i}{2\pi}\int\mathcal F$ becomes the Chern number.`,
+  },
 };

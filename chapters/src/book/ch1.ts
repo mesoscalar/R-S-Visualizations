@@ -333,6 +333,14 @@ export const STATIONS: Station[] = [
     equations: ['(1.3.17)', '(1.3.18)', '(1.3.19)'],
     summary: 'The Stiefel bundle\'s canonical connection $u^\\dagger du$: horizontal means "don\'t spin", and a loop turns the frame by the enclosed area.',
   },
+  {
+    id: '1.4a',
+    section: '1.4',
+    title: 'Curvature: horizontal loops that fail to close',
+    items: ['1.4.1', '1.4.6', '1.4.7', '1.4.9', '1.4.15'],
+    equations: ['(1.4.5)', '(1.4.9)', '(1.4.17)', '(1.4.19)'],
+    summary: 'Lift a small rectangle horizontally and it comes back displaced along the fibre: the displacement per unit area is the curvature.',
+  },
 ];
 
 export function findItem(num: string): BookItem | undefined {
