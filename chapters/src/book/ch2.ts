@@ -147,4 +147,13 @@ export const SECTIONS: BookSection[] = [
   },
 ];
 
-export const STATIONS: Station[] = [];
+export const STATIONS: Station[] = [
+  {
+    id: '2.1a',
+    section: '2.1',
+    title: 'Torsion: parallelograms that do not close',
+    items: ['2.1.10', '2.1.19', '2.1.20', '2.1.22', '2.1.29', '2.1.30'],
+    equations: ['(2.1.33)', '(2.1.55)', '(2.1.58)', '(2.1.60)'],
+    summary: 'Two connections with the same geodesics: the torsion-free one closes small parallelograms, the twisted one misses by $\\varepsilon^2\\,\\mathrm T(X,Y)$.',
+  },
+];

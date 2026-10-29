@@ -284,4 +284,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`The covariant exterior derivative becomes, on associated vector bundles, the covariant derivative $\nabla$ of §1.5 (Station 1.5a). Under gauge transformations, $\mathcal F$ only rotates pointwise (Station 1.8a).`,
   },
+  '2.1a': {
+    see: r`A chart of a surface. With "round sphere chart", it carries the Levi-Civita connection of the sphere in stereographic coordinates; with "flat plane", the ordinary flat one. To this base connection we add an antisymmetric piece, $\Gamma^k{}_{ij}\mapsto\Gamma^k{}_{ij}+\tfrac12\tau\,\varepsilon_{ij}t^k$, which gives it torsion $\mathrm T(X,Y) = \tau\,(X^1Y^2 - X^2Y^1)\,t$. Left: a fan of geodesics from $p$, and one highlighted geodesic. Along it, the arrows are a frame carried by parallel transport: grey for $\tau = 0$, coloured for the twisted connection. Right: a close-up of $p$. The green path runs $\varepsilon$ along $X$, then $\varepsilon$ along the transported $Y$. The orange path does the same in the other order.`,
+    tryIt: [
+      r`Move $\tau$ and watch the left pane. The geodesics do not move at all. Of the frame, the green arrow (the geodesic's own velocity) stays put, while the blue one turns away from its grey twin.`,
+      r`On the right, set $\tau = 0$: green and orange end almost at the same point (the dotted grey paths). Turn $\tau$ up and they miss each other by the red gap. The gap matches the dashed white arrow $-\varepsilon^2\mathrm T(X,Y)$.`,
+      r`Shrink $\varepsilon$. The readout gap$/\varepsilon^2$ settles on $|\mathrm T(X,Y)|$, and the mismatch with the prediction shrinks in proportion to $\varepsilon$.`,
+      r`Rotate the direction $t$ or flip the sign of $\tau$, and the gap turns with it. Switch to the flat plane: the geodesics are straight lines, and the parallelogram still fails to close.`,
+    ],
+    idea: [
+      r`A linear connection is a connection on the frame bundle $L(M)$ (Def. 2.1.1). Frame bundles carry one extra structure: the soldering form $\theta$, which reads off the components of a vector in a frame. Its covariant derivative $\Theta = D_\omega\theta$ is the torsion form (Def. 2.1.10). On $M$ it becomes $\mathrm T(X,Y) = \nabla_XY - \nabla_YX - [X,Y]$ (Prop. 2.1.19), with components $\mathrm T^i{}_{jk} = \Gamma^i{}_{jk} - \Gamma^i{}_{kj}$ in coordinates (Rem. 2.1.29).`,
+      r`Geodesics solve $\ddot x^k + \Gamma^k{}_{ij}\dot x^i\dot x^j = 0$ (2.1.60). Only the symmetric part of $\Gamma$ enters this equation. Adding torsion therefore changes parallel transport (2.1.58) but not a single geodesic.`,
+      r`By Prop. 2.1.22, geodesics are the shadows of integral curves of the horizontal standard fields $B(x)$ on $L(M)$. Carry a frame $u(t)$ along by parallel transport, and the velocity has the same components in it all the way: $\dot\gamma = u(t)\,x$. This is why the frame vector $x = (1,0)$, the velocity itself, agrees for both connections.`,
+      r`Now walk a small parallelogram. Expanding $x + \varepsilon X - \tfrac12\varepsilon^2\Gamma(X,X)$ and $Y - \varepsilon\Gamma(X,Y)$ shows the two corners differ by $-\varepsilon^2(\Gamma^k{}_{ij}-\Gamma^k{}_{ji})X^iY^j = -\varepsilon^2\mathrm T(X,Y)$. Torsion measures how infinitesimal parallelograms fail to close. Curvature, by contrast, measures how transported vectors fail to come back (Rem. 2.1.30): small squares change $w$ by $-\varepsilon^2\mathrm R(X,Y)w$.`,
+    ],
+    ahead: r`A metric selects a unique torsion-free compatible connection, the Levi-Civita connection; its curvature is what the next stations measure. Station 2.4a draws geodesics of constant curvature, and 2.5a gets them from Lie algebras.`,
+  },
 };
