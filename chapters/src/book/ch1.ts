@@ -342,6 +342,14 @@ export const STATIONS: Station[] = [
     summary: 'Lift a small rectangle horizontally and it comes back displaced along the fibre: the displacement per unit area is the curvature.',
   },
   {
+    id: '1.5a',
+    section: '1.5',
+    title: 'The covariant derivative on TS², two ways',
+    items: ['1.5.2', '1.5.3', '1.5.4', '1.5.5', '1.5.11'],
+    equations: ['(1.5.8)'],
+    summary: 'The derivative of a tangent field on $S^2$ by the local formula in a frame, and as the derivative of parallel transport: the same vector, with curvature $R(X,Y)V = \\langle Y,V\\rangle X - \\langle X,V\\rangle Y$.',
+  },
+  {
     id: '1.7a',
     section: '1.7',
     title: 'Horizontal lifts, the book’s way',

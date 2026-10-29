@@ -217,4 +217,22 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`Parallel transport also gives back the covariant derivative (Prop. 1.7.17): Station 1.5a computes $\nabla$ both ways.`,
   },
+  '1.5a': {
+    see: r`Left: a tangent vector field $V$ on $S^2$ (grey arrows), a point $m$ (white) and a direction $X$ (cyan). The green arc is the great circle $\gamma$ leaving $m$ along $X$, run for time $t$. At $m$ you see $V(m)$ (white), the value $V(\gamma(t))$ carried back to $m$ by parallel transport (green), the difference quotient between the two (orange) and the covariant derivative $\nabla_X V$ (red). Right: the tangent plane at $m$. The blue and purple arrows are the two terms of the local formula (1.5.8), placed tip to tail. They add up to the red arrow.`,
+    tryIt: [
+      r`Press "shrink t". As $t \to 0$ the orange quotient settles onto the red arrow, and the gap in the readout shrinks roughly in proportion to $t$. Parallel transport alone determines $\nabla$.`,
+      r`Switch between the frames $s_N$ and $s_S$. The blue and purple arrows both jump, while their sum, the red arrow, does not move. Each term depends on the frame you pick; $\nabla_X V$ does not.`,
+      r`Choose the rotation field and point $X$ along it. Rotations are symmetries of the sphere, yet $\nabla_X V$ is usually not zero: a Killing field is not parallel. In fact $S^2$ has no nonzero parallel field at all (Station 1.7b).`,
+      r`Choose the gradient of the height and tap near a pole, where $V$ vanishes. There $\nabla_X V$ still exists and is the linearisation of the field at its zero.`,
+    ],
+    idea: [
+      r`A connection on the frame bundle $SO(3)\to S^2$ (Stations 1.1c, 1.3d) induces a covariant derivative on the associated bundle $TS^2$ (Def. 1.5.2). It eats a vector field $V$ and a direction $X$ and returns a vector $\nabla_X V$ at the same point.`,
+      r`To compute it, fix a local frame $e_\alpha$ induced by a section (here $s_N$, the normalised stereographic frame). Then $\nabla e_\alpha = \mathcal A^\beta{}_\alpha e_\beta$, where $\mathcal A$ is the local connection form, a $2\times 2$ antisymmetric matrix of 1-forms (Prop. 1.5.3).`,
+      r`Write $V = \xi^\alpha e_\alpha$ and apply the Leibniz rule (Prop. 1.5.4). The result is (1.5.8): $\nabla_X V = (X\xi^\alpha)\,e_\alpha + \xi^\alpha\mathcal A^\beta{}_\alpha(X)\,e_\beta$. The first term (blue) differentiates the components. The second (purple) corrects for the frame turning as you move.`,
+      r`Change the frame by a rotation $\rho$. The component term changes by a $d\rho$-piece, and $\mathcal A$ changes by exactly the opposite piece, so the sum is frame independent (Rem. 1.5.5). This is why the connection form $\mathcal A$ has to transform the way it does.`,
+      r`For this connection the result is the Levi-Civita derivative of the round sphere: the tangential part of the ordinary derivative in $\mathbb R^3$. The second readout compares the two.`,
+      r`The curvature $R(X,Y) = \nabla_X\nabla_Y - \nabla_Y\nabla_X - \nabla_{[X,Y]}$ (Prop. 1.5.11) measures how far covariant derivatives fail to commute. On the unit sphere it is $R(X,Y)V = \langle Y,V\rangle X - \langle X,V\rangle Y$: Gauss curvature 1. The last readout evaluates the commutator numerically and compares it with this.`,
+    ],
+    ahead: r`Prop. 1.7.17 (the orange arrow) is the converse picture: $\nabla$ is the infinitesimal version of parallel transport, and holonomy around small loops (Station 1.4a) is curvature integrated.`,
+  },
 };
