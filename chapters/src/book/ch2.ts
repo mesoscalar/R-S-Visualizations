@@ -171,4 +171,12 @@ export const STATIONS: Station[] = [
     equations: ['(2.5.4)', '(2.5.10)', '(2.5.16)', '(2.5.17)'],
     summary: 'Split $\\mathfrak g = \\mathfrak h\\oplus\\mathfrak m$: one-parameter subgroups from $\\mathfrak m$ are geodesics, the involution is the geodesic symmetry, and $-[x,y]$ is the curvature.',
   },
+  {
+    id: '2.6a',
+    section: '2.6',
+    title: 'The Chern connection of the tautological line bundle',
+    items: ['2.6.7', '2.6.8', '2.6.9', '2.6.10'],
+    equations: ['(2.6.6)', '(2.6.7)'],
+    summary: 'Over $\\mathbb CP^1$, the holomorphic frame $(1, z)$ and the metric $1 + |z|^2$ force $\\mathcal A = \\partial\\log(1+|z|^2)$: the Hopf connection of Chapter 1 in a holomorphic gauge.',
+  },
 ];

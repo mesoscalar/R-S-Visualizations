@@ -332,4 +332,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`Tables 2.1 and 2.2 list all classical irreducible symmetric spaces: Grassmannians, $SU(n)/SO(n)$, and their non-compact duals (Thm. 2.5.24). Our two examples are the smallest pair of duals, $SO(3)/SO(2)$ and $SO_0(1,2)/SO(2)$.`,
   },
+  '2.6a': {
+    see: r`The tautological line bundle over $\mathbb CP^1$: over the point $[1:z]$, the fibre is the complex line through $(1,z)\in\mathbb C^2$. Left: the chart $z$, shaded by the squared length $H = |e|^2 = 1+|z|^2$ of the holomorphic frame $e(z) = (1,z)$. The arrows show the two real parts of the Chern connection form $\mathcal A$ (green and purple), and the white circle is a loop. Right: carry a section $\varphi$ around the loop by parallel transport. The orange curve is its coefficient $c$ in the holomorphic frame, $\varphi = c\,e$. The white curve is its coefficient in the unit frame $e/|e|$.`,
+    tryIt: [
+      r`Drag $t$ from 0 to 1. The orange coefficient spirals in and out as $|e|$ changes along the loop, while the white one stays on the unit circle: the length $|\varphi|_h$ is constant. The connection respects the metric.`,
+      r`At $t = 1$ the white point has turned by the holonomy angle. It matches $\exp(-\iint\mathcal F)$, the curvature integrated over the disk.`,
+      r`Tap to move the loop far from the origin, where $H$ is large and the curvature $2/(1+|z|^2)^2$ is small. The holonomy shrinks, even for a large circle.`,
+      r`Show only Re $\mathcal A$: it is the gradient field of $\tfrac12\log H$, so it integrates to zero around any loop. All of the holonomy comes from Im $\mathcal A$.`,
+    ],
+    idea: [
+      r`A holomorphic line bundle with a Hermitean metric $h$ has exactly one connection that is compatible with both (Prop. 2.6.8). Compatibility with $h$ means $dH = \bar{\mathcal A}H + H\mathcal A$ in a holomorphic frame (2.6.6). Compatibility with the holomorphic structure means $\nabla^{0,1} = \bar\partial$ (Def. 2.6.7), i.e. $\mathcal A$ has type $(1,0)$. This unique connection is the Chern connection (Def. 2.6.9).`,
+      r`Together the two conditions force $\mathcal A = \bar H^{-1}\partial\bar H$ and $\mathcal F = \bar\partial\mathcal A$, of type $(1,1)$ (Cor. 2.6.10). For our line bundle $H = 1+|z|^2$, so $\mathcal A = \partial\log H = \bar z\,dz/(1+|z|^2)$ and $\mathcal F = -dz\wedge d\bar z/(1+|z|^2)^2$.`,
+      r`Split $\mathcal A$ into real and imaginary parts. $\operatorname{Re}\mathcal A = \tfrac12 d\log H$ only rescales $c$, exactly compensating the changing length of $e$. $i\operatorname{Im}\mathcal A$ rotates $c$; it is the connection seen in the unit frame $e/|e|$.`,
+      r`That unit frame $(1,z)/\sqrt{1+|z|^2}$ is a section of the Hopf bundle $S^3\to S^2$, and $i\operatorname{Im}\mathcal A$ is exactly the pullback of $\omega_c = \bar z_1dz_1+\bar z_2dz_2$ (Station 1.3a). The Chern connection of the tautological bundle is the Hopf connection of Chapter 1, written in a holomorphic gauge. Its first Chern number is $\tfrac{i}{2\pi}\int\mathcal F = -1$.`,
+    ],
+    ahead: r`On a Kähler manifold, the Chern connection of the holomorphic tangent bundle is the Levi-Civita connection (Ex. 2.6.11). Theorem 2.6.12 runs the logic backwards: a Hermitean connection with curvature of type $(1,1)$ defines a holomorphic structure.`,
+  },
 };
