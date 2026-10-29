@@ -350,6 +350,14 @@ export const STATIONS: Station[] = [
     summary: 'The derivative of a tangent field on $S^2$ by the local formula in a frame, and as the derivative of parallel transport: the same vector, with curvature $R(X,Y)V = \\langle Y,V\\rangle X - \\langle X,V\\rangle Y$.',
   },
   {
+    id: '1.6a',
+    section: '1.6',
+    title: 'A fibre metric is a reduction to O(2)',
+    items: ['1.6.2', '1.6.5', '1.6.6', '1.6.10', '1.6.11', '1.6.12'],
+    equations: ['(1.6.2)', '(1.6.7)'],
+    summary: 'A metric on a rank-2 bundle over the circle picks out the orthonormal frames, an $O(2)$-bundle inside all frames; a connection respects it exactly when parallel frames stay orthonormal.',
+  },
+  {
     id: '1.7a',
     section: '1.7',
     title: 'Horizontal lifts, the book’s way',

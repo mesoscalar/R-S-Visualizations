@@ -235,4 +235,21 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`Prop. 1.7.17 (the orange arrow) is the converse picture: $\nabla$ is the infinitesimal version of parallel transport, and holonomy around small loops (Station 1.4a) is curvature integrated.`,
   },
+  '1.6a': {
+    see: r`A rank-2 vector bundle $E = S^1\times\mathbb R^2$ over a circle. Each fibre is drawn as a plane standing on the circle. The bundle carries a fibre metric $h$: in every fibre, the white ellipse is the set of $h$-unit vectors, and together these ellipses sweep out the translucent tube. The green and blue curves are the two vectors of a frame being parallel-transported around the circle. Right: the fibre at the current point $s$, seen face on.`,
+    tryIt: [
+      r`Press "go round" with the $h$-compatible connection. The frame vectors stay on the tube the whole way, and the readout $e^{\mathsf T} h e$ stays the identity. A frame that starts orthonormal stays orthonormal.`,
+      r`Switch to the connection that is compatible only with the ordinary euclidean metric. Now the frame vectors leave the tube, and $e^{\mathsf T} h e$ drifts away from the identity. Set $\delta = 0$, so that $h$ is euclidean: the two connections now agree on what "orthonormal" means, and the drift disappears.`,
+      r`With the compatible connection, move $\kappa$. The frame spins faster or slower inside the tube, but it never leaves it. Compatibility leaves exactly this freedom: an $\mathfrak{so}(2)$-valued term.`,
+      r`On the right, the grey frame is arbitrary, and its Gram matrix $e^{\mathsf T}he$ is far from the identity. The purple frame $e\,(e^{\mathsf T}he)^{-1/2}$ is the nearest $h$-orthonormal frame. Every fibre contains such frames, and they form a single $O(2)$-orbit.`,
+    ],
+    idea: [
+      r`Sending a frame $e$ to its Gram matrix $e^{\mathsf T}he$ is an equivariant map from the frame bundle to the positive definite matrices: $\tilde\Phi(e\,a) = a^{\mathsf T}\tilde\Phi(e)\,a$. $GL(2)$ acts transitively on positive definite matrices (Sylvester), and the stabiliser of $\mathbb 1$ is $O(2)$. So Prop. 1.6.2 applies: the level set $Q = \tilde\Phi^{-1}(\mathbb 1)$, the orthonormal frames, is a principal $O(2)$-subbundle (Ex. 1.6.6). Equivalently, by Cor. 1.6.5, a metric is a section of $L(E)\times_{GL(2)} GL(2)/O(2)$.`,
+      r`Changing the reference point $f$ from $\mathbb 1$ to another inner product only conjugates the structure group (Rem. 1.6.3). Reductions are about choosing a pattern in each fibre, not about which one.`,
+      r`A connection on $L(E)$ reduces to $Q$ if its horizontal spaces are tangent to $Q$ (Def. 1.6.9). Prop. 1.6.10 turns this into a differential equation: the defining map $\tilde\Phi$ must be parallel, $\nabla h = 0$. Written out, this is the metric-compatibility rule (1.6.7): $X\,h(\Phi_1,\Phi_2) = h(\nabla_X\Phi_1,\Phi_2) + h(\Phi_1,\nabla_X\Phi_2)$ (Ex. 1.6.12).`,
+      r`In the trivial frame of $\mathbb R^2$, with $\nabla\Phi = \Phi' + A\Phi$, the rule becomes $h' = A^{\mathsf T}h + hA$. Its general solution is $A = \tfrac12 h^{-1}h' + \kappa\,h^{-1}J$: a canonical part, plus a free skew part. The euclidean connection $A = \kappa J$ solves this only when $h' = 0$.`,
+      r`For a compatible connection the holonomy around the circle lies in $SO(h)$: a rotation of $h$-orthonormal frames, read off in the second readout. It depends on $\kappa$ and on how far the ellipse's axes turn.`,
+    ],
+    ahead: r`§1.7 shows that every connection has a smallest reduction, its holonomy bundle (Station 1.7b), and that a connection is irreducible exactly when that bundle is all of $P$.`,
+  },
 };
