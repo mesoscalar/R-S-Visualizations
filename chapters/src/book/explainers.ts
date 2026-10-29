@@ -201,4 +201,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`Station 1.7b asks which points can be reached by horizontal paths, which leads to the holonomy bundle and the Ambrose–Singer theorem.`,
   },
+  '1.7b': {
+    see: r`Right: green dots are the endpoints of hundreds of random horizontal paths in $S^3$, all starting at the white point $p_0$, so they sample the set of points reachable from $p_0$. The grey circle is the fibre through $p_0$. Left: the start $m_0$ on $S^2$ and three of the random walks. The orange curve is a "lasso" path to a target point you choose, and on the right its horizontal lift lands exactly on the white target in that fibre.`,
+    tryIt: [
+      r`With $\omega_c$, watch the cloud grow. It doesn't stay on any surface: it thickens in every direction. The readout $R$ drops from 1 toward 0 as the endpoints' fibre phases spread out.`,
+      r`Switch to the flat connection. However many paths you add, the cloud stays on one smooth surface, and $R = 1$ exactly.`,
+      r`Tap the sphere to choose a target base point and drag $\beta$ to choose a point on its fibre. With $\omega_c$, the lasso's lift always lands on it: every point of $S^3$ can be reached horizontally.`,
+      r`Lengthen the paths: the cloud spreads faster.`,
+    ],
+    idea: [
+      r`Call two points equivalent if a horizontal curve joins them. The class of $p_0$ is the holonomy bundle $P_{p_0}(\Gamma)$ (Def. 1.7.13). Prop. 1.7.12 shows it is a reduction of $P$ to the holonomy group, and that $\Gamma$ restricts to it. It is the smallest reduction the connection lives on (Rem. 1.7.14), and $\Gamma$ is irreducible exactly when $P_{p_0} = P$.`,
+      r`The Ambrose–Singer theorem (Thm. 1.7.15) says what decides the size of the holonomy: its Lie algebra is spanned by the curvature values $\Omega_p(X, Y)$ on the holonomy bundle. The Hopf curvature is never zero, so it spans $\mathfrak u(1)$. The holonomy group is then all of $U(1)$, and the reachable set is all of $S^3$. The lasso makes this concrete: walk to $m$, then go once around a circle whose area produces exactly the missing phase (Station 1.7a).`,
+      r`For a flat connection the curvature spans nothing, so the restricted holonomy is trivial. The holonomy bundles are then coverings of the base, and over a simply connected region they are copies of it (Rem. 1.7.16/2–3): here, the leaf $\kappa_1 = $ const. The same theorem gives Exercise 1.7.6(b): the reductive connection on $SO(3)\to S^2$ (Station 1.3d) has curvature $\neq 0$ and holonomy $SO(2)$.`,
+      r`The holonomy principle (Prop. 1.7.20) turns holonomy into a statement about sections: parallel sections of $P\times_G F$ correspond to vectors of $F$ fixed by the holonomy group. With holonomy $SO(2)$ on $S^2$ no nonzero tangent vector is fixed, so $S^2$ has no parallel vector fields.`,
+    ],
+    ahead: r`Parallel transport also gives back the covariant derivative (Prop. 1.7.17): Station 1.5a computes $\nabla$ both ways.`,
+  },
 };

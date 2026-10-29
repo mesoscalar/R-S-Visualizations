@@ -349,6 +349,13 @@ export const STATIONS: Station[] = [
     equations: ['(1.7.1)', '(1.7.3)', '(1.7.4)'],
     summary: 'Take any lift of a loop and slide it along the fibres until it is horizontal: the leftover shift after one turn is the holonomy, −½ × the enclosed area.',
   },
+  {
+    id: '1.7b',
+    section: '1.7',
+    title: 'The holonomy bundle and Ambrose–Singer',
+    items: ['1.7.6', '1.7.12', '1.7.13', '1.7.14', '1.7.15', '1.7.16', '1.7.20'],
+    summary: 'Everything reachable from a point by horizontal paths: for the curved Hopf connection that is all of $S^3$, for a flat one a single surface.',
+  },
 ];
 
 export function findItem(num: string): BookItem | undefined {
