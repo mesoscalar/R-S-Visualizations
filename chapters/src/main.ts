@@ -1,5 +1,5 @@
 import './style.css';
-import { CHAPTER, SECTIONS, STATIONS, findItem, itemLabel, type Station } from './book/ch1';
+import { CHAPTERS, STATIONS, chapterOf, findItem, itemLabel, type Chapter, type Station } from './book';
 import { LOADERS } from './stations';
 import { renderMath } from './latex';
 
@@ -49,22 +49,8 @@ function stationCard(st: Station): HTMLElement {
   return card;
 }
 
-function renderContents(): void {
-  teardown();
-  const page = el('div', 'landing');
-  page.append(
-    el('div', 'kicker', 'Rudolph & Schmidt · Differential Geometry and Mathematical Physics, Part II'),
-    el('h1', '', `Chapter ${CHAPTER.num} — ${CHAPTER.title}`),
-    el(
-      'p',
-      'framing',
-      'A companion that follows the book in order. Each section lists its numbered items with page ' +
-        'references; the stations above them are interactive pictures of specific definitions, results ' +
-        'and examples, each backed by a numerically tested math kernel.',
-    ),
-  );
-
-  for (const s of SECTIONS) {
+function renderSections(page: HTMLElement, chapter: Chapter): void {
+  for (const s of chapter.sections) {
     const sec = el('section', 'book-section' + (s.items.length ? '' : ' unread'));
     const head = el('h2', 'section-head');
     head.append(el('span', 'secnum', `§${s.num}`), document.createTextNode(` ${s.title}`), el('span', 'page', `p. ${s.page}`));
@@ -74,7 +60,7 @@ function renderContents(): void {
       page.appendChild(sec);
       continue;
     }
-    const stations = STATIONS.filter((st) => st.section === s.num);
+    const stations = chapter.stations.filter((st) => st.section === s.num);
     if (stations.length) {
       const cards = el('div', 'cards');
       stations.forEach((st) => cards.appendChild(stationCard(st)));
@@ -100,6 +86,35 @@ function renderContents(): void {
     sec.appendChild(spine);
     page.appendChild(sec);
   }
+}
+
+function renderContents(): void {
+  teardown();
+  const page = el('div', 'landing');
+  page.append(
+    el('div', 'kicker', 'Rudolph & Schmidt · Differential Geometry and Mathematical Physics, Part II'),
+    el(
+      'p',
+      'framing',
+      'A companion that follows the book in order. Each section lists its numbered items with page ' +
+        'references; the stations above them are interactive pictures of specific definitions, results ' +
+        'and examples, each backed by a numerically tested math kernel.',
+    ),
+  );
+  const nav = el('div', 'chapter-nav');
+  page.appendChild(nav);
+  for (const chapter of CHAPTERS) {
+    const head = el('h1', 'chapter-head', `Chapter ${chapter.num} — ${chapter.title}`);
+    const link = el('a', 'chip', `Chapter ${chapter.num}`);
+    link.href = '#/';
+    link.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      head.scrollIntoView({ behavior: 'smooth' });
+    });
+    nav.appendChild(link);
+    page.appendChild(head);
+    renderSections(page, chapter);
+  }
   page.appendChild(
     el(
       'p',
@@ -120,7 +135,7 @@ async function renderStation(id: string): Promise<void> {
   teardown();
   const page = el('div', 'widget-page');
   const header = el('div', 'widget-header');
-  const back = el('a', 'back', '← Chapter 1');
+  const back = el('a', 'back', `← Chapter ${chapterOf(st.id)}`);
   back.href = '#/';
   header.append(back, el('span', 'secnum', `Station ${st.id}`), mathEl('h1', '', st.title));
   page.appendChild(header);

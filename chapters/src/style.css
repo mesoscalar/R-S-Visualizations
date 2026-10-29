@@ -55,7 +55,25 @@ a {
 .landing .framing {
   color: var(--text-dim);
   max-width: 64ch;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.chapter-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chapter-nav .chip {
+  font-size: 0.85rem;
+  padding: 0.15rem 0.7rem;
+  text-decoration: none;
+}
+
+.landing .chapter-head {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
 }
 
 .cards {

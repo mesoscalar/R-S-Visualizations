@@ -3,7 +3,7 @@
  * STATIONS in ../book/ch1.ts). A station without a loader is listed as
  * "in progress" on the contents page.
  */
-import type { StationModule } from '../book/ch1';
+import type { StationModule } from '../book';
 
 export const LOADERS: Record<string, () => Promise<StationModule>> = {
   '1.1a': () => import('./s11a-hopf'),

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import katex from 'katex';
 import { EXPLAINERS } from '../src/book/explainers';
-import { SECTIONS, STATIONS, findItem } from '../src/book/ch1';
+import { SECTIONS, STATIONS, findItem } from '../src/book';
 
 const texts = (e: (typeof EXPLAINERS)[string]) => [e.see, ...e.tryIt, ...e.idea, ...(e.ahead ? [e.ahead] : [])];
 const ABBR: Record<string, string> = {
