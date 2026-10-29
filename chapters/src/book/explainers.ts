@@ -300,4 +300,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`A metric selects a unique torsion-free compatible connection, the Levi-Civita connection; its curvature is what the next stations measure. Station 2.4a draws geodesics of constant curvature, and 2.5a gets them from Lie algebras.`,
   },
+  '2.4a': {
+    see: r`Left: a surface of constant curvature $k$, drawn in one conformal chart. For $k>0$ it is a sphere seen by stereographic projection (dashed: its equator). For $k=0$ it is the flat plane. For $k<0$ it is the Poincaré disk of the hyperbolic plane (purple: its boundary at infinity). The chart preserves angles, so the angles you see are the true ones. The white triangle has geodesic sides, and the faint lines are geodesics from one corner. Right: the distance between two geodesics that leave a point at angle $0.5$, as a function of time. The orange curve is for your $k$; the faint curves are $k = +1, 0, -1$.`,
+    tryIt: [
+      r`Slide $k$ from $-1$ to $+1$. The angle sum passes through exactly $\pi$ at $k = 0$. Throughout, the readouts $\alpha+\beta+\gamma-\pi$ and $k\cdot\text{Area}$ agree to five decimals.`,
+      r`Tap to make a large triangle at $k = -1$. Its angles shrink toward zero, while its area stays below $\pi$: a hyperbolic triangle's area is $\pi$ minus its angle sum.`,
+      r`At $k>0$, lengthen the fan. The geodesics from the corner bend back toward each other and meet again on the far side of the sphere. On the right, the orange curve rises like $\sin$ and falls again.`,
+      r`At $k<0$, the fan spreads out much faster than straight lines would. On the right, the separation grows like $\sinh$, i.e. exponentially.`,
+    ],
+    idea: [
+      r`The sectional curvature of a 2-plane $\Sigma$ spanned by $X, Y$ is $K(\Sigma) = \langle R(X,Y)Y,X\rangle/(\|X\|^2\|Y\|^2-\langle X,Y\rangle^2)$; it does not depend on the basis (Def. 2.4.1). On a surface there is only one plane at each point, so $K$ is the Gauss curvature.`,
+      r`By polarisation, $K$ determines the whole curvature tensor. If $K\equiv k$ at a point, then $R(X,Y)Z = k(\langle Y,Z\rangle X - \langle X,Z\rangle Y)$ there (Prop. 2.4.2). The model surfaces here have $K\equiv k$ everywhere: spaces of constant curvature (Def. 2.4.3), the sphere of radius $1/\sqrt k$ being the basic example (Rem. 2.4.4). In dimension $\ge 3$, Schur's theorem says pointwise constancy already forces global constancy.`,
+      r`Two consequences you can see. First, Gauss–Bonnet for a geodesic triangle: the angle excess is $\iint K\,dA$, here $k\cdot\text{Area}$. Second, geodesics from a point separate like the Jacobi functions $\sin(\sqrt k\,t)/\sqrt k$, $t$, $\sinh(\sqrt{-k}\,t)/\sqrt{-k}$. The exact separation is the law of cosines of curvature $k$, and the white dots, measured in the model, sit on it.`,
+      r`All the geometry here is exact. The maps $z\mapsto(z-p)/(1+k\bar pz)$ are isometries that move $p$ to the centre, where geodesics are straight lines. The same geodesics also come out of Station 2.1a's ODE with this metric's Levi-Civita connection.`,
+    ],
+    ahead: r`Constant curvature is the simplest case of a symmetric space: every point has an isometry reversing geodesics. Station 2.5a builds $S^2$ and $H^2$ from that symmetry alone.`,
+  },
 };

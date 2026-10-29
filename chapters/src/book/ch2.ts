@@ -156,4 +156,11 @@ export const STATIONS: Station[] = [
     equations: ['(2.1.33)', '(2.1.55)', '(2.1.58)', '(2.1.60)'],
     summary: 'Two connections with the same geodesics: the torsion-free one closes small parallelograms, the twisted one misses by $\\varepsilon^2\\,\\mathrm T(X,Y)$.',
   },
+  {
+    id: '2.4a',
+    section: '2.4',
+    title: 'Constant curvature: triangles and spreading geodesics',
+    items: ['2.4.1', '2.4.2', '2.4.3', '2.4.4'],
+    summary: 'On the sphere, the plane and the hyperbolic plane, a geodesic triangle’s angle excess is $k$ times its area, and nearby geodesics spread like $\\sin$, linearly or like $\\sinh$.',
+  },
 ];
