@@ -4,13 +4,13 @@ Live path (after merge to `main`): `https://mesoscalar.github.io/R-S-Visualizati
 
 ## Scope so far
 
-Chapter 1, §§1.1–1.3 (book pp. 1–36, read from a user-supplied PDF of
-pp. 1–36 + front matter; the PDF is not in the repo). The contents page lists
-**every** numbered item of §§1.1–1.3 (64 items: kind, number, title, page,
-paraphrased gist), and §§1.4–1.9 by their table-of-contents entry only.
-All ten proposed stations are built: the first five ("A B F G H" in the
-planning conversation, renamed by section) in PR #4, the other five in the
-follow-up PR.
+Chapter 1, §§1.1–1.8 (book pp. 1–76, read from user-supplied PDFs of
+pp. 1–51 and 52–107; neither is in the repo). The contents page lists
+**every** numbered item of §§1.1–1.8 (kind, number, title, page, paraphrased
+gist). §1.9 (invariant connections) is **deliberately skipped**, at the
+user's request: it keeps only its table-of-contents entry, with no items and
+no stations. Seventeen stations: ten for §§1.1–1.3 (PRs #4 and #5), seven
+for §§1.4–1.8 (this batch).
 
 | Station | Section | Book items | Kernel | Tests |
 |---|---|---|---|---|
@@ -24,6 +24,13 @@ follow-up PR.
 | 1.3b Local representatives and gauge transformations | §1.3 | Rem. 1.3.10, Prop. 1.3.11, Cor. 1.3.12; (1.3.11), (1.3.14), (1.3.15) | `src/math/gauge.ts` | 5 |
 | 1.3c The affine space of connections | §1.3 | Prop. 1.3.5, 1.3.7, Rem. 1.3.8; (1.3.8) | `src/math/affine-connections.ts` | 5 |
 | 1.3d The canonical connection of the Stiefel bundle | §1.3 | Ex. 1.3.19, 1.3.20, Rem. 1.3.21; (1.3.17)–(1.3.19) | `@rsvis/math` `frames.ts` | (shared with 1.1c) |
+| 1.4a Curvature: horizontal loops that fail to close | §1.4 | Def. 1.4.1, 1.4.6, Rem. 1.4.7, Prop. 1.4.9, Rem. 1.4.15; (1.4.5), (1.4.9), (1.4.17), (1.4.19) | `src/math/curvature.ts`, `transport.ts` | 7 |
+| 1.4b The quaternionic Hopf curvature is an instanton | §1.4 | Prop. 1.4.9, Rem. 1.4.10, Prop. 1.4.11, Rem. 1.4.12, 1.4.15 (Exercise 1.4.2) | `src/math/quaternionic-hopf.ts` | 8 |
+| 1.5a The covariant derivative on TS², two ways | §1.5 | Def. 1.5.2, Prop. 1.5.3, 1.5.4, Rem. 1.5.5, Prop. 1.5.11; (1.5.8) | `src/math/koszul.ts` | 6 |
+| 1.6a A fibre metric is a reduction to O(2) | §1.6 | Prop. 1.6.2, Cor. 1.6.5, Ex. 1.6.6, Prop. 1.6.10, Def. 1.6.11, Ex. 1.6.12; (1.6.2), (1.6.7) | `src/math/reduction.ts` | 8 |
+| 1.7a Horizontal lifts the book's way | §1.7 | Def. 1.7.1, Prop. 1.7.2, Lemma 1.7.3, Def. 1.7.4, Rem. 1.7.5, Def. 1.7.6; (1.7.1), (1.7.3), (1.7.4) | `src/math/transport.ts` | 7 |
+| 1.7b The holonomy bundle and Ambrose–Singer | §1.7 | Def. 1.7.6, Prop. 1.7.12, Def. 1.7.13, Rem. 1.7.14, Thm. 1.7.15, Rem. 1.7.16, Prop. 1.7.20 | `src/math/holonomy-bundle.ts` | 5 |
+| 1.8a Non-abelian gauge transformations | §1.8 | Rem. 1.8.1, Prop. 1.8.3, Rem. 1.8.6, Prop. 1.8.7, Rem. 1.8.8; (1.8.7), (1.8.8) | `src/math/gauge-su2.ts` | 8 |
 
 Plus `test/manifest.test.ts` (3): consecutive numbering, page order, items
 inside their section's page range, stations citing existing items of their own
@@ -32,8 +39,9 @@ section in book order, station ids of the form `<section><letter>`.
 Not visualized (by design, low pictorial payoff): morphisms and pullbacks
 (Def. 1.1.7, Rem. 1.1.8/1.1.9), fibre metrics (Def. 1.1.16, Rem. 1.1.17),
 forms of type σ (Def. 1.2.10–Rem. 1.2.15 beyond the k = 0 case),
-connections under morphisms (Prop. 1.3.13–Rem. 1.3.17). They appear in the
-contents spine with their gists.
+connections under morphisms (Prop. 1.3.13–Rem. 1.3.17), the covariant
+derivative along maps (Def. 1.5.13–1.5.14), Prop. 1.6.7–1.6.8, synchronous
+framing (Rem. 1.7.19). They appear in the contents spine with their gists.
 
 ## Explainers
 
@@ -100,6 +108,21 @@ identities, 200 for the rest; `mulberry32(42)`), measured on this branch:
 | Stiefel/LC transport: one-turn angle vs 2π(1 − cos θ₀) | 1.5e-13 | 1e-9 | RK4, h = 2π/4000 |
 | quaternionic degree under cochains (GL 32·32·64) | 4.4e-8 | 1e-4 | measured convergence 1e-1 → 1e-2 → 4e-8 over three grids |
 
+| 1.6a h-compatible transport keeps eᵀhe = 1 (RK4, 2000 steps) | 9e-10 | 1e-7 | RK4 bound (\|A\|h)⁴\|A\|·2π ≈ 6e-8 |
+| 1.6a holonomy ∈ SO(h(0)) | 2.1e-9 | 1e-7 | same |
+| 1.8a Richardson 2X(ε/2) − X(ε) vs 𝓕 (small loops) | 2.0e-3 | 5e-3 | O(ε²) remainder; raw error is Cε with C ≈ 4.5 (measured) |
+| 1.4b chart-2 law 𝓕₂ = Ad_{g⁻¹}𝓕₁ (nested FD), \|x\| ≥ 0.3 | 2.9e-6 | 1e-5 | inner roundoff 1e-10 amplified by the outer 1/h = 1e4 |
+| 1.4b total charge (Simpson, N = 400 in arctan r) | < 1e-9 | 1e-9 | O(N⁻⁴); exact value 1 |
+| 1.7b mean resultant R of fibre phases (ω_c, three lengths) | 0.977 / 0.733 / 0.237 | strictly decreasing, last < 0.5 | monotonicity is the claim |
+
+Single-point HUD readouts seen in the screenshots (not test assertions):
+1.5a (1.5.8) vs tangential ambient derivative 1.4e-11 and R(X,JX)V vs
+⟨JX,V⟩X − ⟨X,V⟩JX 1.2e-8; 1.6a whole-loop drift of eᵀhe 1.4e-11 (twist 1)
+to 1.7e-10 (twist 2); 1.8a change of |𝓕| over the grid 5.7e-10; 1.4b Bianchi
+residual 1.7e-8. The remaining new assertions (1.4a, 1.5a, 1.7a, most of
+1.8a/1.4b) were not separately measured; each passes at the tolerance stated,
+with its rationale in a comment next to it.
+
 Integer-valued checks are exact: signed crossing counts (1.1b, 180 random
 cochains, n = −2..3), zero-index sums (1.2a, 56 random perturbations,
 n = −3..3), each cross-checked against an independent winding-number count;
@@ -129,6 +152,26 @@ the frame transition degree 2 on three latitudes (1.1c); the index sum 2 of
    figure attributed to the gallery that I had not checked. Replaced by
    measurements on the actual maps (table above).
 
+5. **Phase coverage (1.7b).** The first test asserted that random horizontal
+   walks cover ≥ 90% of fibre-phase bins; it measured 44%, then 83% with
+   longer walks. Coverage by random sampling is the wrong claim to test. It
+   was replaced by a constructive one: a "lasso" path reaches every target
+   (m, β) to 1e-8, with the mean resultant decreasing with walk length as
+   supporting evidence. The tolerance was not loosened; the claim was changed.
+6. **Small loops (1.8a).** A first draft asserted that (1 − Hol)/area is
+   within 0.05 of 𝓕 at ε = 0.025, but measured 0.11. The error is O(ε) with a
+   large constant: the loop starts ε off-centre, and the holonomy's j-part
+   picks up Cε with C ≈ 4.5, measured at two base points. The test now
+   asserts what is true: the error halves as ε halves (ratio in [1.6, 2.4]),
+   and Richardson extrapolation removes it to 2.0e-3 (tolerance 5e-3).
+7. **Charge sign (1.4b).** The test first expected density −6/π² and charge
+   −1. The hand computation (𝓕₀₁𝓕₂₃ = 4(1+|x|²)⁻⁴ with tr pq = 2Re pq) and
+   the numerics agree on +6/π² and +1 for the anti-self-dual 𝓕. The test's
+   sign was wrong, not the kernel.
+8. **Comment hygiene.** Two tolerance comments (1.6a, 1.4b) first quoted
+   "measured" values I had not measured. Both were measured (9e-10 and
+   2.1e-9; 2.9e-6) and corrected before commit.
+
 ## Rendering caveats (checked only by headless screenshots)
 
 Every station was rendered once in headless Chromium (SwiftShader WebGL) with
@@ -153,6 +196,17 @@ Fibonacci-sampled arrow field in 1.3b reads clearly at phone size.
 - 1.3d: the latitude path is precomputed with 720 RK4 steps; the 𝔥/𝔪 matrix
   uses the exact derivative, so the 𝔥-block reads 0.000 for horizontal motion.
 
+- 1.4b: the "direction" sliders sweep a 2-parameter family of unit vectors
+  in R⁴, not all of S³; the six arrows are drawn from the origin, so in chart
+  s₁ the 𝓕₀ₐ lie along the drawn axes and can be hard to see against them.
+- 1.5a: the curvature readout calls the doubly nested finite difference
+  (~0.1 ms); the "shrink t" animation redraws every frame.
+- 1.6a: the tube is translucent with depthWrite off, so its overlap ordering
+  with the transported curves can look odd from some angles.
+- 1.8a: the τ sweep recomputes 81 curvature values and two 600-step RK4
+  transports per frame; this is smooth headless, but low-end phones were not
+  tested.
+
 ## What to look at first
 
 1. **1.1b**: press "random cochains" a few times; crossings appear and
@@ -167,3 +221,10 @@ Fibonacci-sampled arrow field in 1.3b reads clearly at phone size.
    runs from 0 to 1. Then **1.3d**: press "go around" with spin 0, then with spin.
 6. **1.1c → 1.2b**: the frame fields each break at a pole; in 1.2b turn the frame
    and watch the components counter-rotate.
+7. **1.5a**: press "shrink t" and watch orange land on red; then flip the frame
+   s_N ↔ s_S. Blue and purple jump, red stays put.
+8. **1.6a**: "go round" with each connection: on the tube vs off it.
+9. **1.8a**: show 𝓕, sweep τ (arrows only rotate), then show 𝒜_x (they don't).
+   On the right, the holonomy slides around a sphere of fixed trace.
+10. **1.4b**: the three colour pairs are antipodal everywhere (anti-self-dual);
+    drag |x| and watch the charge climb to 1.

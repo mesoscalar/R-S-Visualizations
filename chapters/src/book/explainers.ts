@@ -172,4 +172,116 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`That rotation is holonomy (§1.7). A note on the book: Rem. 1.3.21 prints $T$ as "$((n-k)\times n)$", but the block shape forces $(n-k)\times k$.`,
   },
+  '1.4a': {
+    see: r`Left: $S^2$ coloured by the curvature density of the chosen connection (brighter = more curvature), with a green coordinate rectangle. Right: in $S^3$, the grey curve is $s_1\circ\gamma$, an arbitrary lift of the rectangle, and the green curve is its horizontal lift. The white ○ and orange ● mark where the horizontal lift starts and ends; both lie on the same grey fibre.`,
+    tryIt: [
+      r`With $\omega_c$, change the size and position of the rectangle. The ratio gap/area reads $-0.5$ every time: the round Hopf connection has the same curvature everywhere.`,
+      r`Switch to $\omega_{PU}$ (the glued connection of Station 1.3c). Now the ratio depends on where the rectangle sits: near the poles it is 0, and in the band where the partition of unity switches over it is large.`,
+      r`Switch to the flat connection $\kappa_1^*\theta$. The gap is exactly 0: horizontal lifts of closed loops close up.`,
+    ],
+    idea: [
+      r`Curvature is the derivative of the connection form, tested only on horizontal vectors: $\Omega = D_\omega\omega$, where $D_\omega\alpha = d\alpha(\mathrm{hor}\,\cdot, \dots, \mathrm{hor}\,\cdot)$ (Def. 1.4.1, 1.4.6). Its meaning is in Rem. 1.4.7. For horizontal vector fields $X, Y$, the bracket $[X,Y]$ has vertical part $-\Psi'(\Omega(X,Y))$ (1.4.5): move horizontally along $X$, then $Y$, then back along both, and you return displaced along the fibre by about $\Omega(X,Y)$ times the area. By the Frobenius theorem, horizontal surfaces exist (the distribution is integrable) exactly when $\Omega = 0$; such connections are called flat.`,
+      r`The structure equation (Prop. 1.4.9) reads $d\omega = -\tfrac12[\omega,\omega] + \Omega$. For the abelian group $U(1)$ the bracket vanishes, so $\Omega = d\omega$. Locally $\mathcal F = s^*\Omega = d\mathcal A + \tfrac12[\mathcal A,\mathcal A] = d\mathcal A$ ((1.4.16)–(1.4.17)). For $\omega_c$, $\mathcal A_1 = \tfrac i2(1-\cos\theta)\,d\varphi$ gives $\mathcal F = \tfrac i2\sin\theta\,d\theta\wedge d\varphi$, which is $\tfrac i2$ times the area form (the complex half of Exercise 1.4.2). Both charts give the same $\mathcal F$, because $\mathcal F_j = \mathrm{Ad}_{\rho_{ij}^{-1}}\mathcal F_i$ (1.4.19) and $\mathrm{Ad}$ is trivial for $U(1)$.`,
+      r`By Stokes, the gap after going once around the rectangle is $-\oint\mathcal A = -\iint\mathcal F$. That is the readout, and the tests check it to $10^{-8}$ for all three connections. Different connections spread the curvature differently over $S^2$, but its total is always $\int_{S^2}\mathcal F = 2\pi i$.`,
+    ],
+    ahead: r`The gap is the holonomy of a small loop, the subject of §1.7 (Station 1.7a). Station 1.4b computes a non-abelian curvature, where the bracket term is no longer zero, and in Ch. 4 the total $\tfrac{i}{2\pi}\int\mathcal F$ becomes the Chern number.`,
+  },
+  '1.7a': {
+    see: r`Left: a loop $\gamma$ on $S^2$ and the moving point $\gamma(t)$. Right: in $S^3$, the grey curve is the arbitrary lift $\tilde\gamma = s_1\circ\gamma$ and the green curve is the horizontal lift $\gamma^h$. At time $t$, the orange arc along the fibre is the correction $g(t) = e^{i\alpha(t)}$ that carries $\tilde\gamma(t)$ to $\gamma^h(t)$. The white ○ and orange ● mark where $\gamma^h$ starts and ends.`,
+    tryIt: [
+      r`Press run. The orange arc grows and shrinks as the curve goes around. At the end, ● sits on the starting fibre, rotated by the holonomy.`,
+      r`Compare the readouts: the holonomy equals $-\tfrac12\times$ the area enclosed by the loop, for any centre and radius.`,
+      r`Tick "uneven speed". The loop is traversed at a wildly varying rate, yet the endpoint is the same: parallel transport does not depend on the parametrisation.`,
+      r`Choose the figure eight. Its two lobes are traversed in opposite senses, so their areas count with opposite signs; with zero asymmetry the holonomy vanishes.`,
+    ],
+    idea: [
+      r`A horizontal lift of a curve $\gamma$ in $M$ is a curve in $P$ over $\gamma$ whose velocity is always horizontal (Def. 1.7.1). Prop. 1.7.2 builds it in the most hands-on way. Start from any lift $\tilde\gamma$ (here $s_1\circ\gamma$) and slide it along the fibres by a group-valued $g(t)$ chosen so that the result is horizontal. The condition is the ODE $\mathrm{Ad}_{g^{-1}}\omega(\dot{\tilde\gamma}) = -g^{-1}\dot g$. For $U(1)$ it reads $\dot\alpha = -\omega(\dot{\tilde\gamma})$, so $g(t) = \exp(-\int\mathcal A)$. This is exactly how the station computes, and it agrees to $10^{-8}$ with an independent RK4 integration on $S^3$.`,
+      r`Following the lifts from every starting point defines parallel transport $\hat\gamma: \pi^{-1}(\gamma(0))\to\pi^{-1}(\gamma(1))$ (Def. 1.7.4). It is compatible with the group action, with concatenation and with reversal (Lemma 1.7.3), and independent of the parametrisation (Rem. 1.7.5); all of these are tested. For a closed loop it returns to the starting fibre and moves points by a group element: the holonomy. All holonomies at a point form the holonomy group (Def. 1.7.6).`,
+      r`For $\omega_c$, Stokes turns $-\oint\mathcal A$ into $-\iint\mathcal F = -\tfrac12\times$ (enclosed area), since $\mathcal F$ is $\tfrac i2$ times the area form (Station 1.4a). Letting the loop grow sweeps the holonomy through every angle, so the holonomy group of the Hopf connection is all of $U(1)$.`,
+    ],
+    ahead: r`Station 1.7b asks which points can be reached by horizontal paths, which leads to the holonomy bundle and the Ambrose–Singer theorem.`,
+  },
+  '1.7b': {
+    see: r`Right: green dots are the endpoints of hundreds of random horizontal paths in $S^3$, all starting at the white point $p_0$, so they sample the set of points reachable from $p_0$. The grey circle is the fibre through $p_0$. Left: the start $m_0$ on $S^2$ and three of the random walks. The orange curve is a "lasso" path to a target point you choose, and on the right its horizontal lift lands exactly on the white target in that fibre.`,
+    tryIt: [
+      r`With $\omega_c$, watch the cloud grow. It doesn't stay on any surface: it thickens in every direction. The readout $R$ drops from 1 toward 0 as the endpoints' fibre phases spread out.`,
+      r`Switch to the flat connection. However many paths you add, the cloud stays on one smooth surface, and $R = 1$ exactly.`,
+      r`Tap the sphere to choose a target base point and drag $\beta$ to choose a point on its fibre. With $\omega_c$, the lasso's lift always lands on it: every point of $S^3$ can be reached horizontally.`,
+      r`Lengthen the paths: the cloud spreads faster.`,
+    ],
+    idea: [
+      r`Call two points equivalent if a horizontal curve joins them. The class of $p_0$ is the holonomy bundle $P_{p_0}(\Gamma)$ (Def. 1.7.13). Prop. 1.7.12 shows it is a reduction of $P$ to the holonomy group, and that $\Gamma$ restricts to it. It is the smallest reduction the connection lives on (Rem. 1.7.14), and $\Gamma$ is irreducible exactly when $P_{p_0} = P$.`,
+      r`The Ambrose–Singer theorem (Thm. 1.7.15) says what decides the size of the holonomy: its Lie algebra is spanned by the curvature values $\Omega_p(X, Y)$ on the holonomy bundle. The Hopf curvature is never zero, so it spans $\mathfrak u(1)$. The holonomy group is then all of $U(1)$, and the reachable set is all of $S^3$. The lasso makes this concrete: walk to $m$, then go once around a circle whose area produces exactly the missing phase (Station 1.7a).`,
+      r`For a flat connection the curvature spans nothing, so the restricted holonomy is trivial. The holonomy bundles are then coverings of the base, and over a simply connected region they are copies of it (Rem. 1.7.16/2–3): here, the leaf $\kappa_1 = $ const. The same theorem gives Exercise 1.7.6(b): the reductive connection on $SO(3)\to S^2$ (Station 1.3d) has curvature $\neq 0$ and holonomy $SO(2)$.`,
+      r`The holonomy principle (Prop. 1.7.20) turns holonomy into a statement about sections: parallel sections of $P\times_G F$ correspond to vectors of $F$ fixed by the holonomy group. With holonomy $SO(2)$ on $S^2$ no nonzero tangent vector is fixed, so $S^2$ has no parallel vector fields.`,
+    ],
+    ahead: r`Parallel transport also gives back the covariant derivative (Prop. 1.7.17): Station 1.5a computes $\nabla$ both ways.`,
+  },
+  '1.5a': {
+    see: r`Left: a tangent vector field $V$ on $S^2$ (grey arrows), a point $m$ (white) and a direction $X$ (cyan). The green arc is the great circle $\gamma$ leaving $m$ along $X$, run for time $t$. At $m$ you see $V(m)$ (white), the value $V(\gamma(t))$ carried back to $m$ by parallel transport (green), the difference quotient between the two (orange) and the covariant derivative $\nabla_X V$ (red). Right: the tangent plane at $m$. The blue and purple arrows are the two terms of the local formula (1.5.8), placed tip to tail. They add up to the red arrow.`,
+    tryIt: [
+      r`Press "shrink t". As $t \to 0$ the orange quotient settles onto the red arrow, and the gap in the readout shrinks roughly in proportion to $t$. Parallel transport alone determines $\nabla$.`,
+      r`Switch between the frames $s_N$ and $s_S$. The blue and purple arrows both jump, while their sum, the red arrow, does not move. Each term depends on the frame you pick; $\nabla_X V$ does not.`,
+      r`Choose the rotation field and point $X$ along it. Rotations are symmetries of the sphere, yet $\nabla_X V$ is usually not zero: a Killing field is not parallel. In fact $S^2$ has no nonzero parallel field at all (Station 1.7b).`,
+      r`Choose the gradient of the height and tap near a pole, where $V$ vanishes. There $\nabla_X V$ still exists and is the linearisation of the field at its zero.`,
+    ],
+    idea: [
+      r`A connection on the frame bundle $SO(3)\to S^2$ (Stations 1.1c, 1.3d) induces a covariant derivative on the associated bundle $TS^2$ (Def. 1.5.2). It eats a vector field $V$ and a direction $X$ and returns a vector $\nabla_X V$ at the same point.`,
+      r`To compute it, fix a local frame $e_\alpha$ induced by a section (here $s_N$, the normalised stereographic frame). Then $\nabla e_\alpha = \mathcal A^\beta{}_\alpha e_\beta$, where $\mathcal A$ is the local connection form, a $2\times 2$ antisymmetric matrix of 1-forms (Prop. 1.5.3).`,
+      r`Write $V = \xi^\alpha e_\alpha$ and apply the Leibniz rule (Prop. 1.5.4). The result is (1.5.8): $\nabla_X V = (X\xi^\alpha)\,e_\alpha + \xi^\alpha\mathcal A^\beta{}_\alpha(X)\,e_\beta$. The first term (blue) differentiates the components. The second (purple) corrects for the frame turning as you move.`,
+      r`Change the frame by a rotation $\rho$. The component term changes by a $d\rho$-piece, and $\mathcal A$ changes by exactly the opposite piece, so the sum is frame independent (Rem. 1.5.5). This is why the connection form $\mathcal A$ has to transform the way it does.`,
+      r`For this connection the result is the Levi-Civita derivative of the round sphere: the tangential part of the ordinary derivative in $\mathbb R^3$. The second readout compares the two.`,
+      r`The curvature $R(X,Y) = \nabla_X\nabla_Y - \nabla_Y\nabla_X - \nabla_{[X,Y]}$ (Prop. 1.5.11) measures how far covariant derivatives fail to commute. On the unit sphere it is $R(X,Y)V = \langle Y,V\rangle X - \langle X,V\rangle Y$: Gauss curvature 1. The last readout evaluates the commutator numerically and compares it with this.`,
+    ],
+    ahead: r`Prop. 1.7.17 (the orange arrow) is the converse picture: $\nabla$ is the infinitesimal version of parallel transport, and holonomy around small loops (Station 1.4a) is curvature integrated.`,
+  },
+  '1.6a': {
+    see: r`A rank-2 vector bundle $E = S^1\times\mathbb R^2$ over a circle. Each fibre is drawn as a plane standing on the circle. The bundle carries a fibre metric $h$: in every fibre, the white ellipse is the set of $h$-unit vectors, and together these ellipses sweep out the translucent tube. The green and blue curves are the two vectors of a frame being parallel-transported around the circle. Right: the fibre at the current point $s$, seen face on.`,
+    tryIt: [
+      r`Press "go round" with the $h$-compatible connection. The frame vectors stay on the tube the whole way, and the readout $e^{\mathsf T} h e$ stays the identity. A frame that starts orthonormal stays orthonormal.`,
+      r`Switch to the connection that is compatible only with the ordinary euclidean metric. Now the frame vectors leave the tube, and $e^{\mathsf T} h e$ drifts away from the identity. Set $\delta = 0$, so that $h$ is euclidean: the two connections now agree on what "orthonormal" means, and the drift disappears.`,
+      r`With the compatible connection, move $\kappa$. The frame spins faster or slower inside the tube, but it never leaves it. Compatibility leaves exactly this freedom: an $\mathfrak{so}(2)$-valued term.`,
+      r`On the right, the grey frame is arbitrary, and its Gram matrix $e^{\mathsf T}he$ is far from the identity. The purple frame $e\,(e^{\mathsf T}he)^{-1/2}$ is the nearest $h$-orthonormal frame. Every fibre contains such frames, and they form a single $O(2)$-orbit.`,
+    ],
+    idea: [
+      r`Sending a frame $e$ to its Gram matrix $e^{\mathsf T}he$ is an equivariant map from the frame bundle to the positive definite matrices: $\tilde\Phi(e\,a) = a^{\mathsf T}\tilde\Phi(e)\,a$. $GL(2)$ acts transitively on positive definite matrices (Sylvester), and the stabiliser of $\mathbb 1$ is $O(2)$. So Prop. 1.6.2 applies: the level set $Q = \tilde\Phi^{-1}(\mathbb 1)$, the orthonormal frames, is a principal $O(2)$-subbundle (Ex. 1.6.6). Equivalently, by Cor. 1.6.5, a metric is a section of $L(E)\times_{GL(2)} GL(2)/O(2)$.`,
+      r`Changing the reference point $f$ from $\mathbb 1$ to another inner product only conjugates the structure group (Rem. 1.6.3). Reductions are about choosing a pattern in each fibre, not about which one.`,
+      r`A connection on $L(E)$ reduces to $Q$ if its horizontal spaces are tangent to $Q$ (Def. 1.6.9). Prop. 1.6.10 turns this into a differential equation: the defining map $\tilde\Phi$ must be parallel, $\nabla h = 0$. Written out, this is the metric-compatibility rule (1.6.7): $X\,h(\Phi_1,\Phi_2) = h(\nabla_X\Phi_1,\Phi_2) + h(\Phi_1,\nabla_X\Phi_2)$ (Ex. 1.6.12).`,
+      r`In the trivial frame of $\mathbb R^2$, with $\nabla\Phi = \Phi' + A\Phi$, the rule becomes $h' = A^{\mathsf T}h + hA$. Its general solution is $A = \tfrac12 h^{-1}h' + \kappa\,h^{-1}J$: a canonical part, plus a free skew part. The euclidean connection $A = \kappa J$ solves this only when $h' = 0$.`,
+      r`For a compatible connection the holonomy around the circle lies in $SO(h)$: a rotation of $h$-orthonormal frames, read off in the second readout. It depends on $\kappa$ and on how far the ellipse's axes turn.`,
+    ],
+    ahead: r`§1.7 shows that every connection has a smallest reduction, its holonomy bundle (Station 1.7b), and that a connection is irreducible exactly when that bundle is all of $P$.`,
+  },
+  '1.8a': {
+    see: r`A connection on the trivial $SU(2)$-bundle over the plane. Its local form $\mathcal A = \mathcal A_x dx + \mathcal A_y dy$ takes values in $\mathfrak{su}(2)$, which we draw as $\mathbb R^3$ via $\mathfrak{su}(2)\cong\operatorname{Im}\mathbb H$. Left: at each grid point, an arrow in this internal space shows $\mathcal A_x$, $\mathcal A_y$ or the curvature $\mathcal F_{xy}$. Grey arrows are the original; coloured arrows are after a gauge transformation $\rho_\tau$. Right: the internal space again. The curve is the parallel transport $g(t)$ around the green loop, drawn by its vector part. The dot at its end is the holonomy.`,
+    tryIt: [
+      r`Show $\mathcal F$ and sweep $\tau$. Every red arrow turns, but none of them changes length, and the readout confirms that $|\mathcal F|$ is unchanged. A gauge transformation acts on curvature by a pointwise rotation, $\mathrm{Ad}_{\rho^{-1}}$.`,
+      r`Show $\mathcal A_x$ instead and sweep again. Now the arrows also grow and shrink: the extra term $\rho^{-1}d\rho$ is not a rotation. The potential is not a tensor; only the curvature is.`,
+      r`On the right, the orange holonomy moves as $\tau$ changes, but it stays on the blue sphere. Its distance from the centre is fixed by $\operatorname{tr}\,\mathrm{Hol}$, which the readout shows is unchanged. That trace is the Wilson loop, a gauge-invariant observable.`,
+      r`Make $\rho$ wilder. The potential can be scrambled as much as you like, but the curvature lengths and the Wilson loop do not move.`,
+    ],
+    idea: [
+      r`A gauge transformation is a vertical automorphism $\vartheta$ of $P$: it moves points only within their fibres (Rem. 1.8.1). By Prop. 1.8.3 it is the same thing as an equivariant map $u: P\to G$, $\vartheta(p) = p\cdot u(p)$. In a local section $s$ it becomes a function $\rho = u\circ s$ on the base (Rem. 1.8.6); here, $\rho = e^{\alpha i}e^{\beta j}e^{\gamma k}$ with angle functions scaled by $\tau$.`,
+      r`Pulling back by $\vartheta$ gives (1.8.7) and (1.8.8): $\vartheta^*\omega = \mathrm{Ad}_{u^{-1}}\omega + u^*\theta$ and $\vartheta^*\Omega = \mathrm{Ad}_{u^{-1}}\Omega$. For matrix groups these read $u^{-1}\omega u + u^{-1}du$ and $u^{-1}\Omega u$. On local representatives, $\mathcal A\mapsto\rho^{-1}\mathcal A\rho + \rho^{-1}d\rho$ and $\mathcal F\mapsto\rho^{-1}\mathcal F\rho$ (Rem. 1.8.8).`,
+      r`Unlike the $U(1)$ case of Station 1.3b, $\mathrm{Ad}$ is no longer trivial, so even $\mathcal F$ changes. It changes only by conjugation, though, which in $\mathfrak{su}(2)\cong\mathbb R^3$ is a rotation. The curvature is computed from $\mathcal F = d\mathcal A + \tfrac12[\mathcal A\wedge\mathcal A]$, so the commutator term $[\mathcal A_x,\mathcal A_y]$ matters here.`,
+      r`Holonomy transforms by conjugation, $\mathrm{Hol}' = \rho(x_0)^{-1}\,\mathrm{Hol}\,\rho(x_0)$, because the new section starts at a different point of the fibre over $x_0$. Conjugation keeps the trace, so $\operatorname{tr}\,\mathrm{Hol}$ is gauge invariant. For small loops, $\mathrm{Hol}\approx 1 - \text{area}\cdot\mathcal F$, which is how the pointwise law for $\mathcal F$ and the conjugation law for $\mathrm{Hol}$ fit together.`,
+    ],
+    ahead: r`These transformation laws are why Yang–Mills theory is built from $\operatorname{tr}(\mathcal F\wedge{\star}\mathcal F)$ and Wilson loops. For a curvature that is self-dual, see the quaternionic Hopf bundle in Station 1.4b.`,
+  },
+  '1.4b': {
+    see: r`The quaternionic Hopf bundle $Sp(1)\to S^7\to\mathbb HP^1\cong S^4$ (Ex. 1.1.22) with its canonical connection $\omega = \bar q_1 dq_1 + \bar q_2 dq_2$ (1.3.21). Work in the chart $x = q_2q_1^{-1}\in\mathbb H\cong\mathbb R^4$, which covers all of $S^4$ except one point. Right: at a point $x$, the six components $\mathcal F_{\mu\nu}$ of the curvature. Each is an element of $\mathfrak{sp}(1)=\operatorname{Im}\mathbb H\cong\mathbb R^3$, drawn as an arrow. Components that are Hodge duals of each other share a colour, and the dot marks the second one of each pair. Left: how the curvature is spread out radially, and the charge accumulated inside radius $|x|$.`,
+    tryIt: [
+      r`Each colour pair points in exactly opposite directions: $\mathcal F_{01} = -\mathcal F_{23}$, and so on. The curvature is anti-self-dual, $\star\mathcal F = -\mathcal F$, at every point. Move $x$ anywhere and this persists; the readout shows it to rounding error.`,
+      r`The three axes are mutually perpendicular. At each point the curvature identifies the 3-dimensional space of anti-self-dual 2-forms on $\mathbb R^4$ with $\mathfrak{sp}(1)$, isometrically up to a scale.`,
+      r`Increase $|x|$. The arrows shrink like $(1+|x|^2)^{-2}$, but the green curve keeps climbing to exactly 1. The curvature is a lump of size 1 at the origin carrying a whole unit of topological charge.`,
+      r`Switch to the second chart. The jack of arrows rotates rigidly away from the grey first-chart version, and neither lengths nor angles change. Near infinity the second chart is the regular one.`,
+    ],
+    idea: [
+      r`This is Exercise 1.4.2 for the quaternionic Hopf bundle. On $S^7$, Def. 1.4.6 and the structure equation (Prop. 1.4.9) give $\Omega = d\omega + \tfrac12[\omega\wedge\omega] = d\bar q_1\wedge dq_1 + d\bar q_2\wedge dq_2 + \omega\wedge\omega$. Pulling back by the section $s_1(x) = (1,x)/\sqrt{1+|x|^2}$ (Rem. 1.4.15) gives $\mathcal A = \operatorname{Im}(\bar x\,dx)/(1+|x|^2)$ and $\mathcal F = d\bar x\wedge dx/(1+|x|^2)^2$. This is the BPST instanton of physics, met again in Chapter 6.`,
+      r`Bianchi (Prop. 1.4.11) in its local, adjoint form (Rem. 1.4.12): $d\mathcal F + [\mathcal A\wedge\mathcal F] = 0$. The readout evaluates the cyclic sum numerically. The commutator term is essential here, unlike the $U(1)$ case of Station 1.4a.`,
+      r`On the overlap of the two charts, $s_2 = s_1\cdot g$ with $g = \bar x/|x|$. So $\mathcal F_2 = g^{-1}\mathcal F_1 g$ (Rem. 1.4.15; the matrix form is Rem. 1.4.10). This is the rigid rotation you see. Since $\mathrm{Ad}$ rotates all six arrows together, anti-self-duality does not depend on the chart.`,
+      r`The charge density $\tfrac1{8\pi^2}\operatorname{tr}(\mathcal F\wedge\mathcal F)$ is $\tfrac{6}{\pi^2}(1+|x|^2)^{-4}$. Per unit volume of the round $S^4$ of radius $\tfrac12$, whose conformal factor in this chart is $(1+|x|^2)^{-2}$, it is constant: the instanton is spread perfectly evenly over $S^4$. It integrates to $1$, which is why the bundle cannot be trivial (compare Exercise 1.1.9(c)).`,
+    ],
+    ahead: r`The covariant exterior derivative becomes, on associated vector bundles, the covariant derivative $\nabla$ of §1.5 (Station 1.5a). Under gauge transformations, $\mathcal F$ only rotates pointwise (Station 1.8a).`,
+  },
 };
