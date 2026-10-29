@@ -86,3 +86,64 @@ export function rectangleLoop(theta0: number, phi0: number, eps: number): (t: nu
     return [Math.sin(th) * Math.cos(ph), Math.sin(th) * Math.sin(ph), Math.cos(th)];
   };
 }
+
+/** Rotation taking the north pole to c (Rodrigues about n̂ × c). */
+function rotateFromNorth(c: Vec3, p: Vec3): Vec3 {
+  const ct = c[2];
+  const ax: Vec3 = [-c[1], c[0], 0]; // ẑ × c
+  const s = Math.hypot(ax[0], ax[1]);
+  if (s < 1e-12) return ct > 0 ? p : [p[0], -p[1], -p[2]];
+  const n: Vec3 = [ax[0] / s, ax[1] / s, 0];
+  const d = n[0] * p[0] + n[1] * p[1];
+  const x: Vec3 = [n[1] * p[2], -n[0] * p[2], n[0] * p[1] - n[1] * p[0]];
+  return [0, 1, 2].map((i) => ct * p[i] + s * x[i] + (1 - ct) * d * n[i]) as Vec3;
+}
+
+/**
+ * Circle of angular radius r about c, t ∈ [0, 1], counterclockwise seen from
+ * outside the sphere (so it bounds the cap around c positively).
+ * `speed` reparametrises t ↦ t + speed·sin(2πt)/(2π) (monotone for |speed| < 1).
+ */
+export function circleLoop(c: Vec3, r: number, speed = 0): (t: number) => Vec3 {
+  return (t) => {
+    const u = 2 * Math.PI * (t + (speed * Math.sin(2 * Math.PI * t)) / (2 * Math.PI));
+    return rotateFromNorth(c, [Math.sin(r) * Math.cos(u), Math.sin(r) * Math.sin(u), Math.cos(r)]);
+  };
+}
+
+/** A unit tangent vector at c (toward the north pole where defined). */
+function tangentAt(c: Vec3): Vec3 {
+  const e: Vec3 = [-c[0] * c[2], -c[1] * c[2], 1 - c[2] * c[2]];
+  const n = Math.hypot(...e);
+  return n < 1e-9 ? [1, 0, 0] : [e[0] / n, e[1] / n, e[2] / n];
+}
+
+/** Circle of angular radius ρ about q, starting (u = 0) at the point p0 at distance ρ; sense = ±1 (+1 ccw from outside). */
+function circleThrough(q: Vec3, rho: number, p0: Vec3, sense: number, u: number): Vec3 {
+  const d = q[0] * p0[0] + q[1] * p0[1] + q[2] * p0[2];
+  const g: Vec3 = [p0[0] - d * q[0], p0[1] - d * q[1], p0[2] - d * q[2]];
+  const n = Math.hypot(...g);
+  const f1: Vec3 = [g[0] / n, g[1] / n, g[2] / n];
+  const f2: Vec3 = [q[1] * f1[2] - q[2] * f1[1], q[2] * f1[0] - q[0] * f1[2], q[0] * f1[1] - q[1] * f1[0]];
+  const a = sense * u;
+  return [0, 1, 2].map((i) => Math.cos(rho) * q[i] + Math.sin(rho) * (Math.cos(a) * f1[i] + Math.sin(a) * f2[i])) as Vec3;
+}
+
+/**
+ * Figure eight through c: a lobe of angular radius r traversed counterclockwise,
+ * then a lobe of radius r·(1 + asym) on the other side traversed clockwise.
+ * The enclosed signed area is capArea(r) − capArea(r(1 + asym)).
+ */
+export function figureEight(c: Vec3, r: number, asym: number): (t: number) => Vec3 {
+  const e = tangentAt(c);
+  const R = r * (1 + asym);
+  const qA: Vec3 = [0, 1, 2].map((i) => Math.cos(r) * c[i] + Math.sin(r) * e[i]) as Vec3;
+  const qB: Vec3 = [0, 1, 2].map((i) => Math.cos(R) * c[i] - Math.sin(R) * e[i]) as Vec3;
+  return (t) =>
+    t < 0.5 ? circleThrough(qA, r, c, 1, 4 * Math.PI * t) : circleThrough(qB, R, c, -1, 4 * Math.PI * (t - 0.5));
+}
+
+/** Solid angle of a cap of angular radius r. */
+export function capArea(r: number): number {
+  return 2 * Math.PI * (1 - Math.cos(r));
+}

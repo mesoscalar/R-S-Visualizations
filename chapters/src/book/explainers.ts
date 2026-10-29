@@ -186,4 +186,19 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`The gap is the holonomy of a small loop, the subject of §1.7 (Station 1.7a). Station 1.4b computes a non-abelian curvature, where the bracket term is no longer zero, and in Ch. 4 the total $\tfrac{i}{2\pi}\int\mathcal F$ becomes the Chern number.`,
   },
+  '1.7a': {
+    see: r`Left: a loop $\gamma$ on $S^2$ and the moving point $\gamma(t)$. Right: in $S^3$, the grey curve is the arbitrary lift $\tilde\gamma = s_1\circ\gamma$ and the green curve is the horizontal lift $\gamma^h$. At time $t$, the orange arc along the fibre is the correction $g(t) = e^{i\alpha(t)}$ that carries $\tilde\gamma(t)$ to $\gamma^h(t)$. The white ○ and orange ● mark where $\gamma^h$ starts and ends.`,
+    tryIt: [
+      r`Press run. The orange arc grows and shrinks as the curve goes around. At the end, ● sits on the starting fibre, rotated by the holonomy.`,
+      r`Compare the readouts: the holonomy equals $-\tfrac12\times$ the area enclosed by the loop, for any centre and radius.`,
+      r`Tick "uneven speed". The loop is traversed at a wildly varying rate, yet the endpoint is the same: parallel transport does not depend on the parametrisation.`,
+      r`Choose the figure eight. Its two lobes are traversed in opposite senses, so their areas count with opposite signs; with zero asymmetry the holonomy vanishes.`,
+    ],
+    idea: [
+      r`A horizontal lift of a curve $\gamma$ in $M$ is a curve in $P$ over $\gamma$ whose velocity is always horizontal (Def. 1.7.1). Prop. 1.7.2 builds it in the most hands-on way. Start from any lift $\tilde\gamma$ (here $s_1\circ\gamma$) and slide it along the fibres by a group-valued $g(t)$ chosen so that the result is horizontal. The condition is the ODE $\mathrm{Ad}_{g^{-1}}\omega(\dot{\tilde\gamma}) = -g^{-1}\dot g$. For $U(1)$ it reads $\dot\alpha = -\omega(\dot{\tilde\gamma})$, so $g(t) = \exp(-\int\mathcal A)$. This is exactly how the station computes, and it agrees to $10^{-8}$ with an independent RK4 integration on $S^3$.`,
+      r`Following the lifts from every starting point defines parallel transport $\hat\gamma: \pi^{-1}(\gamma(0))\to\pi^{-1}(\gamma(1))$ (Def. 1.7.4). It is compatible with the group action, with concatenation and with reversal (Lemma 1.7.3), and independent of the parametrisation (Rem. 1.7.5); all of these are tested. For a closed loop it returns to the starting fibre and moves points by a group element: the holonomy. All holonomies at a point form the holonomy group (Def. 1.7.6).`,
+      r`For $\omega_c$, Stokes turns $-\oint\mathcal A$ into $-\iint\mathcal F = -\tfrac12\times$ (enclosed area), since $\mathcal F$ is $\tfrac i2$ times the area form (Station 1.4a). Letting the loop grow sweeps the holonomy through every angle, so the holonomy group of the Hopf connection is all of $U(1)$.`,
+    ],
+    ahead: r`Station 1.7b asks which points can be reached by horizontal paths, which leads to the holonomy bundle and the Ambrose–Singer theorem.`,
+  },
 };

@@ -341,6 +341,14 @@ export const STATIONS: Station[] = [
     equations: ['(1.4.5)', '(1.4.9)', '(1.4.17)', '(1.4.19)'],
     summary: 'Lift a small rectangle horizontally and it comes back displaced along the fibre: the displacement per unit area is the curvature.',
   },
+  {
+    id: '1.7a',
+    section: '1.7',
+    title: 'Horizontal lifts, the book’s way',
+    items: ['1.7.1', '1.7.2', '1.7.3', '1.7.4', '1.7.5', '1.7.6'],
+    equations: ['(1.7.1)', '(1.7.3)', '(1.7.4)'],
+    summary: 'Take any lift of a loop and slide it along the fibres until it is horizontal: the leftover shift after one turn is the holonomy, −½ × the enclosed area.',
+  },
 ];
 
 export function findItem(num: string): BookItem | undefined {
