@@ -342,6 +342,13 @@ export const STATIONS: Station[] = [
     summary: 'Lift a small rectangle horizontally and it comes back displaced along the fibre: the displacement per unit area is the curvature.',
   },
   {
+    id: '1.4b',
+    section: '1.4',
+    title: 'The quaternionic Hopf curvature is an instanton',
+    items: ['1.4.9', '1.4.10', '1.4.11', '1.4.12', '1.4.15'],
+    summary: 'Exercise 1.4.2 for $S^7\\to S^4$: the structure equation gives $\\mathcal F = d\\bar x\\wedge dx/(1+|x|^2)^2$, which satisfies Bianchi, is anti-self-dual and carries one unit of charge.',
+  },
+  {
     id: '1.5a',
     section: '1.5',
     title: 'The covariant derivative on TS², two ways',

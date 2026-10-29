@@ -268,4 +268,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`These transformation laws are why Yang–Mills theory is built from $\operatorname{tr}(\mathcal F\wedge{\star}\mathcal F)$ and Wilson loops. For a curvature that is self-dual, see the quaternionic Hopf bundle in Station 1.4b.`,
   },
+  '1.4b': {
+    see: r`The quaternionic Hopf bundle $Sp(1)\to S^7\to\mathbb HP^1\cong S^4$ (Ex. 1.1.22) with its canonical connection $\omega = \bar q_1 dq_1 + \bar q_2 dq_2$ (1.3.21). Work in the chart $x = q_2q_1^{-1}\in\mathbb H\cong\mathbb R^4$, which covers all of $S^4$ except one point. Right: at a point $x$, the six components $\mathcal F_{\mu\nu}$ of the curvature. Each is an element of $\mathfrak{sp}(1)=\operatorname{Im}\mathbb H\cong\mathbb R^3$, drawn as an arrow. Components that are Hodge duals of each other share a colour, and the dot marks the second one of each pair. Left: how the curvature is spread out radially, and the charge accumulated inside radius $|x|$.`,
+    tryIt: [
+      r`Each colour pair points in exactly opposite directions: $\mathcal F_{01} = -\mathcal F_{23}$, and so on. The curvature is anti-self-dual, $\star\mathcal F = -\mathcal F$, at every point. Move $x$ anywhere and this persists; the readout shows it to rounding error.`,
+      r`The three axes are mutually perpendicular. At each point the curvature identifies the 3-dimensional space of anti-self-dual 2-forms on $\mathbb R^4$ with $\mathfrak{sp}(1)$, isometrically up to a scale.`,
+      r`Increase $|x|$. The arrows shrink like $(1+|x|^2)^{-2}$, but the green curve keeps climbing to exactly 1. The curvature is a lump of size 1 at the origin carrying a whole unit of topological charge.`,
+      r`Switch to the second chart. The jack of arrows rotates rigidly away from the grey first-chart version, and neither lengths nor angles change. Near infinity the second chart is the regular one.`,
+    ],
+    idea: [
+      r`This is Exercise 1.4.2 for the quaternionic Hopf bundle. On $S^7$, Def. 1.4.6 and the structure equation (Prop. 1.4.9) give $\Omega = d\omega + \tfrac12[\omega\wedge\omega] = d\bar q_1\wedge dq_1 + d\bar q_2\wedge dq_2 + \omega\wedge\omega$. Pulling back by the section $s_1(x) = (1,x)/\sqrt{1+|x|^2}$ (Rem. 1.4.15) gives $\mathcal A = \operatorname{Im}(\bar x\,dx)/(1+|x|^2)$ and $\mathcal F = d\bar x\wedge dx/(1+|x|^2)^2$. This is the BPST instanton of physics, met again in Chapter 6.`,
+      r`Bianchi (Prop. 1.4.11) in its local, adjoint form (Rem. 1.4.12): $d\mathcal F + [\mathcal A\wedge\mathcal F] = 0$. The readout evaluates the cyclic sum numerically. The commutator term is essential here, unlike the $U(1)$ case of Station 1.4a.`,
+      r`On the overlap of the two charts, $s_2 = s_1\cdot g$ with $g = \bar x/|x|$. So $\mathcal F_2 = g^{-1}\mathcal F_1 g$ (Rem. 1.4.15; the matrix form is Rem. 1.4.10). This is the rigid rotation you see. Since $\mathrm{Ad}$ rotates all six arrows together, anti-self-duality does not depend on the chart.`,
+      r`The charge density $\tfrac1{8\pi^2}\operatorname{tr}(\mathcal F\wedge\mathcal F)$ is $\tfrac{6}{\pi^2}(1+|x|^2)^{-4}$. Per unit volume of the round $S^4$ of radius $\tfrac12$, whose conformal factor in this chart is $(1+|x|^2)^{-2}$, it is constant: the instanton is spread perfectly evenly over $S^4$. It integrates to $1$, which is why the bundle cannot be trivial (compare Exercise 1.1.9(c)).`,
+    ],
+    ahead: r`The covariant exterior derivative becomes, on associated vector bundles, the covariant derivative $\nabla$ of §1.5 (Station 1.5a). Under gauge transformations, $\mathcal F$ only rotates pointwise (Station 1.8a).`,
+  },
 };
