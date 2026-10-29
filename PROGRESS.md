@@ -36,6 +36,14 @@ with its 5 tests; needed for the quaternionic Hopf transition) and a new
 transport; 9 tests) shared by three stations. Totals: math 55, gallery 32,
 chapters 41 — **128**, all green; `npm run build` green.
 
+**§§1.4–1.8 (seven stations: 1.4a, 1.4b, 1.5a, 1.6a, 1.7a, 1.7b, 1.8a).**
+The contents spine was extended through §1.8 from book pp. 37–76. §1.9 was
+deliberately skipped (ToC entry only). The new kernels are station-specific
+and live in `chapters/src/math/`. Each composes `@rsvis/math`
+(quaternions, RK4, frames, hopf-book) rather than copying it, and none was
+promoted. Totals: math 55, gallery 32, chapters 93 — **180**, all green;
+`npm run build` green.
+
 ## What this branch did (`claude/monorepo-restructure`)
 
 Converted the single root project (the R&S visualization gallery) into an
