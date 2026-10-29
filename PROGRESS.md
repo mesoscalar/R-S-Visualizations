@@ -44,6 +44,15 @@ and live in `chapters/src/math/`. Each composes `@rsvis/math`
 promoted. Totals: math 55, gallery 32, chapters 93 — **180**, all green;
 `npm run build` green.
 
+**Chapter 2 (five stations: 2.1a, 2.4a, 2.5a, 2.6a, 2.8a).** The chapters
+manifest became multi-chapter (`book/types.ts`, `book/index.ts`, one contents
+heading per chapter). The Ch. 2 spine covers §§2.1, 2.4, 2.5, 2.6 and 2.8;
+§§2.2, 2.3 and 2.7 are ToC-only by choice. All kernels are chapter-local.
+`linear-connections.ts` is shared by 2.1a and 2.4a, and 2.6a reuses
+`@rsvis/math`'s `omegaC` to check that the Chern connection of the
+tautological bundle is Chapter 1's Hopf connection. Totals: math 55,
+gallery 32, chapters 127 — **214**, all green; `npm run build` green.
+
 ## What this branch did (`claude/monorepo-restructure`)
 
 Converted the single root project (the R&S visualization gallery) into an

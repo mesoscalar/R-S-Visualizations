@@ -43,6 +43,24 @@ connections under morphisms (Prop. 1.3.13–Rem. 1.3.17), the covariant
 derivative along maps (Def. 1.5.13–1.5.14), Prop. 1.6.7–1.6.8, synchronous
 framing (Rem. 1.7.19). They appear in the contents spine with their gists.
 
+
+### Chapter 2 (book pp. 93–188, from a user-supplied PDF of pp. 93–188)
+
+The contents spine lists every item of §§2.1, 2.4, 2.5, 2.6 and 2.8 (88
+items). §§2.2, 2.3 and 2.7 keep only their table-of-contents entries,
+because the user chose five stations from the other sections. Since this
+batch the manifest is multi-chapter: `src/book/types.ts` holds the types,
+`src/book/index.ts` flattens `ch1.ts` and `ch2.ts`, and the contents page
+renders one heading per chapter.
+
+| Station | Section | Book items | Kernel | Tests |
+|---|---|---|---|---|
+| 2.1a Torsion: parallelograms that do not close | §2.1 | Def. 2.1.10, Prop. 2.1.19, Def. 2.1.20, Prop. 2.1.22, Rem. 2.1.29, 2.1.30; (2.1.33), (2.1.55), (2.1.58), (2.1.60) | `src/math/linear-connections.ts` (shared with 2.4a) | 7 |
+| 2.4a Constant curvature: triangles and spreading geodesics | §2.4 | Def. 2.4.1, Prop. 2.4.2, Def. 2.4.3, Rem. 2.4.4 | `src/math/constant-curvature.ts` | 5 |
+| 2.5a Symmetric spaces: S² and H² from their Lie algebras | §2.5 | Lemma 2.5.2, Prop. 2.5.10, Rem. 2.5.14, Def. 2.5.15, Prop. 2.5.19, Ex. 2.5.27, Rem. 2.5.28; (2.5.4), (2.5.10), (2.5.16), (2.5.17) | `src/math/symmetric-space.ts` | 7 |
+| 2.6a The Chern connection of the tautological line bundle | §2.6 | Def. 2.6.7, Prop. 2.6.8, Def. 2.6.9, Cor. 2.6.10; (2.6.6), (2.6.7) | `src/math/chern.ts` | 6 |
+| 2.8a Self-duality in four dimensions | §2.8 | Rem. 2.8.1, Cor. 2.8.3, Lemma 2.8.5, Thm. 2.8.7, Def. 2.8.9, Ex. 2.8.10; (2.8.8), (2.8.22), (2.8.25) | `src/math/self-duality.ts` | 9 (incl. Prop. 2.4.2 polarisation) |
+
 ## Explainers
 
 The text under each station was rewritten for teaching (what you are looking
@@ -114,6 +132,10 @@ identities, 200 for the rest; `mulberry32(42)`), measured on this branch:
 | 1.4b chart-2 law 𝓕₂ = Ad_{g⁻¹}𝓕₁ (nested FD), \|x\| ≥ 0.3 | 2.9e-6 | 1e-5 | inner roundoff 1e-10 amplified by the outer 1/h = 1e4 |
 | 1.4b total charge (Simpson, N = 400 in arctan r) | < 1e-9 | 1e-9 | O(N⁻⁴); exact value 1 |
 | 1.7b mean resultant R of fibre phases (ω_c, three lengths) | 0.977 / 0.733 / 0.237 | strictly decreasing, last < 0.5 | monotonicity is the claim |
+| 2.1a gap ratio err(ε/2)/err(ε) for −ε²T(X,Y) (30 random cases) | 0.496–0.510 | in [0.4, 0.6] | first-order convergence is the claim |
+| 2.4a Gauss–Bonnet excess − k·Area (Simpson, 200 panels per side) | passes 1e-8 (not separately measured) | 1e-8 | O(N⁻⁴) |
+| 2.6a holonomy angle vs −∫∫𝓕 (HUD, default loop) | 0.001° | 1e-5 rad in the test | midpoint flux O(n⁻²) |
+| 2.5a dT_t·Y vs Levi-Civita transport ODE (HUD) | 2.8e-12 | 1e-9 in the test | RK4, 400 steps |
 
 Single-point HUD readouts seen in the screenshots (not test assertions):
 1.5a (1.5.8) vs tangential ambient derivative 1.4e-11 and R(X,JX)V vs
@@ -172,6 +194,20 @@ the frame transition degree 2 on three latitudes (1.1c); the index sum 2 of
    "measured" values I had not measured. Both were measured (9e-10 and
    2.1e-9; 2.9e-6) and corrected before commit.
 
+9. **Model domain (2.1a).** The first metric-compatibility test of the
+   conformal models failed at 1.3e-8 against 1e-8. It sampled k up to ±2 and
+   |x| up to 0.85, where for k < 0 the factor 1 + k|x|² goes through zero:
+   points outside the Poincaré disk. The fix restricts samples to the
+   model's domain (|k||x|² ≤ ½). The tolerance is unchanged.
+10. **Which half is which (2.8a).** I first asserted that left
+    multiplication by i, j, k is anti-self-dual. By hand: L_i sends e₁ ↦ e₂
+    and e₃ ↦ e₄, so as a 2-form it is −(θ¹²+θ³⁴), which is self-dual; it is
+    also exactly the book's J of §2.8. The test now asserts that, and that
+    right multiplication is anti-self-dual.
+11. **Reading what the PDF text loses.** pdftotext drops overbars. The Chern
+    connection formula (2.6.7) was checked against the rendered page, which
+    gives 𝒜 = H̄⁻¹∂H̄, before writing the gist and the kernel.
+
 ## Rendering caveats (checked only by headless screenshots)
 
 Every station was rendered once in headless Chromium (SwiftShader WebGL) with
@@ -207,6 +243,17 @@ Fibonacci-sampled arrow field in 1.3b reads clearly at phone size.
   transports per frame; this is smooth headless, but low-end phones were not
   tested.
 
+- 2.1a: the parallelogram pane rescales with ε, so the paths keep their size
+  on screen; at the default ε = 0.1 the O(ε) mismatch is visible (≈ 0.2 of
+  |T|) and shrinks with ε.
+- 2.4a: corners are kept inside |k||z|² ≤ 0.8 for k < 0; for large positive k
+  the fan can reach the antipode, where the chart blows up.
+- 2.5a: the hyperboloid is drawn for ρ ≤ 1.7 and shrunk by 0.6; the flags are
+  drawn in normal coordinates at o, so they are not to scale with each other
+  on H².
+- 2.8a: orbits through points near the projection pole are clipped at radius
+  8 in R³; the "random tensor" option draws a new tensor on each selection.
+
 ## What to look at first
 
 1. **1.1b**: press "random cochains" a few times; crossings appear and
@@ -228,3 +275,12 @@ Fibonacci-sampled arrow field in 1.3b reads clearly at phone size.
    On the right, the holonomy slides around a sphere of fixed trace.
 10. **1.4b**: the three colour pairs are antipodal everywhere (anti-self-dual);
     drag |x| and watch the charge climb to 1.
+11. **2.1a**: move τ. The geodesics stay put, and the parallelogram opens by
+    −ε²T.
+12. **2.4a**: slide k through 0 and watch the angle sum and k·Area agree.
+13. **2.5a**: press "transvect" on H². The flag slides, and the bracket of two
+    m-matrices lands in h.
+14. **2.6a**: drag t. Orange spirals, white stays on the circle, and the
+    final angle is the flux.
+15. **2.8a**: Λ²₊ only versus Λ²₋ only (the two Hopf fibrations), then CP²
+    in both orientations.

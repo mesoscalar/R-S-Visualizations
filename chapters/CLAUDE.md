@@ -17,6 +17,8 @@ interactive pictures attached to specific items.
 ## Rules specific to this subproject
 
 - **The manifest is the source of truth for the book.** `src/book/ch<N>.ts`
+  (one per chapter, registered in `src/book/index.ts`; shared types in
+  `src/book/types.ts`)
   lists sections, numbered items (kind, number, title, page, a one-line
   paraphrased gist) and stations (which items and equations they illustrate).
   Every number, title and page must be read off the book itself — **never

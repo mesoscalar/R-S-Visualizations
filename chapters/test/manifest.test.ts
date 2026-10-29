@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { SECTIONS, STATIONS, findItem } from '../src/book/ch1';
+import { SECTIONS, STATIONS, findItem } from '../src/book';
 
-describe('Chapter 1 manifest tracks the book', () => {
+describe('the manifest tracks the book', () => {
   it('items are numbered consecutively within each section, in page order', () => {
     for (const s of SECTIONS) {
       s.items.forEach((it, k) => {

@@ -284,4 +284,84 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`The covariant exterior derivative becomes, on associated vector bundles, the covariant derivative $\nabla$ of §1.5 (Station 1.5a). Under gauge transformations, $\mathcal F$ only rotates pointwise (Station 1.8a).`,
   },
+  '2.1a': {
+    see: r`A chart of a surface. With "round sphere chart", it carries the Levi-Civita connection of the sphere in stereographic coordinates; with "flat plane", the ordinary flat one. To this base connection we add an antisymmetric piece, $\Gamma^k{}_{ij}\mapsto\Gamma^k{}_{ij}+\tfrac12\tau\,\varepsilon_{ij}t^k$, which gives it torsion $\mathrm T(X,Y) = \tau\,(X^1Y^2 - X^2Y^1)\,t$. Left: a fan of geodesics from $p$, and one highlighted geodesic. Along it, the arrows are a frame carried by parallel transport: grey for $\tau = 0$, coloured for the twisted connection. Right: a close-up of $p$. The green path runs $\varepsilon$ along $X$, then $\varepsilon$ along the transported $Y$. The orange path does the same in the other order.`,
+    tryIt: [
+      r`Move $\tau$ and watch the left pane. The geodesics do not move at all. Of the frame, the green arrow (the geodesic's own velocity) stays put, while the blue one turns away from its grey twin.`,
+      r`On the right, set $\tau = 0$: green and orange end almost at the same point (the dotted grey paths). Turn $\tau$ up and they miss each other by the red gap. The gap matches the dashed white arrow $-\varepsilon^2\mathrm T(X,Y)$.`,
+      r`Shrink $\varepsilon$. The readout gap$/\varepsilon^2$ settles on $|\mathrm T(X,Y)|$, and the mismatch with the prediction shrinks in proportion to $\varepsilon$.`,
+      r`Rotate the direction $t$ or flip the sign of $\tau$, and the gap turns with it. Switch to the flat plane: the geodesics are straight lines, and the parallelogram still fails to close.`,
+    ],
+    idea: [
+      r`A linear connection is a connection on the frame bundle $L(M)$ (Def. 2.1.1). Frame bundles carry one extra structure: the soldering form $\theta$, which reads off the components of a vector in a frame. Its covariant derivative $\Theta = D_\omega\theta$ is the torsion form (Def. 2.1.10). On $M$ it becomes $\mathrm T(X,Y) = \nabla_XY - \nabla_YX - [X,Y]$ (Prop. 2.1.19), with components $\mathrm T^i{}_{jk} = \Gamma^i{}_{jk} - \Gamma^i{}_{kj}$ in coordinates (Rem. 2.1.29).`,
+      r`Geodesics solve $\ddot x^k + \Gamma^k{}_{ij}\dot x^i\dot x^j = 0$ (2.1.60). Only the symmetric part of $\Gamma$ enters this equation. Adding torsion therefore changes parallel transport (2.1.58) but not a single geodesic.`,
+      r`By Prop. 2.1.22, geodesics are the shadows of integral curves of the horizontal standard fields $B(x)$ on $L(M)$. Carry a frame $u(t)$ along by parallel transport, and the velocity has the same components in it all the way: $\dot\gamma = u(t)\,x$. This is why the frame vector $x = (1,0)$, the velocity itself, agrees for both connections.`,
+      r`Now walk a small parallelogram. Expanding $x + \varepsilon X - \tfrac12\varepsilon^2\Gamma(X,X)$ and $Y - \varepsilon\Gamma(X,Y)$ shows the two corners differ by $-\varepsilon^2(\Gamma^k{}_{ij}-\Gamma^k{}_{ji})X^iY^j = -\varepsilon^2\mathrm T(X,Y)$. Torsion measures how infinitesimal parallelograms fail to close. Curvature, by contrast, measures how transported vectors fail to come back (Rem. 2.1.30): small squares change $w$ by $-\varepsilon^2\mathrm R(X,Y)w$.`,
+    ],
+    ahead: r`A metric selects a unique torsion-free compatible connection, the Levi-Civita connection; its curvature is what the next stations measure. Station 2.4a draws geodesics of constant curvature, and 2.5a gets them from Lie algebras.`,
+  },
+  '2.4a': {
+    see: r`Left: a surface of constant curvature $k$, drawn in one conformal chart. For $k>0$ it is a sphere seen by stereographic projection (dashed: its equator). For $k=0$ it is the flat plane. For $k<0$ it is the Poincaré disk of the hyperbolic plane (purple: its boundary at infinity). The chart preserves angles, so the angles you see are the true ones. The white triangle has geodesic sides, and the faint lines are geodesics from one corner. Right: the distance between two geodesics that leave a point at angle $0.5$, as a function of time. The orange curve is for your $k$; the faint curves are $k = +1, 0, -1$.`,
+    tryIt: [
+      r`Slide $k$ from $-1$ to $+1$. The angle sum passes through exactly $\pi$ at $k = 0$. Throughout, the readouts $\alpha+\beta+\gamma-\pi$ and $k\cdot\text{Area}$ agree to five decimals.`,
+      r`Tap to make a large triangle at $k = -1$. Its angles shrink toward zero, while its area stays below $\pi$: a hyperbolic triangle's area is $\pi$ minus its angle sum.`,
+      r`At $k>0$, lengthen the fan. The geodesics from the corner bend back toward each other and meet again on the far side of the sphere. On the right, the orange curve rises like $\sin$ and falls again.`,
+      r`At $k<0$, the fan spreads out much faster than straight lines would. On the right, the separation grows like $\sinh$, i.e. exponentially.`,
+    ],
+    idea: [
+      r`The sectional curvature of a 2-plane $\Sigma$ spanned by $X, Y$ is $K(\Sigma) = \langle R(X,Y)Y,X\rangle/(\|X\|^2\|Y\|^2-\langle X,Y\rangle^2)$; it does not depend on the basis (Def. 2.4.1). On a surface there is only one plane at each point, so $K$ is the Gauss curvature.`,
+      r`By polarisation, $K$ determines the whole curvature tensor. If $K\equiv k$ at a point, then $R(X,Y)Z = k(\langle Y,Z\rangle X - \langle X,Z\rangle Y)$ there (Prop. 2.4.2). The model surfaces here have $K\equiv k$ everywhere: spaces of constant curvature (Def. 2.4.3), the sphere of radius $1/\sqrt k$ being the basic example (Rem. 2.4.4). In dimension $\ge 3$, Schur's theorem says pointwise constancy already forces global constancy.`,
+      r`Two consequences you can see. First, Gauss–Bonnet for a geodesic triangle: the angle excess is $\iint K\,dA$, here $k\cdot\text{Area}$. Second, geodesics from a point separate like the Jacobi functions $\sin(\sqrt k\,t)/\sqrt k$, $t$, $\sinh(\sqrt{-k}\,t)/\sqrt{-k}$. The exact separation is the law of cosines of curvature $k$, and the white dots, measured in the model, sit on it.`,
+      r`All the geometry here is exact. The maps $z\mapsto(z-p)/(1+k\bar pz)$ are isometries that move $p$ to the centre, where geodesics are straight lines. The same geodesics also come out of Station 2.1a's ODE with this metric's Levi-Civita connection.`,
+    ],
+    ahead: r`Constant curvature is the simplest case of a symmetric space: every point has an isometry reversing geodesics. Station 2.5a builds $S^2$ and $H^2$ from that symmetry alone.`,
+  },
+  '2.5a': {
+    see: r`Left: the sphere $S^2$ or the hyperboloid model of the hyperbolic plane $H^2$, drawn with $u_0$ pointing up and the origin $o=(1,0,0)$ at the top. The orange curve is the orbit $t\mapsto\exp(tx)\cdot o$ of a one-parameter subgroup. The white flag sits near $o$. Its purple copy is the image under the symmetry $s_o$, and its green copy is the image under the transvection $T_t$. The red arrows are a tangent vector at $o$ and its image under $T_t$. Right: the same objects as $3\times3$ matrices. Purple-framed entries are the $\mathfrak m$-part (tangent vectors at $o$); green-framed entries are the $\mathfrak h$-part (rotations about $o$).`,
+    tryIt: [
+      r`Press "transvect". The green flag slides along the orange geodesic without turning relative to it, and the red arrow rides along. The readout shows that $dT_t$ agrees with Levi-Civita parallel transport to within RK4 error.`,
+      r`The purple flag is the white one reflected through $o$: every geodesic through $o$ is run backwards. Unlike an ordinary mirror, this is a rotation by $\pi$ about $o$ on the sphere.`,
+      r`On the right, look at $[x,y]$. Two $\mathfrak m$-matrices bracket into the $\mathfrak h$-block alone. With $F(x,y) = -[x,y]$, this bracket is the curvature: the readout $K$ is $+1$ for $S^2$ and $-1$ for $H^2$.`,
+      r`Switch spaces. In the matrices only one sign changes, the top row of $\mathfrak m$. That sign flips the Killing form on $\mathfrak m$ from negative (compact type) to positive (non-compact type), and the curvature from $+1$ to $-1$.`,
+    ],
+    idea: [
+      r`An involutive automorphism $\lambda$ of a Lie algebra splits it into eigenspaces $\mathfrak g = \mathfrak h\oplus\mathfrak m$ with $[\mathfrak h,\mathfrak m]\subset\mathfrak m$ and $[\mathfrak m,\mathfrak m]\subset\mathfrak h$ (Lemma 2.5.2). Here $\lambda$ is conjugation by $\mathrm{diag}(-1,1,1)$ on $\mathfrak{so}(3)$ or $\mathfrak{so}(1,2)$. Then $\mathfrak h = \mathfrak{so}(2)$ fixes $o$, and $\mathfrak m\cong\mathbb R^2$ is the tangent plane there (Ex. 2.5.27/2 and /5).`,
+      r`On $M = G/H$ with its invariant metric, everything is read off from the Lie algebra (Prop. 2.5.10). The Levi-Civita connection is the canonical one. The curvature is $F(x,y) = -[x,y]$; for the sphere this is $x\wedge y$, sectional curvature 1 (Rem. 2.5.28). Geodesics through $o$ are the orbits $\exp(tx)\cdot o$ with $x\in\mathfrak m$.`,
+      r`Integrating $\lambda$ gives an isometry $s_o$ fixing $o$ with $ds_o = -\mathrm{id}$, so it reverses geodesics: $s_o(\gamma(t)) = \gamma(-t)$ (Rem. 2.5.14). Every point has such a symmetry, which is the definition of a globally symmetric space (Def. 2.5.15).`,
+      r`Two symmetries make a translation. The transvection $T_t = s_{\gamma(t/2)}\circ s_{\gamma(0)}$ moves $\gamma$ along itself by $t$, and its differential is parallel transport along $\gamma$ (Prop. 2.5.19). Here it equals exactly $\exp(tx)$, which closes the loop between the geometry and the algebra.`,
+    ],
+    ahead: r`Tables 2.1 and 2.2 list all classical irreducible symmetric spaces: Grassmannians, $SU(n)/SO(n)$, and their non-compact duals (Thm. 2.5.24). Our two examples are the smallest pair of duals, $SO(3)/SO(2)$ and $SO_0(1,2)/SO(2)$.`,
+  },
+  '2.6a': {
+    see: r`The tautological line bundle over $\mathbb CP^1$: over the point $[1:z]$, the fibre is the complex line through $(1,z)\in\mathbb C^2$. Left: the chart $z$, shaded by the squared length $H = |e|^2 = 1+|z|^2$ of the holomorphic frame $e(z) = (1,z)$. The arrows show the two real parts of the Chern connection form $\mathcal A$ (green and purple), and the white circle is a loop. Right: carry a section $\varphi$ around the loop by parallel transport. The orange curve is its coefficient $c$ in the holomorphic frame, $\varphi = c\,e$. The white curve is its coefficient in the unit frame $e/|e|$.`,
+    tryIt: [
+      r`Drag $t$ from 0 to 1. The orange coefficient spirals in and out as $|e|$ changes along the loop, while the white one stays on the unit circle: the length $|\varphi|_h$ is constant. The connection respects the metric.`,
+      r`At $t = 1$ the white point has turned by the holonomy angle. It matches $\exp(-\iint\mathcal F)$, the curvature integrated over the disk.`,
+      r`Tap to move the loop far from the origin, where $H$ is large and the curvature $2/(1+|z|^2)^2$ is small. The holonomy shrinks, even for a large circle.`,
+      r`Show only Re $\mathcal A$: it is the gradient field of $\tfrac12\log H$, so it integrates to zero around any loop. All of the holonomy comes from Im $\mathcal A$.`,
+    ],
+    idea: [
+      r`A holomorphic line bundle with a Hermitean metric $h$ has exactly one connection that is compatible with both (Prop. 2.6.8). Compatibility with $h$ means $dH = \bar{\mathcal A}H + H\mathcal A$ in a holomorphic frame (2.6.6). Compatibility with the holomorphic structure means $\nabla^{0,1} = \bar\partial$ (Def. 2.6.7), i.e. $\mathcal A$ has type $(1,0)$. This unique connection is the Chern connection (Def. 2.6.9).`,
+      r`Together the two conditions force $\mathcal A = \bar H^{-1}\partial\bar H$ and $\mathcal F = \bar\partial\mathcal A$, of type $(1,1)$ (Cor. 2.6.10). For our line bundle $H = 1+|z|^2$, so $\mathcal A = \partial\log H = \bar z\,dz/(1+|z|^2)$ and $\mathcal F = -dz\wedge d\bar z/(1+|z|^2)^2$.`,
+      r`Split $\mathcal A$ into real and imaginary parts. $\operatorname{Re}\mathcal A = \tfrac12 d\log H$ only rescales $c$, exactly compensating the changing length of $e$. $i\operatorname{Im}\mathcal A$ rotates $c$; it is the connection seen in the unit frame $e/|e|$.`,
+      r`That unit frame $(1,z)/\sqrt{1+|z|^2}$ is a section of the Hopf bundle $S^3\to S^2$, and $i\operatorname{Im}\mathcal A$ is exactly the pullback of $\omega_c = \bar z_1dz_1+\bar z_2dz_2$ (Station 1.3a). The Chern connection of the tautological bundle is the Hopf connection of Chapter 1, written in a holomorphic gauge. Its first Chern number is $\tfrac{i}{2\pi}\int\mathcal F = -1$.`,
+    ],
+    ahead: r`On a Kähler manifold, the Chern connection of the holomorphic tangent bundle is the Levi-Civita connection (Ex. 2.6.11). Theorem 2.6.12 runs the logic backwards: a Hermitean connection with curvature of type $(1,1)$ defines a holomorphic structure.`,
+  },
+  '2.8a': {
+    see: r`Two pictures of why dimension four is special. Left: the unit sphere $S^3\subset\mathbb R^4 = \mathbb H$, stereographically projected. The coloured curves are orbits of a one-parameter group of rotations $\exp(t(a\,L_i + b\,R_i))$. Here $L_i$ is left multiplication by the quaternion $i$, a self-dual element of $\mathfrak{so}(4)\cong\Lambda^2$, and $R_i$ is right multiplication, an anti-self-dual one. Right: the curvature of a model 4-manifold, written as a symmetric $6\times6$ matrix on 2-forms in the basis $\varphi^a_\pm$ of Rem. 2.8.1, with its blocks $A$, $B$, $C$ outlined.`,
+    tryIt: [
+      r`Choose "$\Lambda^2_+$ only". Every orbit is a great circle, and any two of them link once: this is the Hopf fibration of Chapter 1. Switch to "$\Lambda^2_-$ only" for the other Hopf fibration, which twists the opposite way.`,
+      r`Choose "equal parts". Now one plane rotates and its orthogonal plane stays fixed, the familiar rotation of $\mathbb R^4$ in a single plane. Every simple rotation is half self-dual and half anti-self-dual. At "speeds 3 : 2" the orbits on the middle torus become trefoil knots.`,
+      r`On the right, choose $S^4$. The matrix is $-1$ on the diagonal: $W = 0$ and $B = 0$. For $\mathbb CP^2$, $C$ is a multiple of the identity, $W_- = 0$, and the readout says self-dual. Reverse the orientation and $A$ and $C$ trade places.`,
+      r`$S^2\times H^2$ has scalar curvature 0, so $\operatorname{tr}A = \operatorname{tr}C = 0$. But it is not Einstein, and the off-diagonal block $B$ lights up. Try a random tensor: $\operatorname{tr}A = \operatorname{tr}C = -\mathrm{Sc}/4$ always holds.`,
+    ],
+    idea: [
+      r`In four dimensions the Hodge star maps 2-forms to 2-forms with $\star\star = 1$. So $\Lambda^2 = \Lambda^2_+\oplus\Lambda^2_-$ splits into self-dual and anti-self-dual parts (2.8.8). Since $\Lambda^2\cong\mathfrak{so}(4)$, this is the Lie algebra splitting $\mathfrak{so}(4) = \mathfrak{so}(3)\oplus\mathfrak{so}(3)$. It comes from the double cover $Sp(1)\times Sp(1)\to SO(4)$, $x\mapsto pxq^{-1}$: left multiplications span one factor, right multiplications the other. With $x = x_1 + x_2i + x_3j + x_4k$, left multiplication by $i$ is exactly the book's complex structure $J$, which is self-dual.`,
+      r`Unit self-dual forms are the orthogonal complex structures of $\mathbb R^4$ inducing its orientation: a whole 2-sphere of them. A 2-form is anti-self-dual exactly when it is of type $(1,1)$ for all of them at once (Cor. 2.8.3).`,
+      r`The Riemann curvature, read as a symmetric endomorphism of $\Lambda^2$, splits into blocks $\begin{pmatrix}A & B\\ B^{\mathsf T} & C\end{pmatrix}$ (2.8.22) with $\operatorname{tr}A = \operatorname{tr}C = -\tfrac14\mathrm{Sc}$ (Lemma 2.8.5). The Singer–Thorpe decomposition (Thm. 2.8.7) reads $R = -\tfrac{\mathrm{Sc}}{12}\mathbb 1 + \begin{pmatrix}0 & B\\ B^{\mathsf T} & 0\end{pmatrix} + W_+\oplus W_-$. Here $B$ is the traceless Ricci tensor, so $B = 0$ means Einstein, and $W_\pm$ are the two halves of the Weyl tensor.`,
+      r`A manifold is self-dual if $W_- = 0$ and anti-self-dual if $W_+ = 0$ (Def. 2.8.9). The round $S^4$ is both. $\mathbb CP^2$ with its complex orientation is self-dual, and reversing the orientation makes it anti-self-dual (Ex. 2.8.10). $S^2\times S^2$ is Einstein but neither.`,
+    ],
+    ahead: r`Self-duality returns with Yang–Mills instantons, connections whose curvature is (anti-)self-dual; the curvature of the quaternionic Hopf bundle in Station 1.4b is one. Their moduli spaces, and what they say about smooth 4-manifolds, are the subject of Chapter 6.`,
+  },
 };
