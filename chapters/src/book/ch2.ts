@@ -163,4 +163,12 @@ export const STATIONS: Station[] = [
     items: ['2.4.1', '2.4.2', '2.4.3', '2.4.4'],
     summary: 'On the sphere, the plane and the hyperbolic plane, a geodesic triangle’s angle excess is $k$ times its area, and nearby geodesics spread like $\\sin$, linearly or like $\\sinh$.',
   },
+  {
+    id: '2.5a',
+    section: '2.5',
+    title: 'Symmetric spaces: $S^2$ and $H^2$ from their Lie algebras',
+    items: ['2.5.2', '2.5.10', '2.5.14', '2.5.15', '2.5.19', '2.5.27', '2.5.28'],
+    equations: ['(2.5.4)', '(2.5.10)', '(2.5.16)', '(2.5.17)'],
+    summary: 'Split $\\mathfrak g = \\mathfrak h\\oplus\\mathfrak m$: one-parameter subgroups from $\\mathfrak m$ are geodesics, the involution is the geodesic symmetry, and $-[x,y]$ is the curvature.',
+  },
 ];

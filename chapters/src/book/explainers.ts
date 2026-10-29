@@ -316,4 +316,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`Constant curvature is the simplest case of a symmetric space: every point has an isometry reversing geodesics. Station 2.5a builds $S^2$ and $H^2$ from that symmetry alone.`,
   },
+  '2.5a': {
+    see: r`Left: the sphere $S^2$ or the hyperboloid model of the hyperbolic plane $H^2$, drawn with $u_0$ pointing up and the origin $o=(1,0,0)$ at the top. The orange curve is the orbit $t\mapsto\exp(tx)\cdot o$ of a one-parameter subgroup. The white flag sits near $o$. Its purple copy is the image under the symmetry $s_o$, and its green copy is the image under the transvection $T_t$. The red arrows are a tangent vector at $o$ and its image under $T_t$. Right: the same objects as $3\times3$ matrices. Purple-framed entries are the $\mathfrak m$-part (tangent vectors at $o$); green-framed entries are the $\mathfrak h$-part (rotations about $o$).`,
+    tryIt: [
+      r`Press "transvect". The green flag slides along the orange geodesic without turning relative to it, and the red arrow rides along. The readout shows that $dT_t$ agrees with Levi-Civita parallel transport to within RK4 error.`,
+      r`The purple flag is the white one reflected through $o$: every geodesic through $o$ is run backwards. Unlike an ordinary mirror, this is a rotation by $\pi$ about $o$ on the sphere.`,
+      r`On the right, look at $[x,y]$. Two $\mathfrak m$-matrices bracket into the $\mathfrak h$-block alone. With $F(x,y) = -[x,y]$, this bracket is the curvature: the readout $K$ is $+1$ for $S^2$ and $-1$ for $H^2$.`,
+      r`Switch spaces. In the matrices only one sign changes, the top row of $\mathfrak m$. That sign flips the Killing form on $\mathfrak m$ from negative (compact type) to positive (non-compact type), and the curvature from $+1$ to $-1$.`,
+    ],
+    idea: [
+      r`An involutive automorphism $\lambda$ of a Lie algebra splits it into eigenspaces $\mathfrak g = \mathfrak h\oplus\mathfrak m$ with $[\mathfrak h,\mathfrak m]\subset\mathfrak m$ and $[\mathfrak m,\mathfrak m]\subset\mathfrak h$ (Lemma 2.5.2). Here $\lambda$ is conjugation by $\mathrm{diag}(-1,1,1)$ on $\mathfrak{so}(3)$ or $\mathfrak{so}(1,2)$. Then $\mathfrak h = \mathfrak{so}(2)$ fixes $o$, and $\mathfrak m\cong\mathbb R^2$ is the tangent plane there (Ex. 2.5.27/2 and /5).`,
+      r`On $M = G/H$ with its invariant metric, everything is read off from the Lie algebra (Prop. 2.5.10). The Levi-Civita connection is the canonical one. The curvature is $F(x,y) = -[x,y]$; for the sphere this is $x\wedge y$, sectional curvature 1 (Rem. 2.5.28). Geodesics through $o$ are the orbits $\exp(tx)\cdot o$ with $x\in\mathfrak m$.`,
+      r`Integrating $\lambda$ gives an isometry $s_o$ fixing $o$ with $ds_o = -\mathrm{id}$, so it reverses geodesics: $s_o(\gamma(t)) = \gamma(-t)$ (Rem. 2.5.14). Every point has such a symmetry, which is the definition of a globally symmetric space (Def. 2.5.15).`,
+      r`Two symmetries make a translation. The transvection $T_t = s_{\gamma(t/2)}\circ s_{\gamma(0)}$ moves $\gamma$ along itself by $t$, and its differential is parallel transport along $\gamma$ (Prop. 2.5.19). Here it equals exactly $\exp(tx)$, which closes the loop between the geometry and the algebra.`,
+    ],
+    ahead: r`Tables 2.1 and 2.2 list all classical irreducible symmetric spaces: Grassmannians, $SU(n)/SO(n)$, and their non-compact duals (Thm. 2.5.24). Our two examples are the smallest pair of duals, $SO(3)/SO(2)$ and $SO_0(1,2)/SO(2)$.`,
+  },
 };
