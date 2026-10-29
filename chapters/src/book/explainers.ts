@@ -252,4 +252,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`§1.7 shows that every connection has a smallest reduction, its holonomy bundle (Station 1.7b), and that a connection is irreducible exactly when that bundle is all of $P$.`,
   },
+  '1.8a': {
+    see: r`A connection on the trivial $SU(2)$-bundle over the plane. Its local form $\mathcal A = \mathcal A_x dx + \mathcal A_y dy$ takes values in $\mathfrak{su}(2)$, which we draw as $\mathbb R^3$ via $\mathfrak{su}(2)\cong\operatorname{Im}\mathbb H$. Left: at each grid point, an arrow in this internal space shows $\mathcal A_x$, $\mathcal A_y$ or the curvature $\mathcal F_{xy}$. Grey arrows are the original; coloured arrows are after a gauge transformation $\rho_\tau$. Right: the internal space again. The curve is the parallel transport $g(t)$ around the green loop, drawn by its vector part. The dot at its end is the holonomy.`,
+    tryIt: [
+      r`Show $\mathcal F$ and sweep $\tau$. Every red arrow turns, but none of them changes length, and the readout confirms that $|\mathcal F|$ is unchanged. A gauge transformation acts on curvature by a pointwise rotation, $\mathrm{Ad}_{\rho^{-1}}$.`,
+      r`Show $\mathcal A_x$ instead and sweep again. Now the arrows also grow and shrink: the extra term $\rho^{-1}d\rho$ is not a rotation. The potential is not a tensor; only the curvature is.`,
+      r`On the right, the orange holonomy moves as $\tau$ changes, but it stays on the blue sphere. Its distance from the centre is fixed by $\operatorname{tr}\,\mathrm{Hol}$, which the readout shows is unchanged. That trace is the Wilson loop, a gauge-invariant observable.`,
+      r`Make $\rho$ wilder. The potential can be scrambled as much as you like, but the curvature lengths and the Wilson loop do not move.`,
+    ],
+    idea: [
+      r`A gauge transformation is a vertical automorphism $\vartheta$ of $P$: it moves points only within their fibres (Rem. 1.8.1). By Prop. 1.8.3 it is the same thing as an equivariant map $u: P\to G$, $\vartheta(p) = p\cdot u(p)$. In a local section $s$ it becomes a function $\rho = u\circ s$ on the base (Rem. 1.8.6); here, $\rho = e^{\alpha i}e^{\beta j}e^{\gamma k}$ with angle functions scaled by $\tau$.`,
+      r`Pulling back by $\vartheta$ gives (1.8.7) and (1.8.8): $\vartheta^*\omega = \mathrm{Ad}_{u^{-1}}\omega + u^*\theta$ and $\vartheta^*\Omega = \mathrm{Ad}_{u^{-1}}\Omega$. For matrix groups these read $u^{-1}\omega u + u^{-1}du$ and $u^{-1}\Omega u$. On local representatives, $\mathcal A\mapsto\rho^{-1}\mathcal A\rho + \rho^{-1}d\rho$ and $\mathcal F\mapsto\rho^{-1}\mathcal F\rho$ (Rem. 1.8.8).`,
+      r`Unlike the $U(1)$ case of Station 1.3b, $\mathrm{Ad}$ is no longer trivial, so even $\mathcal F$ changes. It changes only by conjugation, though, which in $\mathfrak{su}(2)\cong\mathbb R^3$ is a rotation. The curvature is computed from $\mathcal F = d\mathcal A + \tfrac12[\mathcal A\wedge\mathcal A]$, so the commutator term $[\mathcal A_x,\mathcal A_y]$ matters here.`,
+      r`Holonomy transforms by conjugation, $\mathrm{Hol}' = \rho(x_0)^{-1}\,\mathrm{Hol}\,\rho(x_0)$, because the new section starts at a different point of the fibre over $x_0$. Conjugation keeps the trace, so $\operatorname{tr}\,\mathrm{Hol}$ is gauge invariant. For small loops, $\mathrm{Hol}\approx 1 - \text{area}\cdot\mathcal F$, which is how the pointwise law for $\mathcal F$ and the conjugation law for $\mathrm{Hol}$ fit together.`,
+    ],
+    ahead: r`These transformation laws are why Yang–Mills theory is built from $\operatorname{tr}(\mathcal F\wedge{\star}\mathcal F)$ and Wilson loops. For a curvature that is self-dual, see the quaternionic Hopf bundle in Station 1.4b.`,
+  },
 };

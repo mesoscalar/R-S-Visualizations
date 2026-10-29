@@ -372,6 +372,14 @@ export const STATIONS: Station[] = [
     items: ['1.7.6', '1.7.12', '1.7.13', '1.7.14', '1.7.15', '1.7.16', '1.7.20'],
     summary: 'Everything reachable from a point by horizontal paths: for the curved Hopf connection that is all of $S^3$, for a flat one a single surface.',
   },
+  {
+    id: '1.8a',
+    section: '1.8',
+    title: 'Non-abelian gauge transformations',
+    items: ['1.8.1', '1.8.3', '1.8.6', '1.8.7', '1.8.8'],
+    equations: ['(1.8.7)', '(1.8.8)'],
+    summary: 'An $SU(2)$ potential changes by $\\rho^{-1}\\mathcal A\\rho + \\rho^{-1}d\\rho$, its curvature only rotates pointwise, and the trace of a holonomy is unchanged.',
+  },
 ];
 
 export function findItem(num: string): BookItem | undefined {
