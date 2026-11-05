@@ -131,4 +131,11 @@ export const STATIONS: Station[] = [
     items: ['3.3.1', '3.3.4', '3.3.5'],
     summary: 'A bundle over $S^n$ is two trivial hemispheres glued by a map $S^{n-1}\\to G$. Deform the map inside $G$ and the bundle does not change: the winding (for $U(1)$) or degree (for $SU(2)$) is the whole story.',
   },
+  {
+    id: '3.4a',
+    section: '3.4',
+    title: 'Universal bundles: every U(1)-bundle over $S^2$ is a pullback of Hopf',
+    items: ['3.4.1', '3.4.6', '3.4.9', '3.4.10', '3.4.17', '3.4.23'],
+    summary: 'The Hopf bundle has $\\pi_1(S^3) = \\pi_2(S^3) = 0$, so it is 2-universal: pulling it back along maps $S^2\\to S^2$ produces every $U(1)$-bundle, and the degree of the map is (minus) the Chern number.',
+  },
 ];

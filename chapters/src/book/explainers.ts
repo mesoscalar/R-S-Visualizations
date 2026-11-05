@@ -396,4 +396,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`Rather than clutching each sphere separately, every bundle over every space is a pullback of one universal bundle (Station 3.4a).`,
   },
+  '3.4a': {
+    see: r`A map $f: S^2\to S^2$, where the target $S^2 = \mathbb CP^1$ is the base of the Hopf bundle $S^3\to S^2$. Right: the target, painted with a fixed colouring (hue = longitude, brightness = height). Left: the domain, with every point painted the colour of its image $f(x)$, so you can see how many times the domain is wrapped over the target. The three circles on the left are latitudes of the domain, and on the right are their images. The white dot on the right is a target point; the white dots on the left are its preimages.`,
+    tryIt: [
+      r`With $\deg f = 1$ the colours on the left are a slightly distorted copy of the right. Choose degree 2 or 3: every colour now appears that many times, and the white point has that many preimages.`,
+      r`Move the homotopy $t$ and rotate the target. The picture distorts a great deal, but the degree readout does not move, and neither does the number of white preimages. Homotopic maps pull back the same bundle (Cor. 3.3.5).`,
+      r`Degree $-1$ uses $\bar w$: the colours appear in mirror image, and each preimage counts with a minus sign. Degree $0$ (a constant map) pulls back the trivial bundle.`,
+      r`The readout $c_1(f^*\mathrm{Hopf}) = -\deg f$ agrees with Station 3.3a: the clutched bundle of winding $n$ has the same Chern number as the pullback along a degree-$n$ map. By the Classification Theorem they are the same bundle.`,
+    ],
+    idea: [
+      r`A principal $G$-bundle $E\to B$ is ($n$-)universal if pulling it back gives a bijection from homotopy classes of maps $X\to B$ onto isomorphism classes of $G$-bundles over $X$, for $X$ of dimension at most $n$ (Def. 3.4.1). A classifying map for $P$ is any $f$ with $P\cong f^*E$.`,
+      r`There is a simple test (Thm. 3.4.6): if the total space has no homotopy groups up to degree $n$, the bundle is $n$-universal. $S^3$ has $\pi_1 = \pi_2 = 0$, so the Hopf bundle is 2-universal for $U(1)$. This is the case $k = 1$, $l = 2$ of the Stiefel bundles (Thm. 3.4.10). Over the sphere $S^{2N+1}\to\mathbb CP^N$ the range grows with $N$, and $S^\infty\to\mathbb CP^\infty$ is universal in all dimensions (Ex. 3.4.17).`,
+      r`So $U(1)$-bundles over $S^2$ correspond to $[S^2, S^2]$, which by Hopf's theorem is $\mathbb Z$ via the degree. The exact sequence gives the same answer directly: $\pi_2(BU(1)) = \pi_1(U(1)) = \mathbb Z$ (Rem. 3.4.9). The Classification Theorem 3.4.23 makes this global: bundles over $X$ correspond to $[X, BG]$.`,
+      r`The pulled-back connection $f^*\omega_c$ has curvature $f^*\mathcal F$ with $\mathcal F = \tfrac i2\,dA$. Hence $c_1(f^*\mathrm{Hopf}) = \tfrac{i}{2\pi}\int f^*\mathcal F = -\tfrac1{4\pi}\int f^*dA = -\deg f$. For $f(w) = w^n$ there is an explicit lift $(z_1, z_2)\mapsto(z_1^n, z_2^n)$ to $S^3$, and the total space of the pullback is the lens space $S^3/\mathbb Z_n$.`,
+    ],
+    ahead: r`Bundles with connection are classified too. Station 3.8a pulls back the Hopf connection along suitable maps to produce any given connection.`,
+  },
 };
