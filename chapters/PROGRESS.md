@@ -61,6 +61,20 @@ renders one heading per chapter.
 | 2.6a The Chern connection of the tautological line bundle | §2.6 | Def. 2.6.7, Prop. 2.6.8, Def. 2.6.9, Cor. 2.6.10; (2.6.6), (2.6.7) | `src/math/chern.ts` | 6 |
 | 2.8a Self-duality in four dimensions | §2.8 | Rem. 2.8.1, Cor. 2.8.3, Lemma 2.8.5, Thm. 2.8.7, Def. 2.8.9, Ex. 2.8.10; (2.8.8), (2.8.22), (2.8.25) | `src/math/self-duality.ts` | 9 (incl. Prop. 2.4.2 polarisation) |
 
+
+### Chapter 3 (book pp. 189–255, from a user-supplied PDF of pp. 189–255)
+
+The contents spine lists every item of §§3.2, 3.3, 3.4 and 3.8 (58 items).
+§§3.1, 3.5, 3.6 and 3.7 keep only their table-of-contents entries, by the
+user's choice of four stations.
+
+| Station | Section | Book items | Kernel | Tests |
+|---|---|---|---|---|
+| 3.2a The exact homotopy sequence of the Hopf fibration | §3.2 | Def. 3.2.1, Cor. 3.2.5, Thm. 3.2.8, Ex. 3.2.10; (3.2.6), (3.2.7) | `src/math/hopf-homotopy.ts` | 6 |
+| 3.3a Bundles over spheres by clutching | §3.3 | Thm. 3.3.1, Cor. 3.3.4, 3.3.5 (Ex. 3.4.13 in the explainer) | `src/math/clutching.ts` | 4 |
+| 3.4a Every U(1)-bundle over S² is a pullback of Hopf | §3.4 | Def. 3.4.1, Thm. 3.4.6, Rem. 3.4.9, Thm. 3.4.10, Ex. 3.4.17, Thm. 3.4.23 | `src/math/classifying.ts` | 4 |
+| 3.8a A universal connection, made explicit | §3.8 | Def. 3.8.1, Lemma 3.8.2, 3.8.3, Thm. 3.8.4; (3.8.1) | `src/math/universal-connection.ts` | 4 |
+
 ## Explainers
 
 The text under each station was rewritten for teaching (what you are looking
@@ -136,6 +150,14 @@ identities, 200 for the rest; `mulberry32(42)`), measured on this branch:
 | 2.4a Gauss–Bonnet excess − k·Area (Simpson, 200 panels per side) | passes 1e-8 (not separately measured) | 1e-8 | O(N⁻⁴) |
 | 2.6a holonomy angle vs −∫∫𝓕 (HUD, default loop) | 0.001° | 1e-5 rad in the test | midpoint flux O(n⁻²) |
 | 2.5a dT_t·Y vs Levi-Civita transport ODE (HUD) | 2.8e-12 | 1e-9 in the test | RK4, 400 steps |
+| 3.2a endpoint phase vs −π(1 − cos ρ) (RK4 lift, 400 steps) | 1.4e-9 (40 random ρ) | 1e-8 | RK4 with renormalisation |
+| 3.2a linking of two fibres, Richardson from N = 200, 400 | 3.2e-8 (20 random pairs) | 1e-6 | gaussLinking is O(N⁻²): 2.0e-4 at 200, 5.1e-5 at 400 |
+| 3.3a Chern number of the clutched bundle vs −winding | 2.7e-15 | 1e-9 | periodic midpoint rule |
+| 3.3a SU(2) clutching degree (24·24·48 quadrature, well-conditioned maps) | 1.7e-4 | 1e-3 | worst for ε = 1.4, where qⁿ + εp gets small |
+| 3.4a degree (1/4π)∫f*dA (120 × 240 midpoint, FD Jacobians) | 2.9e-5 (12 maps) | 2e-3 | |
+| 3.8a Lemma 3.8.2: Σf̄df vs 𝒜 (FD) | 5.7e-11 (200 points) | 1e-8 | outer central difference |
+| 3.8a ϑ*(u†du) vs ω on random tangent vectors | 1.4e-10 (400 samples) | 1e-7 | central difference, truncation ~h²λ³ ≈ 2e-9 |
+| 3.8a equivariance ϑ(p·e^{iα}) = ϑ(p)e^{iα} | 4.0e-12 | 5e-11 | inner FD amplifies roundoff in π(p): ~1e-16/h/2λ |
 
 Single-point HUD readouts seen in the screenshots (not test assertions):
 1.5a (1.5.8) vs tangential ambient derivative 1.4e-11 and R(X,JX)V vs
@@ -208,6 +230,28 @@ the frame transition degree 2 on three latitudes (1.1c); the index sum 2 of
     connection formula (2.6.7) was checked against the rendered page, which
     gives 𝒜 = H̄⁻¹∂H̄, before writing the gist and the kernel.
 
+12. **gaussLinking's accuracy (3.2a).** Its doc comment in `@rsvis/math`
+    claimed spectral accuracy. A first test assumed that (1e-6 at N = 400) and
+    failed at 5.7e-5. Measured convergence is O(N⁻²) (8.2e-4, 2.0e-4, 5.1e-5,
+    1.3e-5 for N = 100…800): the chords stand in for tangents. The comment
+    in `math/src/hopf.ts` is corrected (no code change). The tests now use one
+    Richardson step and assert integers to 1e-6.
+13. **Near-singular clutching maps (3.3a).** The SU(2) degree of
+    normalize(q² + 0.9p) came out 1.97 at 24·24·48 nodes: |q² + εp| gets
+    small, so the integrand is steep. At 40·40·80 it was 2.0017. The test now
+    uses well-conditioned deformations (ε = 0.5). The station shows
+    min |qⁿ + εp| and warns when the quadrature is unreliable.
+14. **Equivariance tolerance (3.8a).** A first tolerance of 1e-12 had no
+    stated rationale and failed at 1.05e-12. The potential is a central
+    difference (h = 1e-6), so roundoff in π(p) enters as ~1e-16/h/(2λ) ≈ 4e-12,
+    which is what was measured (4.0e-12). Restated as 5e-11 with that
+    argument. Two other 3.8a tolerances (1e-3 and 1e-4) came from a worst-case
+    bound that measurements show is not attained (1.4e-10, 5.7e-11). They
+    were tightened to 1e-7 and 1e-8.
+15. **Measured values in comments.** Two first-draft comments (3.2a phase,
+    3.4a degree) quoted error figures before they were measured. Both were
+    measured (1.4e-9; 2.9e-5) and corrected before commit.
+
 ## Rendering caveats (checked only by headless screenshots)
 
 Every station was rendered once in headless Chromium (SwiftShader WebGL) with
@@ -254,6 +298,17 @@ Fibonacci-sampled arrow field in 1.3b reads clearly at phone size.
 - 2.8a: orbits through points near the projection pole are clipped at radius
   8 in R³; the "random tensor" option draws a new tensor on each selection.
 
+- 3.2a: fibres over points near the south pole pass near the projection
+  pole and are clipped at radius 6; the boundary sweep precomputes 121 lifts
+  on load.
+- 3.3a: the SU(2) degree uses 32·32·64 nodes and is recomputed 250 ms after
+  a control changes; it is unreliable when min |qⁿ + εp| is small, and the
+  HUD says so.
+- 3.4a: the degree readout uses a coarser 60 × 120 grid than the tests.
+- 3.8a: only loops inside chart 1 can be lifted (the lift uses Station 1.7a's
+  chart-1 construction). The HUD's horizontality residual is a finite
+  difference in t, relative to |dϑ/dt|.
+
 ## What to look at first
 
 1. **1.1b**: press "random cochains" a few times; crossings appear and
@@ -284,3 +339,9 @@ Fibonacci-sampled arrow field in 1.3b reads clearly at phone size.
     final angle is the flux.
 15. **2.8a**: Λ²₊ only versus Λ²₋ only (the two Hopf fibrations), then CP²
     in both orientations.
+16. **3.2a**: press "sweep" and watch the endpoints go once around the fibre.
+    Then try linking with n = 3 (total 9).
+17. **3.3a**: wiggle (nothing changes), then push ε past 1 (the class changes).
+18. **3.4a**: degree 2, then move the homotopy: the colours scramble, the
+    degree does not.
+19. **3.8a**: press "run" with each connection. The holonomy matches upstairs.

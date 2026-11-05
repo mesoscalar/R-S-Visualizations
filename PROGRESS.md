@@ -53,6 +53,14 @@ heading per chapter). The Ch. 2 spine covers §§2.1, 2.4, 2.5, 2.6 and 2.8;
 tautological bundle is Chapter 1's Hopf connection. Totals: math 55,
 gallery 32, chapters 127 — **214**, all green; `npm run build` green.
 
+**Chapter 3 (four stations: 3.2a, 3.3a, 3.4a, 3.8a).** The spine covers
+§§3.2, 3.3, 3.4 and 3.8; the other sections are ToC-only by choice. The
+kernels compose `@rsvis/math`: Hopf horizontal lifts, Gauss linking, the S³
+degree quadrature, sections and ω_c. 3.4a's test cross-checks against
+3.3a's kernel. One shared-kernel change: the `gaussLinking` doc comment now
+states its measured O(N⁻²) accuracy. Totals: math 55, gallery 32,
+chapters 145 — **232**, all green; `npm run build` green.
+
 ## What this branch did (`claude/monorepo-restructure`)
 
 Converted the single root project (the R&S visualization gallery) into an

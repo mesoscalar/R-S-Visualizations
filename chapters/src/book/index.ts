@@ -4,6 +4,7 @@
  */
 import * as ch1 from './ch1';
 import * as ch2 from './ch2';
+import * as ch3 from './ch3';
 import type { BookItem, BookSection, Station } from './types';
 
 export type { BookItem, BookSection, ItemKind, Station, StationModule } from './types';
@@ -16,7 +17,7 @@ export interface Chapter {
   stations: Station[];
 }
 
-export const CHAPTERS: Chapter[] = [ch1, ch2].map((c) => ({ ...c.CHAPTER, sections: c.SECTIONS, stations: c.STATIONS }));
+export const CHAPTERS: Chapter[] = [ch1, ch2, ch3].map((c) => ({ ...c.CHAPTER, sections: c.SECTIONS, stations: c.STATIONS }));
 export const SECTIONS: BookSection[] = CHAPTERS.flatMap((c) => c.sections);
 export const STATIONS: Station[] = CHAPTERS.flatMap((c) => c.stations);
 
