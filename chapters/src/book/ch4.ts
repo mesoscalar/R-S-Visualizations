@@ -73,4 +73,12 @@ export const SECTIONS: BookSection[] = [
   { num: '4.8', title: 'The Postnikov Tower and Bundle Classification', page: 345, items: [] },
 ];
 
-export const STATIONS: Station[] = [];
+export const STATIONS: Station[] = [
+  {
+    id: '4.6a',
+    section: '4.6',
+    title: 'Chern–Weil: the integral does not care which connection',
+    items: ['4.6.5', '4.6.6', '4.6.8', '4.6.11', '4.6.12'],
+    summary: 'Curvature densities move freely as the connection changes, but their integrals — $c_1 = -1$ on the Hopf bundle, charge 1 for $SU(2)$ — do not: the difference is exact, and for the instanton it is a Chern–Simons flux.',
+  },
+];

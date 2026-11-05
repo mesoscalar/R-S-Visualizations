@@ -428,4 +428,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`For non-compact structure groups the book builds universal connections differently: as the tautological connection on a jet bundle (Def. 3.8.10, Thm. 3.8.13), which reproduces every connection by construction.`,
   },
+  '4.6a': {
+    see: r`Two bundles and two families of connections. Left: the Hopf bundle with the connections $\omega_t = (1-t)\omega_c + t\,\omega_{PU}$ (Station 1.3c). The orange curve is the curvature density of $\omega_t$ against the polar angle $\theta$, and the purple curve is the transgression potential $t\beta$ with $\beta = \omega_{PU} - \omega_c$. Right: the $SU(2)$ instanton on $\mathbb R^4$ at scale $\lambda$. The green curve is the charge inside the ball $|x| < R$, computed as a bulk integral of $\tfrac1{8\pi^2}\operatorname{tr}\mathcal F\wedge\mathcal F$. The white dots are the same charge computed differently, as the flux of the Chern–Simons form through the sphere $|x| = R$.`,
+    tryIt: [
+      r`Move $t$. The curvature density changes shape completely: it piles up where $\omega_{PU}$ bends and thins out elsewhere. The readout $c_1 = -1$ does not move.`,
+      r`Watch the purple curve. It vanishes at both poles, so the integral of its derivative, $\mathcal F_t - \mathcal F_0$, is zero. This is the whole proof that $c_1$ doesn't depend on $t$.`,
+      r`Change $\lambda$ on the right. A small $\lambda$ concentrates the charge near the origin, and a large one spreads it out. These connections are not gauge-equivalent, since their curvatures have different sizes, yet the total charge is 1 for all of them.`,
+      r`The white dots sit on the green curve at every radius. The charge inside a ball is a boundary integral of the Chern–Simons form, and as $R\to\infty$ that boundary integral counts how the gauge field winds at infinity.`,
+    ],
+    idea: [
+      r`Plug the curvature $\Omega$ into an invariant polynomial $\xi$ on $\mathfrak g$, replacing products by wedge products. The result is a closed form on $M$, and its de Rham class does not depend on the connection: for two connections the forms differ by an exact form (Lemma 4.6.5). This defines the Weil homomorphism $w_P$ (Def. 4.6.6), whose values are characteristic classes (Cor. 4.6.8).`,
+      r`The proof is a straight-line homotopy. Join $\omega_0$ to $\omega_1$ by $\omega_t = \omega_0 + t\beta$. Then $\tfrac{d}{dt}\xi(\Omega_t)$ is $d$ of a form built from $\beta$ and $\Omega_t$. For $U(1)$ this is simply $\mathcal F_t - \mathcal F_0 = d(t\beta)$, the purple curve.`,
+      r`For $U(n)$ the elementary symmetric polynomials of $\tfrac{i}{2\pi}\Omega$ give exactly the Chern classes (Thm. 4.6.11). Chern numbers are their integrals (Cor. 4.6.12): here $c_1 = \tfrac{i}{2\pi}\int\mathcal F = -1$ for the Hopf bundle.`,
+      r`For $SU(2)$, $\operatorname{tr}(\mathcal F\wedge\mathcal F) = d\,\operatorname{tr}(\mathcal A\wedge d\mathcal A + \tfrac23\mathcal A\wedge\mathcal A\wedge\mathcal A)$. This is the transgression from the trivial connection, and its potential is the Chern–Simons form. So by Stokes the charge in a ball is a flux through its boundary. Far out the instanton is pure gauge, $\mathcal A\approx g^{-1}dg$, and the flux becomes the degree of $g$: the clutching degree of Station 3.3a.`,
+    ],
+    ahead: r`The same machinery computes the characteristic numbers of a whole manifold from its Riemannian curvature: Station 4.7a does it for $\mathbb CP^2$.`,
+  },
 };
