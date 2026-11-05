@@ -115,4 +115,13 @@ export const SECTIONS: BookSection[] = [
   },
 ];
 
-export const STATIONS: Station[] = [];
+export const STATIONS: Station[] = [
+  {
+    id: '3.2a',
+    section: '3.2',
+    title: 'The exact homotopy sequence of the Hopf fibration',
+    items: ['3.2.1', '3.2.5', '3.2.8', '3.2.10'],
+    equations: ['(3.2.6)', '(3.2.7)'],
+    summary: 'Lift a sweep of loops over $S^2$ and the endpoints run once around the fibre: $\\partial:\\pi_2(S^2)\\to\\pi_1(U(1))$ is an isomorphism. Fibres link once: $\\pi_3(S^2) = \\mathbb Z$.',
+  },
+];

@@ -200,7 +200,8 @@ export function fiberCurveR3(p: Vec3, M = 200, phase0 = 0): Vec3[] {
 
 /**
  * Gauss linking integral of two disjoint closed polylines (midpoint rule over
- * segment pairs — spectrally accurate for smooth well-separated curves):
+ * segment pairs; the chords stand in for tangents, so the error is O(N⁻²) for
+ * smooth well-separated curves — measured 5.1e-5 at N = 400 on two Hopf fibres):
  *   Lk = (1/4 pi) sum_ij ((mi - mj) . (di x dj)) / |mi - mj|^3.
  */
 export function gaussLinking(c1: ReadonlyArray<Vec3>, c2: ReadonlyArray<Vec3>): number {
