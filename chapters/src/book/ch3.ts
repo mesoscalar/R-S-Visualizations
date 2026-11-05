@@ -124,4 +124,11 @@ export const STATIONS: Station[] = [
     equations: ['(3.2.6)', '(3.2.7)'],
     summary: 'Lift a sweep of loops over $S^2$ and the endpoints run once around the fibre: $\\partial:\\pi_2(S^2)\\to\\pi_1(U(1))$ is an isomorphism. Fibres link once: $\\pi_3(S^2) = \\mathbb Z$.',
   },
+  {
+    id: '3.3a',
+    section: '3.3',
+    title: 'Bundles over spheres by clutching',
+    items: ['3.3.1', '3.3.4', '3.3.5'],
+    summary: 'A bundle over $S^n$ is two trivial hemispheres glued by a map $S^{n-1}\\to G$. Deform the map inside $G$ and the bundle does not change: the winding (for $U(1)$) or degree (for $SU(2)$) is the whole story.',
+  },
 ];

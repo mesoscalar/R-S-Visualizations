@@ -380,4 +380,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`The same sequence shows $\pi_i(BG) = \pi_{i-1}(G)$ for universal bundles (Rem. 3.4.9). This is why bundles over $S^n$ are classified by $\pi_{n-1}(G)$, as Station 3.3a's clutching picture shows.`,
   },
+  '3.3a': {
+    see: r`A $U(1)$-bundle over $S^2$ built by hand. Each hemisphere is trivial (blue and brown caps), and the two trivializations are glued along the equator by a clutching map $g: S^1\to U(1)$. The equator is coloured by the phase of $g$. Right: the same map drawn as a closed curve in $\mathbb C$, with $U(1)$ as the dashed unit circle and its colour giving the position $\varphi$ along the equator. The readouts give the curve's winding number, the Chern number computed from the curvature of a connection on the glued bundle, and, for comparison, the degree of an $SU(2)$ clutching map $S^3\to SU(2)$, which builds an $SU(2)$-bundle over $S^4$ in the same way.`,
+    tryIt: [
+      r`Move "wiggle inside the group". The curve twists and slides along the unit circle, but its winding number stays exactly $n$, and so does the Chern number. Every such deformation is a homotopy of clutching maps, so all these bundles are the same bundle (Cor. 3.3.5).`,
+      r`Now push the curve off the group with $\varepsilon$. While it avoids $0$, normalising it back onto $U(1)$ is still a homotopy and nothing changes. When it sweeps across $0$ (at $\varepsilon = 1$) the phase is undefined for a moment, and afterwards the winding has dropped to $0$: a different bundle. Classes change only by leaving the group.`,
+      r`Choose $n = 0$: the trivial bundle, the product $S^2\times U(1)$. $n = 1$ is the Hopf bundle up to orientation, and $n = -1$ the same with the opposite orientation.`,
+      r`The last readout repeats the experiment one dimension up. Clutching $S^3\to SU(2)$ by $q\mapsto q^n$ gives degree $n$, and $n = -1$ uses $q\mapsto\bar q$: that is the transition function $\bar x/|x|$ of the quaternionic Hopf bundle, whose instanton has charge 1 (Station 1.4b).`,
+    ],
+    idea: [
+      r`Over $X\times I$ every principal bundle is a product $P_0\times I$ (Thm. 3.3.1). Two consequences follow. A bundle morphism over a homotopy can be continued along it: the Covering Homotopy Theorem (Cor. 3.3.4). And homotopic maps pull back isomorphic bundles (Cor. 3.3.5).`,
+      r`Apply this to spheres. $S^n$ is two contractible caps meeting near the equator $S^{n-1}$; over each cap the bundle is trivial, so all its information sits in the transition map $S^{n-1}\to G$ (Prop. 1.1.10, Thm. 1.1.11). Homotopic transition maps give isomorphic bundles, so isomorphism classes of bundles over $S^n$ are $\pi_{n-1}(G)$ (Ex. 3.4.13).`,
+      r`For $U(1)$ over $S^2$ this is $\pi_1(U(1)) = \mathbb Z$, the winding number, and it shows up in the curvature. Use $\mathcal A_N = \beta(\theta)\,g^{-1}dg$ in the northern trivialization, with $\beta$ rising from 0 near $N$ to 1 near $S$. Then $\mathcal A_S = \mathcal A_N - g^{-1}dg$ is smooth at $S$, and $\tfrac{i}{2\pi}\int\mathcal F = -n$ with this gluing convention.`,
+      r`For $U(1)$ the only interesting sphere is $S^2$: $\pi_{n-1}(U(1)) = 0$ for $n\ne 2$. For $SU(2)\cong S^3$, $\pi_3 = \mathbb Z$ is detected by the degree, so $SU(2)$-bundles over $S^4$ are indexed by an integer: the instanton number.`,
+    ],
+    ahead: r`Rather than clutching each sphere separately, every bundle over every space is a pullback of one universal bundle (Station 3.4a).`,
+  },
 };
