@@ -138,4 +138,12 @@ export const STATIONS: Station[] = [
     items: ['3.4.1', '3.4.6', '3.4.9', '3.4.10', '3.4.17', '3.4.23'],
     summary: 'The Hopf bundle has $\\pi_1(S^3) = \\pi_2(S^3) = 0$, so it is 2-universal: pulling it back along maps $S^2\\to S^2$ produces every $U(1)$-bundle, and the degree of the map is (minus) the Chern number.',
   },
+  {
+    id: '3.8a',
+    section: '3.8',
+    title: 'A universal connection, made explicit',
+    items: ['3.8.1', '3.8.2', '3.8.3', '3.8.4'],
+    equations: ['(3.8.1)'],
+    summary: 'Any $U(1)$-connection on the Hopf bundle is the pullback of the plain $u^\\dagger du$ on $S^{15}\\subset\\mathbb C^8$ along an explicit map built from local data and a partition of unity (Narasimhan–Ramanan).',
+  },
 ];

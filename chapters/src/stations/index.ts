@@ -28,6 +28,7 @@ export const LOADERS: Record<string, () => Promise<StationModule>> = {
   '3.2a': () => import('./s32a-homotopy'),
   '3.3a': () => import('./s33a-clutching'),
   '3.4a': () => import('./s34a-classifying'),
+  '3.8a': () => import('./s38a-universal'),
   '1.4b': () => import('./s14b-instanton'),
   '1.5a': () => import('./s15a-koszul'),
   '1.6a': () => import('./s16a-reduction'),

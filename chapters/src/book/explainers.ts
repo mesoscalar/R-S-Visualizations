@@ -412,4 +412,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`Bundles with connection are classified too. Station 3.8a pulls back the Hopf connection along suitable maps to produce any given connection.`,
   },
+  '3.8a': {
+    see: r`The Hopf bundle $S^3\to S^2$ with a chosen connection $\omega$: either its own $\omega_c$, or the glued connection $\omega_{PU}$ of Station 1.3c. Left: $S^2$ covered by two charts, the northern (blue) and the southern (orange), shaded by a partition of unity; the grey circles bound the overlap. The white loop is lifted $\omega$-horizontally to $S^3$. Right: the map $\vartheta$ of Thm. 3.8.4 sends each point of $S^3$ to a unit vector in $\mathbb C^8$. The eight dials show its eight complex components at the current point of the lift: four from each chart.`,
+    tryIt: [
+      r`Press "run". The dials turn and grow or shrink as the point travels around the loop. Over the northern cap only the top row is alive, over the southern cap only the bottom row, and in the overlap both.`,
+      r`The readouts compare the holonomy of the loop computed downstairs (with $\omega$) and upstairs (with the plain $u^\dagger du$ on $S^{15}$). They agree. The image of the horizontal lift is horizontal for $u^\dagger du$: the residual is at the level of the finite differences.`,
+      r`Switch the connection. The map $\vartheta$ changes, the dials move differently, and the holonomy changes. But it still matches upstairs: the same universal connection reproduces both.`,
+      r`Move the loop into the southern chart. The work shifts to the bottom row of dials, and nothing in the readouts notices.`,
+    ],
+    idea: [
+      r`Bundles are classified by maps into a universal bundle (Station 3.4a). Bundles with connections are too: a connection on an $n$-universal bundle is $n$-universal if every connection over a base of dimension $\le n$ is a pullback of it (Def. 3.8.1). For $U(k)$ the canonical connection $u^\dagger du$ of the Stiefel bundles does the job (3.8.1).`,
+      r`Locally it is just algebra (Lemma 3.8.2). For $k = 1$ on a chart, write $\mathcal A = i(A_u\,du + A_v\,dv)$ and take $f_j = r_j e^{i\theta_j}$ with phases $\pm\lambda u, \pm\lambda v$ and weights $r_j^2 = \tfrac14\pm A/(2\lambda)$. Then $\sum|f_j|^2 = 1$ and $\sum\bar f_j\,df_j = \sum r_j\,dr_j + i\sum r_j^2\,d\theta_j = \mathcal A$, since the first sum is $\tfrac12 d\sum r_j^2 = 0$.`,
+      r`Multiplying by the bundle coordinate $\kappa(p)\in U(1)$ makes this an equivariant map on $P$ with $\vartheta^*(u^\dagger du) = \omega$ over the chart (Lemma 3.8.3).`,
+      r`Gluing (Thm. 3.8.4): stack the chart maps weighted by $\sqrt{\varphi_i}$, with $\sum\varphi_i = 1$. Then $\vartheta^\dagger\vartheta = 1$, and $\vartheta^\dagger d\vartheta = \sum\varphi_i\,\omega + \tfrac12 d\sum\varphi_i = \omega$. The tests check this identity on random tangent vectors of $S^3$ to $1.4\times10^{-10}$. Two charts suffice for $S^2$, so here the target is $S^{15}\subset\mathbb C^8$ and the base of the universal bundle is $\mathbb CP^7$.`,
+    ],
+    ahead: r`For non-compact structure groups the book builds universal connections differently: as the tautological connection on a jet bundle (Def. 3.8.10, Thm. 3.8.13), which reproduces every connection by construction.`,
+  },
 };
