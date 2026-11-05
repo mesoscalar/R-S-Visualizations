@@ -75,6 +75,24 @@ user's choice of four stations.
 | 3.4a Every U(1)-bundle over S² is a pullback of Hopf | §3.4 | Def. 3.4.1, Thm. 3.4.6, Rem. 3.4.9, Thm. 3.4.10, Ex. 3.4.17, Thm. 3.4.23 | `src/math/classifying.ts` | 4 |
 | 3.8a A universal connection, made explicit | §3.8 | Def. 3.8.1, Lemma 3.8.2, 3.8.3, Thm. 3.8.4; (3.8.1) | `src/math/universal-connection.ts` | 4 |
 
+
+### Chapter 4 (book pp. 257–352, from a user-supplied PDF of pp. 257–352)
+
+Two stations, chosen to fit the user's remaining budget. The spine itemises
+§§4.6 and 4.7 only, from the statements (proofs skimmed); §§4.1–4.5 and 4.8
+keep their table-of-contents entries.
+
+| Station | Section | Book items | Kernel | Tests |
+|---|---|---|---|---|
+| 4.6a Chern–Weil: the integral does not care which connection | §4.6 | Lemma 4.6.5, Def. 4.6.6, Cor. 4.6.8, Thm. 4.6.11, Cor. 4.6.12 | `src/math/chern-weil.ts` | 4 |
+| 4.7a Characteristic numbers of CP² and the signature | §4.7 | Prop. 4.7.1, Ex. 4.7.3 | `src/math/char-numbers.ts` (reuses 2.8a's tensors) | 4 |
+
+Measured: BPST bulk charge vs closed form ≤ 2.2e-9 (tolerance 1e-7). The
+Chern–Simons flux through |x| = R converges as O(N⁻²): the errors at N = 16
+and 24 differ by the factor 2.25. After one Richardson step it is ≤ 8.0e-7
+against the bulk charge (tolerance 1e-5). The 4.7a numbers are exact to
+roundoff (tolerance 1e-10).
+
 ## Explainers
 
 The text under each station was rewritten for teaching (what you are looking
