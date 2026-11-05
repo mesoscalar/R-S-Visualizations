@@ -61,6 +61,11 @@ degree quadrature, sections and ω_c. 3.4a's test cross-checks against
 states its measured O(N⁻²) accuracy. Totals: math 55, gallery 32,
 chapters 145 — **232**, all green; `npm run build` green.
 
+**Chapter 4 (two stations: 4.6a, 4.7a).** The spine covers §§4.6–4.7; the
+other sections are ToC-only. 4.6a reuses the 1.3c/1.4b kernels, 4.7a the
+2.8a curvature tensors. Totals: math 55, gallery 32, chapters 153 —
+**240**, all green; `npm run build` green.
+
 ## What this branch did (`claude/monorepo-restructure`)
 
 Converted the single root project (the R&S visualization gallery) into an
