@@ -81,4 +81,11 @@ export const STATIONS: Station[] = [
     items: ['4.6.5', '4.6.6', '4.6.8', '4.6.11', '4.6.12'],
     summary: 'Curvature densities move freely as the connection changes, but their integrals — $c_1 = -1$ on the Hopf bundle, charge 1 for $SU(2)$ — do not: the difference is exact, and for the instanton it is a Chern–Simons flux.',
   },
+  {
+    id: '4.7a',
+    section: '4.7',
+    title: 'Characteristic numbers of $\\mathbb CP^2$ and the signature',
+    items: ['4.7.1', '4.7.3'],
+    summary: 'Integrate Chern–Weil forms of the Fubini–Study curvature: $\\chi = c_2 = 3$, $c_1^2 = 9$, $p_1 = 3$, and the $L$-genus gives signature $p_1/3 = 1$, which flips with the orientation.',
+  },
 ];

@@ -444,4 +444,20 @@ export const EXPLAINERS: Record<string, Explainer> = {
     ],
     ahead: r`The same machinery computes the characteristic numbers of a whole manifold from its Riemannian curvature: Station 4.7a does it for $\mathbb CP^2$.`,
   },
+  '4.7a': {
+    see: r`Four model 4-manifolds: the round $S^4$, $S^2\times S^2$, and $\mathbb CP^2$ with its Fubini–Study metric, in both orientations. Left: the curvature at one point, as the symmetric operator on 2-forms from Station 2.8a. Right: characteristic numbers, each computed as a Chern–Weil density at one point times the volume. That suffices because the spaces are homogeneous, so every point looks the same. Each number is shown next to the value topology predicts.`,
+    tryIt: [
+      r`Choose $\mathbb CP^2$. The Euler number from the Pfaffian of the curvature is 3. The second Chern number of the tangent bundle is also 3, as it must be: $c_2$ of a complex tangent bundle is its Euler class.`,
+      r`Read the signature row. The $L$-genus turns $p_1 = 3$ into $\tau = 1$, the signature of the intersection form of $\mathbb CP^2$, and $p_1 = c_1^2 - 2c_2 = 9 - 6$ checks out.`,
+      r`Reverse the orientation. The Euler number stays 3, but $p_1$ and $\tau$ flip to $-3$ and $-1$. A curvature integral sees the orientation the same way topology does.`,
+      r`$S^4$ and $S^2\times S^2$ have signature 0. In their curvature operators the two diagonal blocks, on $\Lambda^2_+$ and $\Lambda^2_-$, are equally large. For $\mathbb CP^2$ they are not.`,
+    ],
+    idea: [
+      r`A power series $q(x)$ with $q(0) = 1$ defines a genus: a multiplicative characteristic class, determined by its values on line bundles (Prop. 4.7.1). The $L$-genus comes from $\sqrt x/\tanh\sqrt x$, and its first term is $L_1 = p_1/3$ (Ex. 4.7.3).`,
+      r`Chern–Weil theory makes these classes computable from curvature. The Pontryagin form is $p_1 = -\tfrac1{8\pi^2}\operatorname{tr}(\Omega\wedge\Omega)$, and for $SO(4)$ the Pfaffian $\mathrm{Pf}(\Omega/2\pi)$ represents the Euler class (Thm. 4.6.14). For a Kähler manifold, $\det(\mathbb 1 + \tfrac{i}{2\pi}\Omega^{\mathbb C})$ gives the Chern classes (Thm. 4.6.11).`,
+      r`Hirzebruch's signature theorem (proved in Chapter 5) says the $L$-genus integrates to the signature of the manifold. For $\mathbb CP^2$ this is $p_1/3 = 1$, here obtained from nothing but the Fubini–Study curvature tensor and the volume $8\pi^2$.`,
+      r`These densities also fit the self-duality picture of Station 2.8a. $\mathbb CP^2$ is self-dual but not anti-self-dual: its $W_+\ne 0$ and $W_- = 0$ make its two blocks unequal. That asymmetry is exactly what the signature measures.`,
+    ],
+    ahead: r`Chapter 5 turns these numbers into indices of Dirac operators: the $\hat A$-genus and the Atiyah–Singer theorem.`,
+  },
 };

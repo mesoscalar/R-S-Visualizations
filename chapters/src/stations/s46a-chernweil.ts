@@ -109,7 +109,9 @@ export function mount(container: HTMLElement): () => void {
   function drawLeft(): void {
     const { ctx, W, H } = beginL();
     const t = parseFloat(tS.value);
-    const { X, Y } = axes(ctx, W, H, Math.PI, -0.6, 1.6, 'θ (0 → π)');
+    let top = 1;
+    for (let k = 1; k < 200; k++) top = Math.max(top, density(1, (Math.PI * k) / 200));
+    const { X, Y } = axes(ctx, W, H, Math.PI, -0.6, 1.1 * top, 'θ (0 → π)');
     curve(ctx, (th) => density(0, th), Math.PI - 0.02, X, Y, '#5a6380', 1.2, [], 0.02);
     curve(ctx, (th) => density(1, th), Math.PI - 0.02, X, Y, '#5e8cf0', 1.2, [4, 3], 0.02);
     curve(ctx, (th) => density(t, th), Math.PI - 0.02, X, Y, '#f0a35e', 2.5, [], 0.02);
